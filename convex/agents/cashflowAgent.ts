@@ -387,7 +387,7 @@ RECOMMENDATIONS:
     const aiResponse = response.content[0].type === "text" ? response.content[0].text : "";
 
     // Parse AI response
-    const insightMatch = aiResponse.match(/INSIGHT:\s*(.+?)(?=RECOMMENDATIONS:|$)/s);
+    const insightMatch = aiResponse.match(/INSIGHT:\s*([\s\S]+?)(?=RECOMMENDATIONS:|$)/);
     const recommendationsMatch = aiResponse.match(/RECOMMENDATIONS:\s*([\s\S]+)/);
 
     const insight = insightMatch?.[1]?.trim() ?? aiResponse;

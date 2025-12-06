@@ -317,6 +317,7 @@ export const seedTransactions = mutation({
         isExcludedFromInsights: false,
         userCategorized: false,
         markedAsRegret: false,
+        // Income transactions don't need Shariah status
         createdAt: now,
         updatedAt: now,
       });
@@ -326,6 +327,10 @@ export const seedTransactions = mutation({
       for (const sub of activeSubscriptions) {
         const subDate = new Date(monthDate.getFullYear(), monthDate.getMonth(), Math.floor(Math.random() * 28) + 1).getTime();
         const price = SUBSCRIPTION_PRICES[sub.name] ?? 14.99;
+        
+        // Check if subscription merchant is halal
+        const merchantData = MERCHANTS.find(m => m.name === sub.name);
+        const isHaramMerchant = merchantData?.isHaram ?? false;
         
         transactionsToCreate.push({
           userId: args.userId,
@@ -340,6 +345,8 @@ export const seedTransactions = mutation({
           isExcludedFromInsights: false,
           userCategorized: false,
           markedAsRegret: false,
+          shariahStatus: isHaramMerchant ? ("haram" as const) : ("halal" as const),
+          shariahReason: isHaramMerchant ? "Non-halal subscription service" : "Halal subscription service",
           createdAt: now,
           updatedAt: now,
         });
@@ -374,6 +381,7 @@ export const seedTransactions = mutation({
         // Randomly mark some as regretted (impulse purchases)
         const isRegret = Math.random() < 0.05; // 5% regret rate
         
+        // Set initial Shariah status for halal merchants
         transactionsToCreate.push({
           userId: args.userId,
           amount,
@@ -387,6 +395,8 @@ export const seedTransactions = mutation({
           isExcludedFromInsights: false,
           userCategorized: false,
           markedAsRegret: isRegret,
+          shariahStatus: "halal" as const,
+          shariahReason: "Halal merchant - JAKIM certified or verified halal establishment",
           createdAt: now,
           updatedAt: now,
         });
@@ -417,6 +427,20 @@ export const seedTransactions = mutation({
           Math.floor(Math.random() * 60)
         ).getTime();
         
+        // Determine Shariah status and reason based on merchant type
+        let shariahStatus: "haram" | "doubtful" = "haram";
+        let shariahReason = "";
+        
+        if (haramMerchant.name.includes("Casino") || haramMerchant.name.includes("Toto") || haramMerchant.name.includes("4D") || haramMerchant.name.includes("Da Ma Cai")) {
+          shariahReason = "Gambling (maysir) - prohibited in Islam";
+        } else if (haramMerchant.name.includes("Club") || haramMerchant.name.includes("Bar") || haramMerchant.name.includes("Beer") || haramMerchant.name.includes("Carlsberg") || haramMerchant.name.includes("Tiger")) {
+          shariahReason = "Alcohol (khamr) - prohibited in Islam";
+        } else if (haramMerchant.name.includes("Bak Kut Teh") || haramMerchant.name.includes("Pork")) {
+          shariahReason = "Pork consumption - prohibited in Islam";
+        } else {
+          shariahReason = "Non-halal establishment";
+        }
+        
         transactionsToCreate.push({
           userId: args.userId,
           amount: haramMerchant.amount,
@@ -429,6 +453,8 @@ export const seedTransactions = mutation({
           isExcludedFromInsights: false,
           userCategorized: false,
           markedAsRegret: Math.random() < 0.3, // 30% regret rate for haram purchases
+          shariahStatus,
+          shariahReason,
           createdAt: now,
           updatedAt: now,
         });

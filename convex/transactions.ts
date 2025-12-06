@@ -380,9 +380,21 @@ export const bulkImport = mutation({
         isExcludedFromInsights: false,
         userCategorized: false,
         markedAsRegret: false,
+        // Set pending_review for expenses so they show up in dashboard
+        shariahStatus: tx.type === "expense" ? "pending_review" : undefined,
         createdAt: now,
         updatedAt: now,
       });
+      
+      // Schedule Shariah compliance check for expense transactions
+      if (tx.type === "expense") {
+        await ctx.scheduler.runAfter(0, internal.transactions.checkShariahCompliance, {
+          transactionId,
+          merchant: tx.merchantName,
+          amount: tx.amount,
+          description: tx.description,
+        });
+      }
       
       imported.push(transactionId);
     }

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useRef, useEffect } from 'react';
-import { Bot, X, Send, Sparkles } from 'lucide-react';
+import { useState, useRef, useEffect } from "react";
+import { X, Send, Moon } from "lucide-react";
 
 interface Message {
   id: number;
@@ -13,29 +13,30 @@ interface Message {
 const initialMessages: Message[] = [
   {
     id: 1,
-    text: "Hi! I'm your Sentience AI assistant. I can help you with spending insights, budget questions, or financial advice. What would you like to know?",
+    text: "Hi there! I'm Lumina AI, your personal financial assistant. Whether you prefer conventional banking or Shariah-compliant options, I'm here to help with savings, investments, loans, insurance, Zakat, and more. How can I assist you today?",
     isUser: false,
     timestamp: new Date(),
   },
 ];
 
 const aiResponses = [
-  "Based on your spending patterns, I'd recommend setting a $200 weekly limit for dining out. This could save you approximately $340/month.",
-  "Your emergency fund is 84% complete. At your current savings rate, you'll reach your goal in approximately 6 weeks.",
-  "I noticed 3 subscriptions you haven't used in 60+ days. Would you like me to show you which ones?",
-  "Your spending this month is 15% lower than last month. Great progress on your savings goals!",
-  "I can help you optimize your vault allocations. Would you like me to analyze your current setup?",
+  "Based on your current wealth, your estimated Zakat is $3,210 (2.5% of zakatable assets above nisab). Would you like me to break down the calculation?",
+  "MashaAllah, your Hajj savings fund is 65% complete. At your current savings rate, you'll reach your goal in approximately 8 months, inshaAllah.",
+  "I noticed a transaction at a business that may involve riba. Would you like me to suggest halal alternatives in your area?",
+  "Your Takaful coverage looks comprehensive, Alhamdulillah. However, you might benefit from additional health Takaful for your growing family.",
+  "This sukuk fund has a projected 4.2% profit rate and is certified by AAOIFI. Shall I add it to your watchlist?",
+  "Ramadan is approaching in 3 months. Based on your income, I recommend setting aside $500/month for Zakat and Sadaqah. Would you like me to set up automatic transfers?",
 ];
 
 export default function AIChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -53,24 +54,27 @@ export default function AIChatbot() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+    setInput("");
     setIsTyping(true);
 
     // Simulate AI response delay
-    setTimeout(() => {
-      const aiResponse: Message = {
-        id: messages.length + 2,
-        text: aiResponses[Math.floor(Math.random() * aiResponses.length)],
-        isUser: false,
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, aiResponse]);
-      setIsTyping(false);
-    }, 1000 + Math.random() * 1000);
+    setTimeout(
+      () => {
+        const aiResponse: Message = {
+          id: messages.length + 2,
+          text: aiResponses[Math.floor(Math.random() * aiResponses.length)],
+          isUser: false,
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, aiResponse]);
+        setIsTyping(false);
+      },
+      1000 + Math.random() * 1000
+    );
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
     }
@@ -80,21 +84,23 @@ export default function AIChatbot() {
     <>
       {/* Chat Dialog */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[380px] h-[500px] bg-[#0a0a0a] border border-[#efece4]/10 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div className="fixed bottom-24 right-6 w-[380px] h-[500px] bg-[#0a0a0a] border border-cream/10 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-[#efece4]/5 bg-[#0a0a0a]">
+          <div className="flex items-center justify-between p-4 border-b border-cream/5 bg-[#0a0a0a]">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-violet-400" />
+                <Moon className="w-4 h-4 text-violet-400" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-[#efece4]">Sentience AI</h3>
-                <p className="text-xs text-emerald-400">Online</p>
+                <h3 className="text-sm font-medium text-cream">Lumina AI</h3>
+                <p className="text-xs text-violet-400">
+                  Your Financial Assistant
+                </p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 text-[#efece4]/40 hover:text-[#efece4] transition-colors"
+              className="p-2 text-cream/40 hover:text-cream transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -105,13 +111,13 @@ export default function AIChatbot() {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
               >
                 <div
                   className={`max-w-[80%] p-3 rounded-2xl text-sm ${
                     message.isUser
-                      ? 'bg-violet-500/15 text-[#efece4] rounded-br-md'
-                      : 'bg-[#efece4]/5 text-[#efece4]/80 rounded-bl-md'
+                      ? "bg-violet-500/15 text-cream rounded-br-md"
+                      : "bg-cream/5 text-cream/80 rounded-bl-md"
                   }`}
                 >
                   {message.text}
@@ -120,11 +126,20 @@ export default function AIChatbot() {
             ))}
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-[#efece4]/5 p-3 rounded-2xl rounded-bl-md">
+                <div className="bg-cream/5 p-3 rounded-2xl rounded-bl-md">
                   <div className="flex gap-1">
-                    <span className="w-2 h-2 bg-[#efece4]/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-2 h-2 bg-[#efece4]/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-2 h-2 bg-[#efece4]/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <span
+                      className="w-2 h-2 bg-cream/40 rounded-full animate-bounce"
+                      style={{ animationDelay: "0ms" }}
+                    />
+                    <span
+                      className="w-2 h-2 bg-cream/40 rounded-full animate-bounce"
+                      style={{ animationDelay: "150ms" }}
+                    />
+                    <span
+                      className="w-2 h-2 bg-cream/40 rounded-full animate-bounce"
+                      style={{ animationDelay: "300ms" }}
+                    />
                   </div>
                 </div>
               </div>
@@ -133,15 +148,15 @@ export default function AIChatbot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-[#efece4]/5 bg-[#0a0a0a]">
+          <div className="p-4 border-t border-cream/5 bg-black">
             <div className="flex items-center gap-2">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask me anything..."
-                className="flex-1 bg-[#efece4]/5 border border-[#efece4]/10 rounded-xl px-4 py-3 text-sm text-[#efece4] placeholder:text-[#efece4]/30 focus:outline-none focus:border-violet-500/30 transition-colors"
+                placeholder="Ask about Zakat, investments, Takaful..."
+                className="flex-1 bg-cream/5 border border-cream/10 rounded-xl px-4 py-3 text-sm text-cream placeholder:text-cream/30 focus:outline-none focus:border-violet-500/30 transition-colors"
               />
               <button
                 onClick={handleSend}
@@ -160,17 +175,12 @@ export default function AIChatbot() {
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg z-50 flex items-center justify-center transition-all duration-300 ${
           isOpen
-            ? 'bg-[#efece4]/10 text-[#efece4]'
-            : 'bg-gradient-to-br from-violet-600/80 to-cyan-600/80 text-white hover:from-violet-600 hover:to-cyan-600'
+            ? "bg-cream/10 text-cream"
+            : "bg-linear-to-br from-violet-600/80 to-fuchsia-600/80 text-white hover:from-violet-600 hover:to-fuchsia-600"
         }`}
       >
-        {isOpen ? (
-          <X className="w-6 h-6" />
-        ) : (
-          <Bot className="w-6 h-6" />
-        )}
+        {isOpen ? <X className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
       </button>
     </>
   );
 }
-

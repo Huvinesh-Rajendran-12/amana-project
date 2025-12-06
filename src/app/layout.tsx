@@ -1,22 +1,23 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { FinanceModeProvider } from "@/context/FinanceModeContext";
 
 export const metadata: Metadata = {
-  title: "Sentience | AI-Powered Financial Intelligence",
+  title: "Lumina | Intelligent Banking",
   description:
-    "A credit card with a conscience. Using real-time LLMs to audit every swipe, block impulse buys, and enforce the discipline you promised yourself.",
+    "Malaysia's first dual-mode digital bank. Seamlessly switch between Conventional and Islamic finance with AI-powered insights.",
   keywords: [
     "AI",
-    "credit card",
-    "financial",
-    "budgeting",
-    "fintech",
-    "intelligent spending",
+    "Islamic Banking",
+    "Conventional Banking",
+    "Fintech",
+    "Malaysia",
+    "Lumina",
   ],
-  authors: [{ name: "Sentience Financial Technologies" }],
+  authors: [{ name: "Lumina Financial Technologies" }],
   openGraph: {
-    title: "Sentience | AI-Powered Financial Intelligence",
-    description: "A credit card with a conscience.",
+    title: "Lumina | Dual-Mode Financial Intelligence",
+    description: "Malaysia's first dual-mode digital bank.",
     type: "website",
   },
 };
@@ -34,8 +35,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="min-h-screen mt-4 bg-[#030303] text-white antialiased">
-        {children}
+      <body className="mt-12 min-h-screen bg-black text-white antialiased selection:bg-violet-500/30">
+        <FinanceModeProvider>{children}</FinanceModeProvider>
       </body>
     </html>
   );

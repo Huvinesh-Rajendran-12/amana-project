@@ -13,11 +13,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#030303]">
+    <div className="min-h-screen bg-black">
       <DashboardSidebar />
-      <main className="lg:ml-64 min-h-screen">
-        {children}
-      </main>
+      <main className="lg:ml-64 min-h-screen">{children}</main>
       <AIChatbot />
     </div>
   );

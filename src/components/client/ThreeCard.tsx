@@ -2,76 +2,45 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { RoundedBox, ContactShadows } from "@react-three/drei";
+import { ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
 // Warm cream/slate color for text (30% whiter)
 const CREAM_COLOR = "#efece4";
-const CREAM_LIGHT = "#f5f3ed";
-const CARD_BG = "#222222"; // Slightly darker grey
+const CARD_BG = "#1a1a1a"; // Dark background
 
-// Card texture creation with chevron pattern
-function createCardTexture(): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
-  canvas.width = 1024;
-  canvas.height = 645;
-  const ctx = canvas.getContext("2d")!;
-
-  // Dark grey background
-  ctx.fillStyle = CARD_BG;
-  ctx.fillRect(0, 0, 1024, 645);
-
-  // Draw chevron/arrow pattern (like reference image)
+// Draw arrow pattern helper
+function drawArrowPattern(ctx: CanvasRenderingContext2D, color: string) {
   ctx.save();
-  const chevronSize = 24;
-  const spacing = 45;
-  ctx.strokeStyle = "rgba(239, 236, 228, 0.05)";
+  ctx.strokeStyle = color;
   ctx.lineWidth = 2;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
 
-  for (let row = 0; row < 20; row++) {
-    for (let col = 0; col < 30; col++) {
-      const x = col * spacing + (row % 2) * (spacing / 2);
-      const y = row * spacing + 30;
+  const arrowSpacingX = 60;
+  const arrowSpacingY = 45;
+  const arrowSize = 12;
 
-      // Draw chevron (^)
+  for (let row = 0; row < 16; row++) {
+    for (let col = 0; col < 20; col++) {
+      const x = col * arrowSpacingX + (row % 2) * (arrowSpacingX / 2) + 20;
+      const y = row * arrowSpacingY + 30;
+
       ctx.beginPath();
-      ctx.moveTo(x - chevronSize / 2, y + chevronSize / 3);
-      ctx.lineTo(x, y - chevronSize / 3);
-      ctx.lineTo(x + chevronSize / 2, y + chevronSize / 3);
+      ctx.moveTo(x - arrowSize, y - arrowSize);
+      ctx.lineTo(x, y);
+      ctx.lineTo(x - arrowSize, y + arrowSize);
       ctx.stroke();
     }
   }
   ctx.restore();
+}
 
-  // Top accent line - gradient
-  const accentGrad = ctx.createLinearGradient(0, 0, 1024, 0);
-  accentGrad.addColorStop(0, "#8b5cf6");
-  accentGrad.addColorStop(0.5, "#a78bfa");
-  accentGrad.addColorStop(1, "#06b6d4");
-  ctx.fillStyle = accentGrad;
-  ctx.fillRect(0, 0, 1024, 5);
-
-  // Brand logo area (top right) - simple asterisk/star mark
-  ctx.fillStyle = CREAM_LIGHT;
-  ctx.font = "400 36px Outfit, sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillText("✳", 950, 60);
-
-  // Brand name - SENTIENCE (top left) - lighter weight
-  ctx.font = "300 38px Outfit, sans-serif";
-  ctx.fillStyle = CREAM_COLOR;
-  ctx.textAlign = "left";
-  ctx.fillText("SENTIENCE", 50, 65);
-
-  // EMV Chip
+// Draw EMV chip helper
+function drawChip(ctx: CanvasRenderingContext2D) {
   const chipX = 50;
   const chipY = 180;
   const chipW = 55;
   const chipH = 45;
 
-  // Chip base - gold gradient
   const chipGrad = ctx.createLinearGradient(
     chipX,
     chipY,
@@ -89,7 +58,6 @@ function createCardTexture(): HTMLCanvasElement {
   ctx.fillStyle = chipGrad;
   ctx.fill();
 
-  // Chip details
   ctx.strokeStyle = "rgba(0,0,0,0.25)";
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -99,8 +67,53 @@ function createCardTexture(): HTMLCanvasElement {
   ctx.lineTo(chipX + chipW / 2, chipY + chipH);
   ctx.stroke();
 
-  // Contactless symbol
-  ctx.strokeStyle = "rgba(239, 236, 228, 0.6)";
+  return { chipX, chipY, chipW, chipH };
+}
+
+// Islamic side card texture (gold theme, Malay name)
+function createIslamicCardTexture(): HTMLCanvasElement {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 645;
+  const ctx = canvas.getContext("2d")!;
+
+  // Dark background
+  ctx.fillStyle = CARD_BG;
+  ctx.fillRect(0, 0, 1024, 645);
+
+  // Arrow pattern - gold tinted
+  drawArrowPattern(ctx, "rgba(212, 175, 55, 0.12)");
+
+  // Top accent line - gold gradient
+  const accentGrad = ctx.createLinearGradient(0, 0, 1024, 0);
+  accentGrad.addColorStop(0, "#d4af37");
+  accentGrad.addColorStop(0.5, "#f5e7a3");
+  accentGrad.addColorStop(1, "#c9a227");
+  ctx.fillStyle = accentGrad;
+  ctx.fillRect(0, 0, 1024, 5);
+
+  // Brand logo area (top right) - crescent moon
+  ctx.fillStyle = "#d4af37";
+  ctx.font = "400 32px Outfit, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("☪", 950, 60);
+
+  // Brand name - BARAKAH
+  ctx.font = "300 38px Outfit, sans-serif";
+  ctx.fillStyle = CREAM_COLOR;
+  ctx.textAlign = "left";
+  ctx.fillText("LUMINA", 50, 65);
+
+  // Tagline
+  ctx.font = "200 14px Outfit, sans-serif";
+  ctx.fillStyle = "rgba(239, 236, 228, 0.5)";
+  ctx.fillText("Shariah Compliant Banking", 50, 90);
+
+  // EMV Chip
+  const { chipY, chipH } = drawChip(ctx);
+
+  // Contactless symbol - gold
+  ctx.strokeStyle = "rgba(212, 175, 55, 0.6)";
   ctx.lineWidth = 2.5;
   for (let i = 0; i < 3; i++) {
     ctx.beginPath();
@@ -124,20 +137,114 @@ function createCardTexture(): HTMLCanvasElement {
   ctx.fillStyle = CREAM_COLOR;
   ctx.fillText("12/28", 50, 480);
 
-  // Cardholder name
+  // Cardholder name - Malay name
   ctx.font = "400 26px Outfit, sans-serif";
   ctx.fillStyle = CREAM_COLOR;
-  ctx.fillText("ALEXANDER VAULT", 50, 560);
+  ctx.fillText("AHMAD IBRAHIM", 50, 560);
 
-  // Network logo - two overlapping circles
+
+  // Mastercard logo - original red/orange
   ctx.globalAlpha = 0.9;
   ctx.beginPath();
-  ctx.arc(920, 560, 28, 0, Math.PI * 2);
-  ctx.fillStyle = "#eb001b";
+  ctx.arc(915, 560, 28, 0, Math.PI * 2);
+  ctx.fillStyle = "#eb001b"; // Mastercard red
   ctx.fill();
   ctx.beginPath();
   ctx.arc(955, 560, 28, 0, Math.PI * 2);
-  ctx.fillStyle = "#f79e1b";
+  ctx.fillStyle = "#f79e1b"; // Mastercard orange/yellow
+  ctx.fill();
+  ctx.globalAlpha = 1.0;
+
+  return canvas;
+}
+
+// Conventional side card texture (purple theme, Chinese name)
+function createConventionalCardTexture(): HTMLCanvasElement {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 645;
+  const ctx = canvas.getContext("2d")!;
+
+  // Dark background
+  ctx.fillStyle = CARD_BG;
+  ctx.fillRect(0, 0, 1024, 645);
+
+  // Arrow pattern - purple tinted
+  drawArrowPattern(ctx, "rgba(139, 92, 246, 0.12)");
+
+  // Top accent line - purple gradient
+  const accentGrad = ctx.createLinearGradient(0, 0, 1024, 0);
+  accentGrad.addColorStop(0, "#8b5cf6");
+  accentGrad.addColorStop(0.5, "#a78bfa");
+  accentGrad.addColorStop(1, "#7c3aed");
+  ctx.fillStyle = accentGrad;
+  ctx.fillRect(0, 0, 1024, 5);
+
+  // Brand logo area (top right) - sparkle icon
+  ctx.fillStyle = "#a78bfa";
+  ctx.font = "400 32px Outfit, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("◆", 950, 60);
+
+  // Brand name - LUMINA
+  ctx.font = "300 38px Outfit, sans-serif";
+  ctx.fillStyle = CREAM_COLOR;
+  ctx.textAlign = "left";
+  ctx.fillText("LUMINA", 50, 65);
+
+  // Tagline
+  ctx.font = "200 14px Outfit, sans-serif";
+  ctx.fillStyle = "rgba(239, 236, 228, 0.5)";
+  ctx.fillText("Smart Banking Solutions", 50, 90);
+
+  // EMV Chip
+  const { chipY, chipH } = drawChip(ctx);
+
+  // Contactless symbol - purple
+  ctx.strokeStyle = "rgba(139, 92, 246, 0.6)";
+  ctx.lineWidth = 2.5;
+  for (let i = 0; i < 3; i++) {
+    ctx.beginPath();
+    ctx.arc(140, chipY + chipH / 2, 8 + i * 8, -0.7, 0.7);
+    ctx.stroke();
+  }
+
+  // Card Number
+  ctx.font = '400 44px "JetBrains Mono", monospace';
+  ctx.fillStyle = CREAM_COLOR;
+  ctx.textAlign = "left";
+  ctx.fillText("5842 3719 0024 8842", 50, 380);
+
+  // Valid thru label
+  ctx.font = "300 12px Outfit, sans-serif";
+  ctx.fillStyle = "rgba(239, 236, 228, 0.5)";
+  ctx.fillText("VALID THRU", 50, 450);
+
+  // Expiry
+  ctx.font = "400 22px Outfit, sans-serif";
+  ctx.fillStyle = CREAM_COLOR;
+  ctx.fillText("12/28", 50, 480);
+
+  // Cardholder name - Chinese name
+  ctx.font = "400 26px Outfit, sans-serif";
+  ctx.fillStyle = CREAM_COLOR;
+  ctx.fillText("CHEN WEI MING", 50, 560);
+
+  // Premium badge
+  ctx.font = "300 14px Outfit, sans-serif";
+  ctx.fillStyle = "rgba(139, 92, 246, 0.8)";
+  ctx.textAlign = "center";
+  ctx.fillText("✦ PREMIUM MEMBER", 512, 600);
+
+  // Mastercard logo - original red/orange
+  ctx.globalAlpha = 0.9;
+  ctx.beginPath();
+  ctx.arc(915, 560, 28, 0, Math.PI * 2);
+  ctx.fillStyle = "#eb001b"; // Mastercard red
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(955, 560, 28, 0, Math.PI * 2);
+  ctx.fillStyle = "#f79e1b"; // Mastercard orange/yellow
   ctx.fill();
   ctx.globalAlpha = 1.0;
 
@@ -146,7 +253,12 @@ function createCardTexture(): HTMLCanvasElement {
 
 function CardMesh() {
   const meshRef = useRef<THREE.Group>(null);
-  const [texture, setTexture] = useState<THREE.CanvasTexture | null>(null);
+  const [frontTexture, setFrontTexture] = useState<THREE.CanvasTexture | null>(
+    null
+  );
+  const [backTexture, setBackTexture] = useState<THREE.CanvasTexture | null>(
+    null
+  );
 
   useEffect(() => {
     // Wait for fonts to load before creating texture
@@ -158,12 +270,21 @@ function CardMesh() {
         // Fallback if fonts API not available
       }
 
-      const frontCanvas = createCardTexture();
-      const frontTex = new THREE.CanvasTexture(frontCanvas);
-      frontTex.needsUpdate = true;
-      frontTex.minFilter = THREE.LinearFilter;
-      frontTex.magFilter = THREE.LinearFilter;
-      setTexture(frontTex);
+      // Front side - Islamic (Barakah)
+      const islamicCanvas = createIslamicCardTexture();
+      const islamicTex = new THREE.CanvasTexture(islamicCanvas);
+      islamicTex.needsUpdate = true;
+      islamicTex.minFilter = THREE.LinearFilter;
+      islamicTex.magFilter = THREE.LinearFilter;
+      setFrontTexture(islamicTex);
+
+      // Back side - Conventional (Lumina)
+      const conventionalCanvas = createConventionalCardTexture();
+      const conventionalTex = new THREE.CanvasTexture(conventionalCanvas);
+      conventionalTex.needsUpdate = true;
+      conventionalTex.minFilter = THREE.LinearFilter;
+      conventionalTex.magFilter = THREE.LinearFilter;
+      setBackTexture(conventionalTex);
     };
 
     createTextureAfterFonts();
@@ -174,34 +295,42 @@ function CardMesh() {
 
     const time = state.clock.elapsedTime;
 
-    // Slow rotation
-    meshRef.current.rotation.x = Math.PI * 0.08;
+    // Slow rotation with 25 degree tilt
+    meshRef.current.rotation.x = Math.PI * 0.04; // 25 degree tilt
     meshRef.current.rotation.y = Math.PI * 0.15 + time * 0.15;
 
     // Float
     meshRef.current.position.y = Math.sin(time * 0.5) * 0.04;
   });
 
-  // Card dimensions - 10% larger
-  const cardWidth = 3.707;
-  const cardHeight = 2.332;
+  // Card dimensions - 20% larger than original
+  const cardWidth = 4.078;
+  const cardHeight = 2.565;
 
-  if (!texture) {
+  if (!frontTexture || !backTexture) {
     return null;
   }
 
   return (
     <group ref={meshRef}>
-      {/* Front face */}
+      {/* Front face - Islamic (Barakah) */}
       <mesh position={[0, 0, 0.001]}>
         <planeGeometry args={[cardWidth, cardHeight]} />
-        <meshStandardMaterial map={texture} metalness={0.1} roughness={0.8} />
+        <meshStandardMaterial
+          map={frontTexture}
+          metalness={0.1}
+          roughness={0.8}
+        />
       </mesh>
 
-      {/* Back face */}
+      {/* Back face - Conventional (Lumina) */}
       <mesh position={[0, 0, -0.001]} rotation={[0, Math.PI, 0]}>
         <planeGeometry args={[cardWidth, cardHeight]} />
-        <meshStandardMaterial map={texture} metalness={0.1} roughness={0.8} />
+        <meshStandardMaterial
+          map={backTexture}
+          metalness={0.1}
+          roughness={0.8}
+        />
       </mesh>
 
       {/* Subtle edge glow/rim */}

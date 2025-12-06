@@ -1,13 +1,32 @@
-import { Shield, Zap, Activity, Lock, Check, X } from 'lucide-react';
-import NavigationWrapper from '@/components/client/NavigationWrapper';
-import ThreeCard from '@/components/client/ThreeCard';
-import BackgroundGradients from '@/components/server/BackgroundGradients';
-import FeatureCard from '@/components/server/FeatureCard';
-import Footer from '@/components/server/Footer';
+import {
+  Shield,
+  Zap,
+  Activity,
+  Lock,
+  Moon,
+  Building2,
+  Landmark,
+  Globe2,
+  Calculator,
+  Brain,
+  Users,
+  Sparkles,
+  Heart,
+  BookOpen,
+  ArrowRight,
+  Star,
+  MessageSquare,
+} from "lucide-react";
+import NavigationWrapper from "@/components/client/NavigationWrapper";
+import ThreeCard from "@/components/client/ThreeCard";
+import BackgroundGradients from "@/components/server/BackgroundGradients";
+import FeatureCard from "@/components/server/FeatureCard";
+import Footer from "@/components/server/Footer";
+import ModeShowcase from "@/components/client/ModeShowcase";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#030303] text-[#efece4] overflow-x-hidden">
+    <div className="min-h-screen bg-black text-cream overflow-x-hidden">
       {/* Background Effects */}
       <BackgroundGradients />
 
@@ -17,62 +36,45 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative z-10 pt-40 pb-20 md:pt-38 md:pb-32 px-6 min-h-screen flex flex-col justify-center">
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
-          
           {/* Hero Copy */}
           <div className="space-y-10 animate-fade-in-up">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#efece4]/5 border border-[#efece4]/5 backdrop-blur-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-              <span className="text-[10px] font-light tracking-widest uppercase text-[#efece4]/70">
-                Early Access Open
-              </span>
-            </div>
             
             {/* Headline */}
-            <h1 className="text-5xl md:text-7xl font-thin leading-[1.1] tracking-tight text-[#efece4]">
-              A credit card with a <br />
-              <span className="font-normal gradient-text">conscience.</span>
+            <h1 className="text-5xl md:text-7xl font-thin leading-[1.1] tracking-tight text-cream">
+              Agentic Banking for{" "}
+              <span className="font-normal gradient-text">Malaysians.</span>
+              <br />
             </h1>
-            
+
             {/* Subheadline */}
-            <p className="text-lg font-light text-justify text-[#efece4]/60 leading-relaxed max-w-lg border-l border-[#efece4]/10 pl-6">
-              Sentience acts as your 24/7 financial underwriter. Using real-time LLMs, 
-              it audits every swipe to block impulse buys and enforce the discipline 
-              you promised yourself.
+            <p className="text-lg font-light text-cream/60 leading-relaxed max-w-lg border-l border-cream/10 pl-6">
+              Whether you prefer conventional banking or{" "}
+              Shariah-compliant finance
+             , Lumina adapts to you. One AI-driven banking service, personalized to
+              your values and goals.
             </p>
 
             {/* CTA */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <button className="h-14 px-8 bg-[#efece4] text-[#030303] hover:bg-[#f5f3ed] transition-all duration-500 text-xs font-medium tracking-[0.2em] uppercase">
-                Mint Access Card
+              <button className="h-14 px-8 bg-cream text-black hover:bg-white transition-all duration-500 text-xs font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2">
+                Get Early Access
+                <ArrowRight className="w-4 h-4" />
               </button>
-              <a 
-                href="/dashboard" 
-                className="h-14 px-8 border border-[#efece4]/30 text-[#efece4] hover:border-[#efece4] hover:bg-[#efece4]/5 transition-all duration-500 text-xs font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2"
+              <a
+                href="/dashboard"
+                className="h-14 px-8 border border-cream/30 text-cream hover:border-cream hover:bg-cream/5 transition-all duration-500 text-xs font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2"
               >
-                Experience Now
-                <span className="text-violet-400">→</span>
+                Explore Dashboard
+                <span className="text-cream">→</span>
               </a>
-            </div>
-
-            {/* Trust Badges */}
-            <div className="flex items-center gap-8 pt-8 text-[10px] font-light tracking-widest uppercase text-[#efece4]/40">
-              <div className="flex items-center gap-2">
-                <Shield className="w-3 h-3" />
-                <span>FDIC Insured</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="w-3 h-3" />
-                <span>256-bit Encryption</span>
-              </div>
             </div>
           </div>
 
           {/* 3D Card Visual */}
           <div className="relative h-[400px] w-full flex items-center justify-center">
             {/* Background Glow */}
-            <div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-violet-500/5 blur-[100px] rounded-full pointer-events-none" 
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-linear-to-br from-violet-500/10 via-transparent to-sentience-gold/10 blur-[100px] rounded-full pointer-events-none"
               aria-hidden="true"
             />
             <ThreeCard />
@@ -80,150 +82,281 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-32 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-24">
-            <h2 className="text-3xl md:text-5xl font-thin mb-8 text-[#efece4]">
-              Willpower as a Service.
-            </h2>
-            <p className="text-[#efece4]/50 max-w-xl text-lg font-light leading-relaxed">
-              Most cards profit when you lose control. We profit when you keep it. 
-              Our AI acts as a firewall between your wallet and the world.
-            </p>
-          </div>
+      {/* Manifesto Section */}
+      <section className="py-32 px-6 relative border-t border-cream/5">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-thin mb-12 text-cream leading-tight">
+            Liberating digital finance for <br />
+            <span className="font-normal text-cream">
+              every Malaysian.
+            </span>
+          </h2>
 
-          <div className="grid md:grid-cols-3 gap-px bg-[#efece4]/10 border border-[#efece4]/10">
-            <FeatureCard 
-              icon={<Shield className="w-5 h-5 text-violet-300" />}
-              title="Active Interception"
-              description="The card declines transactions that violate your goals. Trying to buy a $400 jacket when rent is due? Declined."
-            />
-            <FeatureCard 
-              icon={<Zap className="w-5 h-5 text-violet-300" />}
-              title="Dynamic Limits"
-              description="Your credit limit breathes. $50 cap on Mondays. $200 cap on Friday nights. $0 cap at 3AM."
-            />
-            <FeatureCard 
-              icon={<Activity className="w-5 h-5 text-violet-300" />}
-              title="Wealth Optimization"
-              description="We don't just block; we invest. Every saved dollar is automatically swept into a 5% APY yield vault."
-            />
+          <div className="space-y-8 text-lg text-cream/60 font-light leading-relaxed max-w-3xl mx-auto">
+            <p>
+              In a rapidly evolving digital landscape, financial freedom shouldn't be a privilege. It should be the standard. We are here to dismantle the barriers of complexity, exclusivity, and opacity that have long defined the banking industry.
+            </p>
+            <p className="text-cream/80">
+              <span className="text-cream font-medium">
+                We believe in a future where your money works for you, on your terms.
+              </span>{" "}
+              Whether you seek the precision of conventional banking or the ethical grounding of Shariah-compliant finance, we provide a unified, intelligent platform that respects your choices and amplifies your potential.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Comparison Section */}
-      <section id="comparison" className="py-32 px-6 bg-gradient-to-b from-[#050505] to-[#030303] border-t border-[#efece4]/5">
-        <div className="max-w-5xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-thin mb-6 text-[#efece4]">
-              A Different <span className="font-normal text-violet-400">Philosophy</span>
+      {/* Mode Showcase Section - Interactive Tabs */}
+      <section className="py-20 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-5xl font-thin mb-6 text-cream">
+              One Platform.{" "}
+              <span className="font-normal text-cream">Your Way.</span>
             </h2>
-            <p className="text-[#efece4]/50 text-lg font-light leading-relaxed max-w-2xl mx-auto">
-              Traditional credit cards profit from your failures. We built something different.
+            <p className="text-cream/50 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+              Lumina adapts to how you want to bank. Explore what each
+              experience offers.
             </p>
           </div>
 
-          {/* Comparison Cards */}
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {/* Conventional Card */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 to-transparent rounded-2xl" />
-              <div className="relative p-8 md:p-10 rounded-2xl border border-[#efece4]/5 bg-[#efece4]/[0.01]">
-                {/* Header */}
-                <div className="mb-10">
-                  <p className="text-xs font-medium tracking-widest uppercase text-[#efece4]/40 mb-2">The Industry Standard</p>
-                  <h3 className="text-2xl font-light text-[#efece4]/70">Conventional Cards</h3>
+          <ModeShowcase />
+        </div>
+      </section>
+
+
+      {/* Features Section */}
+      <section id="features" className="py-32 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-24">
+            <h2 className="text-3xl md:text-5xl font-thin mb-8 text-cream">
+              Intelligent Features.
+            </h2>
+            <p className="text-cream/50 max-w-xl text-lg font-light leading-relaxed">
+              AI-powered tools that understand your financial needs — whether
+              conventional or Shariah-compliant.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-px bg-cream/10 border border-cream/10">
+                <FeatureCard
+              icon={<Zap className="w-5 h-5 text-violet-400" />}
+              title="AI Financial Coach"
+              description="Personalized guidance that respects your preferences. Get smart recommendations aligned with your values."
+            />
+            <FeatureCard
+              icon={<Activity className="w-5 h-5 text-violet-400" />}
+              title="Real-time Analytics"
+              description="Comprehensive dashboard with spending charts, savings progress, and halal compliance tracking."
+            />
+            <FeatureCard
+              icon={<Globe2 className="w-5 h-5 text-violet-400" />}
+              title="All Malaysian Banks"
+              description="Connect with Maybank, CIMB, Bank Islam, Public Bank, and more. All major banks supported."
+            />
+            <FeatureCard
+              icon={<Calculator className="w-5 h-5 text-sentience-gold" />}
+              title="Smart Zakat Calculator"
+              description="AI calculates your Zakat based on current nisab (RM25,578). Integrated with PPZ, MAIWP, and state zakat centers."
+            />
+            <FeatureCard
+              icon={<Building2 className="w-5 h-5 text-sentience-gold" />}
+              title="Tabung Haji Integration"
+              description="Track your Hajj savings, latest hibah rates (4.1%), and waiting list position. Direct top-up support."
+            />
+            <FeatureCard
+              icon={<Shield className="w-5 h-5 text-sentience-gold" />}
+              title="Flexible Protection"
+              description="Insurance or Takaful — choose the protection that suits your needs. PIDM protected up to RM250,000."
+            />
+      
+          </div>
+        </div>
+      </section>
+
+            {/* iRAG Technology Section */}
+      <section className="py-32 px-6 relative border-t border-cream/5 overflow-hidden">
+        <div className="absolute inset-0 bg-linear-to-b from-violet-950/20 via-transparent to-sentience-gold/5 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Content */}
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20">
+                <Brain className="w-4 h-4 text-sentience-gold" />
+              </div>
+
+              <h2 className="text-3xl md:text-5xl font-thin text-cream">
+                Introducing{" "}
+                <span className="font-normal bg-linear-to-r from-violet-400 to-sentience-gold bg-clip-text text-transparent">
+                  iRAG
+                </span>
+              </h2>
+
+              <p className="text-xl text-cream/60 font-light leading-relaxed">
+                The first AI Retrieval-Augmented Generation model purpose-built
+                for
+                <span className="text-sentience-gold">
+                  {" "}
+                  Islamic finance in a Malaysian context
+                </span>
+                .
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-sentience-gold" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-cream mb-1">
+                      Trained on Malaysian Islamic Finance
+                    </h4>
+                    <p className="text-sm text-cream/50">
+                      From JAKIM rulings to Bank Negara guidelines, SC Shariah
+                      resolutions, and fatwas — iRAG understands the local
+                      context.
+                    </p>
+                  </div>
                 </div>
 
-                {/* Features List */}
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-500/5 flex items-center justify-center">
-                      <X className="w-4 h-4 text-red-400" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-[#efece4] mb-1">Profits from Debt</p>
-                      <p className="text-sm text-[#efece4]/40">Encourages spending. Charges 24% APR when you fail.</p>
-                    </div>
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-10 h-10 rounded-xl bg-sentience-gold/10 flex items-center justify-center">
+                    <MessageSquare className="w-5 h-5 text-sentience-gold" />
                   </div>
-
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-500/5 flex items-center justify-center">
-                      <X className="w-4 h-4 text-red-400" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-[#efece4] mb-1">Passive Tracking</p>
-                      <p className="text-sm text-[#efece4]/40">Tells you that you&apos;re broke 30 days later.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-500/5 flex items-center justify-center">
-                      <X className="w-4 h-4 text-red-400" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-[#efece4] mb-1">Maximizes Spending</p>
-                      <p className="text-sm text-[#efece4]/40">Rewards points that encourage more consumption.</p>
-                    </div>
+                  <div>
+                    <h4 className="font-medium text-cream mb-1">
+                      Ask Anything, Get Clarity
+                    </h4>
+                    <p className="text-sm text-cream/50">
+                      &quot;Is ASB halal?&quot; &quot;How do I calculate Zakat
+                      on EPF?&quot; Get accurate, sourced answers in seconds.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Sentience Card */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 to-transparent rounded-2xl" />
-              <div className="absolute inset-0 rounded-2xl border border-violet-500/20" />
-              <div className="relative p-8 md:p-10 rounded-2xl bg-violet-500/[0.02]">
-                {/* Header */}
-                <div className="mb-10">
-                  <p className="text-xs font-medium tracking-widest uppercase text-violet-400 mb-2">The New Standard</p>
-                  <h3 className="text-2xl font-normal text-[#efece4]">Sentience</h3>
-                </div>
-
-                {/* Features List */}
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center">
-                      <Check className="w-4 h-4 text-violet-400" />
+            {/* Visual */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-linear-to-br from-violet-500/20 to-sentience-gold/20 blur-3xl rounded-full" />
+              <div className="relative bg-cream/2 border border-cream/10 rounded-2xl p-8">
+                <div className="space-y-4">
+                  {/* Chat Mockup */}
+                  <div className="flex gap-3">
+                    <div className="w-8 h-8 rounded-full bg-cream/10 flex items-center justify-center shrink-0">
+                      <Users className="w-4 h-4 text-cream/60" />
                     </div>
-                    <div>
-                      <p className="font-medium text-[#efece4] mb-1">Profits from Wealth</p>
-                      <p className="text-sm text-[#efece4]/50">Annual fee model. We lose money if you default.</p>
+                    <div className="bg-cream/5 rounded-2xl rounded-tl-none p-4 max-w-[80%]">
+                      <p className="text-sm text-cream/80">
+                        Is my fixed deposit at Maybank Islamic considered Shariah-compliant?
+                        What about the returns?
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center">
-                      <Check className="w-4 h-4 text-violet-400" />
+                  <div className="flex gap-3 justify-end">
+                    <div className="bg-linear-to-br from-violet-500/20 to-sentience-gold/20 rounded-2xl rounded-tr-none p-4 max-w-[85%]">
+                      <p className="text-sm text-cream/90 mb-3">
+                        Yes, Maybank Islamic&apos;s Fixed Deposit-i is
+                        Shariah-compliant. It operates on the Commodity
+                        Murabahah (Tawarruq) concept.
+                      </p>
+                      <div className="flex items-center gap-2 text-xs text-cream/50">
+                        <Star className="w-3 h-3 text-sentience-gold" />
+                        <span>
+                          Source: BNM Shariah Advisory Council Resolution 2019
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-[#efece4] mb-1">Active Defense</p>
-                      <p className="text-sm text-[#efece4]/50">Blocks the transaction before money leaves your account.</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center">
-                      <Check className="w-4 h-4 text-violet-400" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-[#efece4] mb-1">Maximizes Wealth</p>
-                      <p className="text-sm text-[#efece4]/50">AI-driven savings automatically invested at 5% APY.</p>
+                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-violet-500 to-sentience-gold flex items-center justify-center shrink-0">
+                      <Brain className="w-4 h-4 text-white" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Malaysian Institutions */}
+      <section className="py-20 px-6 bg-linear-to-b from-black to-black border-t border-cream/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-thin mb-4 text-cream">
+              Our Potential Partners
+            </h2>
+            <p className="text-cream/50 max-w-xl mx-auto text-sm font-light">
+              We're planning to partner with Malaysia&apos;s leading financial institutions to
+              deliver a seamless and secure banking experience.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <InstitutionBadge name="Bank Negara Malaysia" role="Regulator" />
+            <InstitutionBadge name="PIDM" role="Deposit Insurance" />
+            <InstitutionBadge name="Securities Commission" role="SC Licensed" />
+            <InstitutionBadge name="JAKIM" role="Shariah Certified" />
+            <InstitutionBadge name="Tabung Haji" role="Hajj Savings" />
+            <InstitutionBadge name="PPZ MAIWP" role="Zakat Collection" />
+            <InstitutionBadge name="ASNB" role="Unit Trust" />
+            <InstitutionBadge name="Bursa Malaysia" role="Stock Exchange" />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-linear-to-b from-violet-950/20 via-transparent to-sentience-gold/10 pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto text-center relative">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cream/5 border border-cream/10 mb-8">
+            <Sparkles className="w-4 h-4 text-violet-400" />
+            <span className="text-xs font-medium text-cream/70 uppercase tracking-wider">
+              Join the Waitlist
+            </span>
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-thin mb-6 text-cream">
+            Ready to experience{" "}
+            <span className="font-normal text-violet-400">
+              banking done right?
+            </span>
+          </h2>
+          <p className="text-cream/50 text-lg font-light mb-10 max-w-xl mx-auto">
+            Be among the first Malaysians to access Lumina. Open your account in
+            5 minutes. No commitments.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="h-14 px-10 bg-cream text-black hover:bg-white transition-all duration-500 text-xs font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2">
+              Get Early Access
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <a
+              href="/dashboard"
+              className="h-14 px-10 border border-cream/30 text-cream hover:border-cream hover:bg-cream/5 transition-all duration-500 text-xs font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2"
+            >
+              Explore Demo
+            </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
       <Footer />
+    </div>
+  );
+}
+
+function InstitutionBadge({ name, role }: { name: string; role: string }) {
+  return (
+    <div className="p-4 bg-cream/2 border border-cream/5 rounded-xl text-center hover:border-cream/10 transition-colors">
+      <div className="w-10 h-10 rounded-full bg-cream/5 flex items-center justify-center mx-auto mb-3">
+        <Landmark className="w-5 h-5 text-cream/40" />
+      </div>
+      <p className="text-sm text-cream font-light">{name}</p>
+      <p className="text-xs text-cream/40 mt-1">{role}</p>
     </div>
   );
 }

@@ -448,15 +448,21 @@ export const getSpendingDataForInsight = internalQuery({
       .slice(0, 5)
       .map(c => ({ name: c.name, amount: c.amount }));
     
-    // Recent transactions
-    const recentTransactions = currentExpenses
+    // Recent transactions - fetch category names
+    const recentTxsSorted = currentExpenses
       .sort((a, b) => b.date - a.date)
-      .slice(0, 10)
-      .map(t => ({
-        merchantName: t.merchantName,
-        amount: t.amount,
-        category: "category", // Would need to fetch
-      }));
+      .slice(0, 10);
+    
+    const recentTransactions = await Promise.all(
+      recentTxsSorted.map(async (t) => {
+        const category = t.categoryId ? await ctx.db.get(t.categoryId) : null;
+        return {
+          merchantName: t.merchantName,
+          amount: t.amount,
+          category: category?.name ?? "Uncategorized",
+        };
+      })
+    );
     
     return {
       currentTotal,

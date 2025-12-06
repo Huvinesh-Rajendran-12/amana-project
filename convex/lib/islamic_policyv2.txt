@@ -1,0 +1,731 @@
+# ISLAMIC FINANCE POLICY DATABASE (MINIMAL)
+# Optimized for Shariah Compliance Agent
+# Only finance-relevant chapters included
+# Total chapters: 26
+# Categories: Zakat (164-178), Hajj (179), Transactions (180-192), Loans (205, 211)
+# Last Updated: 2025-12-06T20:17:58.394Z
+
+CHAPTER 164 | CHAPTER EIGHT » Alms Tax (Zakat)
+====================================================================================================
+
+Ruling 1871. Zakat is obligatory (wājib) on ten things:
+
+    1. wheat;
+    2. barley;
+    3. dates;
+    4. raisins;
+    5. gold;
+    6. silver;
+    7. camels;
+    8. cows;
+    9. sheep [and goats];
+    10. business goods, based on obligatory precaution (al-iḥtiyāṭ al-wājib).
+
+If someone owns one of these ten things, then, given the conditions that will be mentioned below, he must pay the specified amount in one of the prescribed ways.
+
+====================================================================================================
+
+CHAPTER 166 | Alms Tax (Zakat) » Conditions for zakat to become obligatory (wājib)
+====================================================================================================
+
+Ruling 1872. It becomes obligatory on a person to pay zakat on the ten things mentioned above when they reach the taxable limit (niṣāb), which will be mentioned later, and they are his personal property, and he is a free person.
+
+Ruling 1873. If someone owns cows, sheep, camels, gold, or silver for eleven months, then even though zakat becomes obligatory on him at the beginning of the twelfth month, he must consider the next year as beginning after the end of the twelfth month.
+
+Ruling 1874. Zakat being obligatory on gold, silver, and business goods is conditional upon its owner being sane (ʿāqil) and of the age of legal responsibility (bāligh) throughout the year. However, in the case of wheat, barley, dates, raisins, camels, cows, and sheep, it is not a condition that the owner be sane and bāligh.
+
+Ruling 1875. Zakat is liable on wheat and barley when they can be called ‘wheat’ and ‘barley’; zakat on raisins is obligatory when they are grapes; and zakat is liable on dates when Arabs call them ‘tamr’ [dry dates]. However, the time for determining their niṣāb is when they are dry; the time for paying zakat on wheat and barley is when the grain is threshed and separated from the chaff; and the time for paying zakat on dates and raisins is when they are picked. Therefore, if from this time onwards one delays paying zakat without having a legitimate excuse (ʿudhr), and there are persons entitled (mustaḥiqqūn) to receive zakat, and the item perishes, then the owner is responsible (ḍāmin) for it.
+
+Ruling 1876. For zakat to be liable on wheat, barley, raisins, and dates – as defined in the previous ruling – it is not a requirement that they be at the owner’s disposal. Therefore, if the goods are not with him or his agent (wakīl) – for example, they have been usurped – then it is obligatory on him to pay the zakat that is liable on them whenever he gets them back.
+
+Ruling 1877. If the owner of cows, sheep, camels, gold, and silver is intoxicated or unconscious for part of the year, zakat is not waived for him. The same applies if he is intoxicated or unconscious when zakat on wheat, barley, dates, and raisins becomes obligatory.
+
+Ruling 1878. It is a condition for zakat to be liable on things other than wheat, barley, dates, and raisins, that the owner be able to have disposal over them legally and actually. Therefore, if for a significant period during the year someone usurps them [and so he cannot actually have disposal over them], or if the owner is legally forbidden to have disposal over them, then there is no zakat to pay.
+
+Ruling 1879. If a person borrows gold or silver or any other thing on which it is obligatory to pay zakat and it remains with him for a year, he must pay zakat on it and the lender is not liable. However, if the lender pays zakat on it, then the borrower is exempt from paying it.
+
+====================================================================================================
+
+CHAPTER 168 | Alms Tax (Zakat) » The taxable limit (niṣāb) for gold
+====================================================================================================
+
+Ruling 1912. There are two niṣābs for gold.
+
+    1. Twenty legal (sharʿī) mithqāls.(1) A legal mithqāl is eighteen nukhuds.(2) Therefore, when gold reaches the weight of twenty legal mithqāls – which is equivalent to fifteen common (ṣayrafī) mithqāls – and if the other conditions that were mentioned are fulfilled, one must pay one-fortieth [2.5%] – which is equivalent to nine nukhuds – as zakat. As long as gold does not reach this amount, zakat is not obligatory on it.
+    2. Four legal mithqāls, which is equivalent to three common mithqāls, meaning that if three [common] mithqāls are added to fifteen [common] mithqāls, one must pay zakat on the entire eighteen mithqāls, which is equivalent to one-fortieth [2.5%]; and if less than three mithqāls is added, he must pay zakat on only fifteen mithqāls [which was the first niṣāb mentioned above], and the extra is not liable for zakat. The same applies to every other addition, meaning that if three mithqāls are added, one must pay zakat on the entire amount; and if less than three mithqāls is added, the added amount is not liable for zakat.
+
+====================================================================================================
+
+CHAPTER 169 | Alms Tax (Zakat) » The niṣāb for silver
+====================================================================================================
+
+Ruling 1913. There are two niṣābs for silver.
+
+    1. 105 common mithqāls. Therefore, if silver reaches 105 mithqāls and the other conditions that were mentioned are fulfilled, one must pay one-fortieth [2.5%] – which is equivalent to two mithqāls and fifteen nukhuds – as zakat. As long as silver does not reach this amount, zakat is not obligatory on it.
+    2. Twenty-one mithqāls, meaning that if twenty-one mithqāls are added to 105 mithqāls, one must pay zakat on the entire 126 mithqāls in a manner that was previously mentioned; and if less than twenty-one mithqāls are added, he must pay zakat on only 105 mithqāls [which was the first niṣāb mentioned above], and the extra is not liable for zakat. The same applies to every other addition, meaning that if twenty-one mithqāls are added, one must pay zakat on the entire amount; and if less than twenty-one mithqāls are added, the added amount is not liable for zakat. If a person doubts whether or not silver has reached the niṣāb, then based on obligatory precaution he must enquire.
+
+Ruling 1914. If the gold or silver that someone owns has reached the niṣāb, then even if he has paid zakat on it he must continue paying zakat on it every year as long as it does not fall below the niṣāb.
+
+Ruling 1915. Zakat on gold and silver becomes obligatory in the event that it is minted and used prevalently in transactions (muʿāmalāt). And if the stamped effects have been effaced but it is still used prevalently in transactions, zakat on it must be paid. However, if it is no longer used prevalently, it is not liable for zakat even if its stamped effects remain.
+
+Ruling 1916. In the event that minted gold and silver coins that are used by women as ornaments are used prevalently in transactions – meaning that gold and silver are used as money in transactions – then based on obligatory precaution zakat is obligatory on them. However, if they are not used prevalently in transactions, then zakat is not obligatory on them.
+
+Ruling 1917. If a person owns gold and silver and neither of them is equal to the first niṣāb – for example, he owns 104 mithqāls of silver and fourteen mithqāls of gold – then zakat is not obligatory on them.
+
+Ruling 1918. As stated earlier, zakat on gold and silver becomes obligatory when a person maintains ownership of their niṣāb for eleven months, and if during those eleven months the amount of gold and silver falls below the first niṣāb for each of them, then zakat is not obligatory on them.
+
+Ruling 1919. If during the period of eleven months a person exchanges the gold or silver that he owns with something else, or he melts them, then zakat is not obligatory on him. However, if in order to escape paying zakat he exchanges them for gold and silver – meaning that he exchanges gold for gold or for silver, or he exchanges silver for silver or for gold – then the obligatory precaution is that he must pay zakat on them.
+
+Ruling 1920. If a person melts gold and silver coins in the twelfth month, he must pay zakat on them; and if as a result of melting the coins their weight or value decreases, he must pay the amount of zakat that was obligatory on him prior to melting them.
+
+Ruling 1921. If gold or silver coins contain a more than usual quantity of alloy, then, if they can be called gold and silver coins and they reach the niṣāb, zakat on them is obligatory even if the quantity that is pure does not reach the niṣāb. However, if they can no longer be called gold and silver coins, then zakat is not obligatory on them even if the quantity that is pure reaches the niṣāb.
+
+Ruling 1922. If a person owns gold or silver coins that are mixed with a usual amount of alloy, there is no problem if he pays zakat on them in gold and silver coins that contain more than the usual amount of alloy in them, or in coins that are not of gold or silver. However, in such a case, the value of the coins he pays in must be equal to the value of the zakat that is obligatory on him.
+
+====================================================================================================
+
+CHAPTER 171 | Alms Tax (Zakat) » Zakat on business goods
+====================================================================================================
+
+Goods which a person comes to own through a contract of exchange (ʿaqd al-muʿāwaḍah)(1) and which he keeps for business and profit earning is, based on obligatory precaution, liable for zakat if certain conditions are fulfilled. The zakat on such property is one-fortieth [2.5%]. The conditions are as listed below.
+
+    1. The owner must be bāligh and sane.
+    2. The goods must have a value of at least fifteen mithqāls of coined gold or fifteen mithqāls of coined silver.
+    3. One year must have passed from the time the owner intended to make profit from the goods.
+    4. The intention to make profit must remain throughout the year; therefore, if the owner changes his mind during the year and, for example, decides to spend it on his living expenses, then zakat is not obligatory.
+    5. The owner must have right of disposal over them throughout the year.
+    6. Throughout the year, the goods must be saleable for an amount that is equal to, or more than, the capital outlay. Therefore, if during a period of the year the goods are not saleable for the amount that is [at least] equal to the capital outlay, it is not obligatory on him to pay zakat on them.
+
+====================================================================================================
+
+CHAPTER 172 | Alms Tax (Zakat) » Distribution of zakat
+====================================================================================================
+
+Ruling 1940. Zakat can be distributed in eight ways.
+
+    1. It can be given to a poor person (faqīr). A poor person is defined as someone who does not possess the means to meet his and his family’s expenses for one year. Therefore, someone who has a trade, or property, or capital by means of which he can meet these expenses for a year, is not a poor person.
+    2. It can be given to a needy person (miskīn). A needy person is defined as someone whose living conditions are worse than that of a poor person.
+    3. It can be given to a person who has been appointed by the Imam (ʿA) or his representative (nāʾib) to collect and safeguard zakat, maintain its accounts, and deliver it to the Imam (ʿA), his representative, or to the poor (fuqarāʾ).
+    4. It can be given to disbelievers (kuffār) who will be inclined to the religion of Islam if zakat is given to them, or who will assist Muslims in battle or in some other matter. Zakat can also be given to Muslims whose faith in some of the noble Messenger’s (Ṣ) teachings is weak but which will be strengthened as a result of giving zakat to them. Furthermore, zakat can be given to a Muslim who does not believe in the vicegerency (wilāyah) of the Commander of the Faithful [Imam ʿAlī] (ʿA) but who will be inclined to believe in it if zakat is given to him.
+    5. To buy and free slaves, the details of which are mentioned in their appropriate place.
+    6. It can be given to a person who is in debt but is unable to repay his debt.
+    7. In the way of Allah (fī sabīl allāh), i.e. acts that benefit the general Muslim public, such as building mosques and religious schools, keeping the town clean, tarmacking and expanding roads, and suchlike.
+    8. It can be given to a stranded traveller (ibn al-sabīl).
+
+These are the ways in which zakat can be spent; however, in the third and fourth cases, the owner cannot spend zakat without the permission of the Imam (ʿA) or his representative. And based on obligatory precaution, in the seventh case, the owner must obtain permission from a fully qualified jurist. The laws (aḥkām) concerning these ways will be explained in the following rulings (masāʾil).
+
+Ruling 1941. The obligatory precaution is that a poor or needy person must not receive zakat that is more than his and his family’s expenses for one year. If he has some money or goods, he must only receive an amount of zakat that makes up the shortfall for what he needs in order to meet his expenses for a year.
+
+Ruling 1942. If a person has sufficient means to meet his expenses for a year and spends part of it, and then he doubts whether or not the remaining amount will be sufficient to meet his expenses for one year, he cannot receive zakat.
+
+Ruling 1943. A craftsman, proprietor, or a businessman whose income is less than his expenses for one year can receive zakat to meet his shortfall, and it is not necessary for him to sell his tools or property or to spend his capital in order to meet his expenses.
+
+Ruling 1944. A poor person who does not possess the means to meet his and his family’s expenses for one year can receive zakat even if he owns a house in which he lives, or he possesses a vehicle without which he cannot lead his life or uphold his respect. The same applies to household furniture, utensils, summer and winter clothes, and other things needed by him. And if a poor person does not have such things but needs them, he can purchase them from zakat.
+
+Ruling 1945. A poor person who can work and thereby meet his and his family’s expenses but does not do so due to laziness is not permitted to receive zakat. A poor student for whom working will be an obstacle to him continuing with his studies cannot in any case receive the portion of zakat that is for poor people unless studying for him is an individual obligation (al-wājib al-ʿaynī).(1) As for receiving it from the ‘in the way of Allah’ portion of zakat, it is permitted if his education will benefit the general public and, based on obligatory precaution, it is given with the authorisation of a fully qualified jurist. A poor person for whom it is not difficult to learn a trade cannot, based on obligatory precaution, live on zakat, although he can receive zakat while he is learning the trade.
+
+Ruling 1946. One can give zakat to a person who was previously poor and who says he is poor now even if he does not attain confidence (iṭmiʾnān) in his statement. However, based on obligatory precaution, one cannot give zakat to a person about whom it is not known whether or not he was previously poor [and who says he continues to be poor] until he attains confidence about him being poor.
+
+Ruling 1947. If a person that was not poor previously says he is poor now, in the event that confidence cannot be derived from what he says, zakat cannot be given to him.
+
+Ruling 1948. If a person who must give zakat is owed some amount by a poor person, he can count the amount he is owed by the poor person towards his zakat.
+
+Ruling 1949. If a poor person dies and his estate is insufficient to repay his debt, one may count the amount he is owed by the deceased towards his zakat. In fact, if his property is sufficient to repay his debt but his inheritors do not settle his debt, or, if for some other reason one cannot reclaim the money he loaned the deceased, he can count the amount he is owed towards his zakat in this case as well.
+
+Ruling 1950. If a person gives something to a poor person with the intention of zakat, it is not necessary for him to tell him it is zakat. In fact, if the poor person is ashamed by taking zakat, it is recommended (mustaḥabb) that he gives it to him with the intention of zakat but without disclosing to him that it is zakat.
+
+Ruling 1951. If a person gives someone zakat thinking that he is poor and later realises that he was not poor, or, if on account of not knowing the ruling he gives zakat to someone whom he knows is not poor, it is not sufficient [and he will not have discharged his duty]. Therefore, in the event that the item he gave the beneficiary still exists, he must take it back from him and give it to someone entitled to receive zakat. However, if the item does not exist and the beneficiary knew it was given to him as zakat, then he can claim its replacement from the beneficiary and give it to someone entitled to receive zakat; but, if the beneficiary did not know it was zakat, he cannot take anything from him and he must give zakat again from his own property to someone entitled to receive it, even if, based on obligatory precaution, he investigated about the poor person or he relied upon something that was legally authoritative (al-ḥujjah al-sharʿiyyah) [such as the statement of a reliable person].
+
+Ruling 1952. A person who is in debt but is unable to repay his debt – even if he has the means to meet his expenses for one year – can receive zakat in order to repay his debt. However, he must not have spent the loan for a sinful purpose.
+
+Ruling 1953. If a person gives zakat to someone who is in debt but is unable to repay his debt and he later realises that the debtor spent the loan for a sinful purpose, in the event that the debtor is poor, the person can count what he gave him as the portion of zakat that is given to poor people.
+
+Ruling 1954. With regard to a person who is in debt but is unable to repay his debt, the lender can count the amount owed to him by the person as zakat even if the person is not poor.
+
+Ruling 1955. If a traveller runs out of funds or his means of transportation stops functioning, in the event that the purpose of his journey is not sinful and he cannot reach his destination by borrowing or by selling something, he can receive zakat even if he is not a poor person in his home town (waṭan). However, if he can procure funds for his journey at another place by borrowing money or by selling something, then he can receive zakat up to the amount that will enable him to get to that place. And based on obligatory precaution, if he can raise money by selling or renting some property in his home town for the expenses of his journey, he must not receive zakat.
+
+Ruling 1956. If a stranded traveller has received zakat and after reaching his home town finds that some of the zakat has remained unspent, in the event that he cannot return it to the benefactor, he must return it to a fully qualified jurist stating that it is zakat.
+
+====================================================================================================
+
+CHAPTER 173 | Alms Tax (Zakat) » Criteria for being entitled to receive (mustaḥiqq) zakat
+====================================================================================================
+
+Ruling 1957. The person to whom one gives zakat must be a Twelver (Ithnā ʿAsharī) Shia. If he gives zakat to a person whom he believes to be a Shia and later realises that he was not a Shia, then based on obligatory precaution he must give zakat again even if he had made investigations about the person or he had relied upon something that was legally authoritative.
+
+Ruling 1958. If a child or an insane person is a Shia and poor, one may give zakat to his guardian (walī) with the intention that what he gives is the property of the child or the insane person. Furthermore, he can, either by himself or through a trustworthy person (amīn), spend zakat on the child or on the insane person, in which case he must make the intention of zakat when he does so.
+
+Ruling 1959. A person can give zakat to a poor person who begs provided that the fact of his poverty is established. However, one must not give zakat to a person who spends it for sinful purposes. In fact, the obligatory precaution is that zakat must not be given to someone who, as a result of receiving it, is encouraged to commit sins even if he does not spend it directly for sinful purposes.
+
+Ruling 1960. The obligatory precaution is that one must not give zakat to a person who consumes alcohol, or does not perform prayers, or publicly commits major sins.
+
+Ruling 1961. If a person is in debt but is unable to repay his debt, one can repay it for him from zakat even if his expenses are obligatory on him.
+
+Ruling 1962. A person cannot pay for the living expenses of those whose expenses are obligatory on him – such as his children – from zakat. However, if he does not pay for their living expenses, then others can give zakat to them. And if he is unable to give obligatory maintenance (nafaqah) for those whom it is obligatory on him to give obligatory maintenance, and if zakat is obligatory on him, he can give their obligatory maintenance from zakat.
+
+Ruling 1963. There is no problem if one gives zakat to his son so that he can pay for the living expenses of his wife, servant, or maid, or so that he can repay his loan, provided that his son satisfies all the other criteria for being entitled to receive zakat.
+
+Ruling 1964. A father cannot buy educational and religious books that are required by his son from the ‘in the way of Allah’ portion of zakat and make them available to him unless the general public interest necessitates it, and, based on obligatory precaution, he gets authorisation from a fully qualified jurist.
+
+Ruling 1965. A father can use zakat to get his poor son married, and the same applies to the son with regard to his father.
+
+Ruling 1966. Zakat cannot be given to a woman whose husband provides for her living expenses, nor to a woman whose husband does not provide for her living expenses but who has the power to compel him to give them to her, albeit by referring to an unjust ruler (al-ḥākim al-jāʾir).
+
+Ruling 1967. If a woman who has contracted a temporary marriage (mutʿah) is poor, her husband and others can give her zakat. However, if she had stipulated a condition in the contract that her husband must pay for her living expenses, or, if paying for her living expenses is obligatory on him for some other reason and he does pay for her living expenses, then zakat cannot be given to her.
+
+Ruling 1968. A woman can give zakat to her husband who is poor even if the husband spends that zakat on her living expenses.
+
+Ruling 1969. A sayyid(1) cannot accept zakat from someone who is not a sayyid except in case of necessity; and based on obligatory precaution, the necessity must be to the extent that he cannot meet his living expenses from khums or other religious funds. Furthermore, based on obligatory precaution, if it is possible, he must on a daily basis take only an amount that is sufficient to meet his necessary living expenses for that day.
+
+Ruling 1970. Zakat can be given to a person whom one does not know whether he is a sayyid or not. However, if that person himself claims that he is a sayyid [it is not permitted to give him zakat] and if one does gives him zakat he will not be exempted from the obligation.
+
+====================================================================================================
+
+CHAPTER 174 | Alms Tax (Zakat) » Intention (niyyah) for giving zakat
+====================================================================================================
+
+Ruling 1971. A person must give zakat with the intention of qurbah, i.e. in humility to the Lord of the worlds. If he gives zakat without the intention of qurbah, it is sufficient [in the sense that he will be deemed as having given the zakat that was obligatory on him], although he will have committed a sin. Furthermore, he must specify in his intention whether what he is giving is zakat on property or zakāt al-fiṭrah.(1) In fact, if, for example, zakat on wheat and barley is obligatory on him and he wants to pay a sum of money equal to the value of the zakat on them, he must specify whether he is paying zakat that is due on the wheat or on the barley.
+
+Ruling 1972. If it is obligatory on a person to give zakat on various items and he gives some zakat without specifying in his intention which item it relates to, in the event that the thing he has given is of the same type as one of the items, it will be counted as zakat of that particular thing. For example, if it is obligatory on him to give zakat on forty sheep and on fifteen mithqāls of gold, and he gives one sheep as zakat without specifying in his intention if it is zakat of the sheep or the gold, then it will be counted as zakat of the sheep. However, if he gives some silver coins or notes of money (i.e. a different type of commodity to sheep and gold), then, according to some [jurists], it must be divided between both of them [i.e. for paying both the zakat on the sheep and on the gold]. However, this is problematic [i.e. based on obligatory precaution, it does not suffice], and it is probable that it cannot be counted as zakat for any of them and that it remains the owner’s property.
+
+Ruling 1973. If a person appoints someone as his agent to give away the zakat of his property, he must make the intention when he hands over the zakat to him. And the recommended precaution is that he should maintain that intention until the zakat reaches the poor.
+
+====================================================================================================
+
+CHAPTER 175 | Alms Tax (Zakat) » Miscellaneous rulings on zakat
+====================================================================================================
+
+Ruling 1974. When wheat and barley are separated from the chaff, and when dates and grapes become dry, one must give zakat to the poor or separate it from his property. The zakat on gold, silver, cows, sheep, and camels must be given to the poor or separated from one’s property after the eleventh month is complete.
+
+Ruling 1975. After separating zakat [from one’s property], it is not necessary that he immediately gives it to someone who is entitled to receive it, and there is no problem if it is delayed because of a rationally acceptable reason.
+
+Ruling 1976. If a person can deliver zakat to someone entitled to receive it but does not do so and the zakat perishes due to his negligence, he must give it again in replacement.
+
+Ruling 1977. If a person can deliver zakat to someone who is entitled to receive it but does not do so and it perishes without him being negligent in looking after it, in the event that he did not have a valid reason for the delay, he must give zakat again in replacement for it. In fact, even if he had a good reason for the delay – for example, he had intended to give it to a poor person in particular, or he wanted to distribute it to poor people gradually – then based on obligatory precaution he is responsible for it.
+
+Ruling 1978. If a person puts aside zakat from his property, he can still use the rest of his property; and if he puts aside zakat from some other property of his, he can still use his entire property.
+
+Ruling 1979. A person cannot use for himself zakat that he has set aside and replace it with something else.
+
+Ruling 1980. If some profit accrues from the zakat that a person has set aside – for example, a sheep that has been kept aside for zakat gives birth to a lamb – then the profit is subject to the same rules as the zakat.
+
+Ruling 1981. If someone who is entitled to receive zakat is present when a person sets aside zakat, it is better that he gives the zakat to him unless he has someone else in mind and for some reason it is better to give it to that other person instead.
+
+Ruling 1982. If a person transacts with the property that he has set aside as zakat without the authorisation of a fully qualified jurist and incurs a loss, he must not deduct anything from the zakat. However, if he makes a profit, then based on obligatory precaution he must give it to someone who is entitled to receive zakat.
+
+Ruling 1983. If before zakat becomes obligatory on a person he gives something to the poor as zakat, he cannot count it as zakat. However, if afterwards when zakat becomes obligatory on him the thing that he gave to the poor has not perished and the poor person has remained poor, he can count the thing that he gave him as zakat.
+
+Ruling 1984. If a poor person knows that zakat has not become obligatory on someone and yet takes something from him as zakat and it perishes while it is with him, he is responsible for it. However, when zakat becomes obligatory on the person, if the poor person has remained poor, he can count the thing that he gave him as zakat.
+
+Ruling 1985. If a poor person does not know that zakat has not become obligatory on someone and he takes something from him as zakat and it perishes while it is with him, he is not responsible for it; and the person who gave the thing cannot count it as zakat.
+
+Ruling 1986. It is recommended for one to give zakat on cows, sheep, and camels to poor persons who are respectable; and in giving zakat, he should prefer his relatives and learned and virtuous persons over others, and those who do not beg over those who beg, although, it is possible that it may be better to give zakat to a poor person for some other reason.
+
+Ruling 1987. It is better that zakat be given openly and that recommended alms to the poor (ṣadaqah) be given secretly.
+
+Ruling 1988. If in the town of the person who wants to give zakat there is no one entitled to receive it and he cannot spend it in another way for which it was specified, he can transfer the zakat to another place. In this case, if he is not negligent in looking after it but it perishes nevertheless, he is not responsible for it. Furthermore, he can obtain agency (wikālah) from a fully qualified jurist to take possession of it, and with authorisation from a fully qualified jurist he can transfer it to another place. In this case too, he is not responsible for any loss, and he can take the transportation expenses from the zakat.
+
+Ruling 1989. If someone entitled to receive zakat is found in one’s town, he can still take it to another town but he must pay the expenses for transferring it to that town himself; and if the zakat perishes, he is responsible for it unless he took it in compliance with the command of a fully qualified jurist.
+
+Ruling 1990. The charges for weighing and measuring wheat, barley, raisins, and dates that a person gives as zakat must be paid by himself.
+
+Ruling 1991. It is disapproved (makrūh) for a person to request someone entitled to receive zakat to sell him the zakat that he gave him. However, if the person entitled to receive zakat wants to sell the thing he received, then after its price has been determined, the person who gave him the zakat has the first option to buy it.
+
+Ruling 1992. If a person doubts whether or not he gave the zakat that was obligatory on him and the property that was subject to zakat still exists, he must give zakat even if his doubt is about the zakat of previous years. However, if the property has perished, then zakat is not liable on it even if it relates to the current year.
+
+Ruling 1993. A poor person cannot settle for a lesser amount of zakat before receiving it, nor can he accept something that is more expensive than the value of the zakat. Furthermore, an owner cannot give zakat to someone entitled to receive it on condition that he must return it to him. However, there is no problem if after receiving it, the entitled person consents to returning it to him. For example, if someone who owes a lot of zakat but has become poor and cannot give it, and he has repented, and a poor person consents to taking his zakat from him and gifting it back to him, there is no problem.
+
+Ruling 1994. A person cannot purchase the Qur’an, religious books, or books of supplications (duʿāʾs) from the ‘in the way of Allah’ portion of zakat and give them as a charitable endowment (waqf) unless the general public benefit necessitates it, and, based on obligatory precaution, he gets authorisation from a fully qualified jurist.
+
+Ruling 1995. A person cannot buy property from zakat and give it as a charitable endowment to his children or to those whose living expenses are obligatory on him in order that they spend the income generated from that property on their living expenses.
+
+Ruling 1996. A person can take from the ‘in the way of Allah’ portion of zakat for hajj, ziyārah,(1) or suchlike, even if he is not poor or he has already taken an amount of zakat that is equal to his annual living expenses, provided that going for hajj, ziyārah, or suchlike is in the general public interest, and, based on obligatory precaution, he has obtained permission from a fully qualified jurist for using zakat in this way.
+
+Ruling 1997. If the owner of a property makes a poor person his representative for distributing the zakat of his property, in the event that the poor person deems it probable that the owner did not intend for him to take zakat for himself as well, he cannot take anything from it for himself; but, if he has certainty (yaqīn) that this was not the intention of the owner, then he can take from it for himself.
+
+Ruling 1998. If a poor person takes camels, cows, sheep, gold, or silver as zakat, in the event that the conditions for zakat to become obligatory are fulfilled with regard to those items, he must give zakat on them.
+
+Ruling 1999. If two people jointly own a property on which zakat is obligatory and one of them gives zakat for his share and thereafter they divide the property, then even if he knows that his partner has not given zakat on his share and is not going to give it afterwards, there is no problem.
+
+Ruling 2000. If a person owes the one-fifth tax (khums) or zakat, and recompense (kaffārah), vow (nadhr), and suchlike are also obligatory on him, and he has debt as well, in the event that he cannot pay all of these obligations and the property on which khums and zakat is obligatory has not perished, he must pay the khums and zakat. And if it has perished, then paying zakat, khums, and settling his debt has priority over kaffārah and nadhr.
+
+Ruling 2001. If a person owes khums or zakat, and ḥajjat al-islām(2) is obligatory on him, and he has debt as well, then, if he dies and his estate is not sufficient for all of these obligations, in the event that the property on which khums and zakat is obligatory has not perished, the khums and zakat must be paid and the rest of his estate must be used to settle his debt. However, if the property on which khums and zakat is obligatory has perished, then his estate must be used to settle his debt; and if after this anything is left, it must be spent for [hiring a representative to perform] hajj [on the deceased’s behalf]; and if after this anything remains, it must be divided between the khums and zakat debts.
+
+Ruling 2002. If a person is engaged in acquiring knowledge, and if he were not acquiring knowledge he could be working for a living, in the event that acquiring that knowledge is an individual obligation, the portion of zakat for the poor can be given to him. And if acquiring that knowledge is in the public interest, then it is permitted to give zakat to him from the ‘in the way of Allah’ portion with, based on obligatory precaution, the authorisation of a fully qualified jurist. In cases other than these two, it is not permitted to give zakat to him.
+
+====================================================================================================
+
+CHAPTER 176 | Alms Tax (Zakat) » The fiṭrah alms tax (zakāt al-fiṭrah)
+====================================================================================================
+
+Ruling 2003. A person who at the time of sunset (ghurūb) on the eve of Eid al-Fiṭr(1) is bāligh and sane, and not unconscious, poor, or a slave, must give on his behalf and on behalf of those who are dependent on him, one ṣāʿ – which is approximately three kilograms – of food per head to someone who is entitled to receive zakat. The food that he gives must be considered to be a staple food in his town, such as wheat, barley, dates, raisins, rice, millet, or something similar, and it suffices if he gives the food’s monetary value instead. The obligatory precaution is that food that is not considered to be staple in his town must not be given as zakat even if what he gives is wheat, barley, dates, or raisins.
+
+Ruling 2004. If a person cannot meet his and his family’s living expenses for one year and does not have an occupation by which he can meet his and his family’s expenses for one year, then such a person is a poor person and it is not obligatory on him to give zakāt al-fiṭrah.
+
+Ruling 2005. A person must give fiṭrah on behalf of all those who are considered to be his dependents at the time of sunset on the eve of Eid al-Fiṭr, irrespective of whether they are young or old, Muslims or disbelievers, and whether it is obligatory on him to pay for their living expenses or not, and whether they are in his town or in another town.
+
+Ruling 2006. If a person appoints his dependant who is in another town to be his agent and give the dependant’s fiṭrah from that person’s property, in the event that he is confident that he will give the fiṭrah, it is not necessary for the person to give his dependent’s fiṭrah himself.
+
+Ruling 2007. It is obligatory on one to give the fiṭrah of a guest who arrives at his house before sunset on the eve of Eid al-Fiṭr and spends the night at his place and is considered to be his dependent, albeit only temporarily.
+
+Ruling 2008. The fiṭrah of a guest who arrives at one’s house after sunset on the eve of Eid al-Fiṭr is, based on precaution, obligatory on the host provided that the guest is considered to be the host’s dependent; otherwise, it is not. If a person is invited to break his fast (ifṭār) on the eve of Eid al-Fiṭr, he is not considered to be the host’s dependent and the guest’s fiṭrah is not the responsibility of the owner of the house.
+
+Ruling 2009. If a person is insane at the time of sunset on the eve of Eid al-Fiṭr and his insanity continues until the time for ẓuhr prayers on the day Eid al-Fiṭr, zakāt al-fiṭrah is not obligatory on him; otherwise, based on obligatory precaution, it is necessary for him to give fiṭrah.
+
+Ruling 2010. If before sunset a child becomes bāligh, or an insane person becomes sane, or a poor person becomes rich, and if that person meets the conditions that make it obligatory on one to give fiṭrah, he must give fiṭrah.
+
+Ruling 2011. If at the time of sunset on the eve of Eid al-Fiṭr a person does not meet the conditions that make it obligatory on him to give fiṭrah but before the time for ẓuhr prayers on the day of Eid he does meet the conditions, then the obligatory precaution is that he must give fiṭrah.
+
+Ruling 2012. If a disbeliever becomes Muslim after sunset on the eve of Eid al-Fiṭr, it is not obligatory on him to give zakāt al-fiṭrah. However, if a Muslim who was not a Shia becomes a Shia after the moon is sighted, he must give fiṭrah.
+
+Ruling 2013. If someone possesses only one ṣāʿ of wheat and suchlike, it is recommended that he gives zakāt al-fiṭrah. In the event that he has dependents and he wants to give their fiṭrah as well, he can give that one ṣāʿ to one of them with the intention of giving fiṭrah, and the recipient can in turn give it to another dependent with the same intention, and so on until it reaches the last person; and it is better that the last recipient gives the item to someone who is not a member of their family. If one of them is a minor (ṣaghīr) or insane, his guardian can take it on his behalf; and the recommended precaution is that the guardian should not take it with the intention of taking it for the minor or insane person but rather for himself.
+
+Ruling 2014. If after sunset on the eve of Eid al-Fiṭr a woman gives birth to a child, it is not obligatory to give fiṭrah for the child. However, if before sunset a woman gives birth or marries and the mother or wife are considered to be dependents of the father or husband, then he must give their fiṭrah; but if they are dependents of someone else, then it is not obligatory on him. And if they are not dependents of anyone, then the fiṭrah of the woman is obligatory on herself and there is no obligation to give fiṭrah for the child.
+
+Ruling 2015. If a person is a dependent of someone and before sunset he becomes a dependent of someone else, his fiṭrah is obligatory on the person of whom he became a dependent. For example, if a girl moves to her husband’s house before sunset, her husband must give her fiṭrah.
+
+Ruling 2016. A person whose fiṭrah is obligatory on another person is not obligated to give his fiṭrah himself. However, if the other person does not or cannot give his fiṭrah, then based on precaution it becomes obligatory on him to give his own fiṭrah provided that the conditions mentioned in Ruling 2003 are fulfilled.
+
+Ruling 2017. If a person whose fiṭrah is obligatory on another person gives his own fiṭrah, the obligation on the one who must give it is not exempted.
+
+Ruling 2018. A person who is not a sayyid cannot give fiṭrah to a sayyid, and even if that sayyid is his dependent, he cannot give that sayyid’s fiṭrah to another sayyid.
+
+Ruling 2019. The fiṭrah of a child who is breastfed by its mother or a wet nurse is obligatory on the person who pays for the living expenses of the mother or the wet nurse. However, if the mother or the wet nurse takes her living expenses from the child’s property, then the fiṭrah of that child is not obligatory on anyone.
+
+Ruling 2020. Even if a person pays for the living expenses of his dependents with property that he has acquired unlawfully, he must give their fiṭrah from property that he has acquired lawfully.
+
+Ruling 2021. If a person hires someone like a builder, carpenter, or a servant, and pays for his living expenses in a manner that the hired person is considered to be his dependent, he must give the hired person’s fiṭrah as well. However, if he only pays him for his work, then it is not obligatory on him to give his fiṭrah.
+
+Ruling 2022. If a person dies before sunset on the eve of Eid al-Fiṭr, it is not obligatory to give his and his dependents’ fiṭrah from his estate. However, if a person dies after sunset, then based on the well-known (mashhūr) juristic opinion, his and his dependents’ fiṭrah must be given from his estate. However, this rule is problematic, and the requisite precautionary action must not be abandoned.
+
+====================================================================================================
+
+CHAPTER 177 | Alms Tax (Zakat) » Distribution of zakāt al-fiṭrah
+====================================================================================================
+
+Ruling 2023. Based on obligatory precaution, zakāt al-fiṭrah must only be given to the poor, and this means poor Shias who satisfy the criteria mentioned previously regarding those who are entitled to receive zakat.(1) In the event that there are no poor Shias in one’s town, he can give it to other Muslims who are poor, but in any case, fiṭrah must not be given to a nāṣibī.(2)
+
+Ruling 2024. If a Shia child is poor, one can spend fiṭrah on him or make it his property by entrusting it to his guardian.
+
+Ruling 2025. It is not necessary that the poor person to whom fiṭrah is given be a just person (ʿādil); however, the obligatory precaution is that fiṭrah must not be given to someone who consumes alcohol, or does not perform prayers, or publicly commits sins.
+
+Ruling 2026. Fiṭrah must not be given to someone who spends it for sinful purposes.
+
+Ruling 2027. The recommended precaution is that a poor person should not be given fiṭrah that is less than one ṣāʿ unless the total amount of fiṭrah is not sufficient for all the poor people. However, there is no problem if more than one ṣāʿ is given.
+
+Ruling 2028. If a person gives half a ṣāʿ of an item on account of it being double the price – for example, if a particular type of wheat is double the price of ordinary wheat and one gives only half a ṣāʿ – it is not sufficient. In fact, even if he gives it with the intention of paying the value of the fiṭrah, it is not sufficient.
+
+Ruling 2029. A person cannot give as fiṭrah half a ṣāʿ of one item, such as wheat, and half a ṣāʿ of another item, such as barley. In fact, even if he gives it with the intention of paying the value of the fiṭrah, it is not sufficient.
+
+Ruling 2030. It is recommended that in giving zakāt al-fiṭrah one should prefer his poor relatives and neighbours over others, and it is befitting that he also gives preference to learned, religious, and virtuous persons over others.
+
+Ruling 2031. If a person gives fiṭrah to someone thinking that he is poor but later realises that he was not poor, in the event that the item he gave him has not perished, he must take it back and give it to someone who is entitled to receive it; and if he is unable to take it back, he must replace the fiṭrah from his own property. If the item has perished, in the event that the beneficiary knew the item was given as fiṭrah, the beneficiary must replace it; however, if the beneficiary did not know, then replacing it is not obligatory on him and the benefactor must replace it.
+
+Ruling 2032. A person cannot give fiṭrah to someone who says he is poor unless he is confident that what he says is the truth or he knows that he was poor previously.
+
+====================================================================================================
+
+CHAPTER 178 | Alms Tax (Zakat)» Miscellaneous rulings on zakāt al-fiṭrah
+====================================================================================================
+
+Ruling 2033. A person must give zakāt al-fiṭrah with the intention of qurbah – i.e. in humility to the Lord of the worlds – and he must make the intention of giving fiṭrah at the time of giving it.
+
+Ruling 2034. It is not permitted for one to give fiṭrah before the month of Ramadan, and it is better that he does not give it during the month of Ramadan either. However, there is no problem if one gives a loan to a poor person before Ramadan and then counts the loan as fiṭrah once fiṭrah has become obligatory on him.
+
+Ruling 2035. Wheat or any other thing that a person gives as fiṭrah must not be mixed with soil or any other thing. In the event that it is mixed and the item itself is equal to one ṣāʿ and it is usable without having to separate it from the other thing, or if separating it does not require extraordinary effort, or the amount that has been mixed is negligible, then there is no problem.
+
+Ruling 2036. If a person gives fiṭrah from a defective thing, then based on obligatory precaution it is not sufficient.
+
+Ruling 2037. If a person gives fiṭrah on behalf of a number of persons, it is not necessary for him to give it all from the same item. For example, it is sufficient if he gives the fiṭrah of some in wheat and the fiṭrah of others in barley.
+
+Ruling 2038. If a person performs Eid prayers, then based on obligatory precaution he must give fiṭrah before Eid prayers. However, if he does not perform Eid prayers, he can delay giving fiṭrah until the time of ẓuhr prayers [on the day of Eid al-Fiṭr].
+
+Ruling 2039. If a person puts aside some of his property with the intention of fiṭrah but does not give it to someone who is entitled to receive it until the time of ẓuhr prayers on the day of Eid al-Fiṭr, he must make the intention of fiṭrah whenever he gives it, and there is no problem if there was a rationally acceptable reason for the delay.
+
+Ruling 2040. If a person does not give fiṭrah until the time of ẓuhr prayers on the day Eid al-Fiṭr and does not set it aside either, then based on obligatory precaution he must give fiṭrah afterwards without making the intention of giving it within its prescribed time (adāʾ) or belatedly (qaḍāʾ).
+
+Ruling 2041. If a person sets aside fiṭrah, he cannot take it for his own use and replace it with something else.
+
+Ruling 2042. If a person possesses something that has a value greater than fiṭrah, in the event that he does not give fiṭrah and makes the intention that some of that item is for fiṭrah, then based on obligatory precaution this is not sufficient.
+
+Ruling 2043. If the property that one has set aside for fiṭrah perishes, in the event that he had access to a poor person but delayed in giving the fiṭrah, or he was negligent in looking after it, he must replace it. However, if he did not have access to a poor person and he was not negligent in looking after it, he is not responsible for it.
+
+Ruling 2044. If a person entitled to receive fiṭrah is found in one’s area, the obligatory precaution is that he must not transfer the fiṭrah to another place. However, if he does transfer it and delivers it to someone who is entitled to receive it, it is sufficient; but if he transfers it to another place and it perishes, he must replace it.
+
+====================================================================================================
+
+CHAPTER 179 | CHAPTER NINE » Hajj(1)
+====================================================================================================
+
+Ruling 2045. Hajj means visiting the House of Allah [the Kaʿbah in Mecca] and performing the prescribed rituals there. It is obligatory (wājib) on someone who fulfils the following conditions to perform hajj once in his lifetime:
+
+    1. being of the age of legal responsibility (bāligh);
+    2. being sane (ʿāqil) and a free person;
+    3. on account of going for hajj, one must not be compelled to commit an unlawful (ḥarām) act which is more important to avoid than performing hajj; nor must he be compelled to abandon an obligatory act which is more important than performing hajj. However, if such a situation transpires and he goes for hajj, his hajj is valid (ṣaḥīḥ) although he will have committed a sin;
+    4. being able (mustaṭīʿ). This is determined by the following criteria:
+    a. he must possess the provisions, and – in the event that he requires it – the means of transportation for the journey; or, he must have the wealth to procure them;
+    b. he must be healthy and able to travel to Mecca and perform hajj without it causing him excessive difficulty (mashaqqah). This condition is a requirement for the obligation of hajj when a person is performing it himself; as for someone who has the financial capacity but not the physical ability to perform it himself, or performing it himself would cause him hardship (ḥaraj) and he is not hopeful of his physical condition improving, such a person must appoint a representative (nāʾib) [to perform hajj on his behalf];
+    c. during any stage of his journey, there must not be an obstruction to going further. If the route is closed, or, if a person fears that he will lose his life or honour on the journey, or that his property will be taken, then it is not obligatory on him to perform hajj. However, if he is able to go by another route, he must do so even if it is a longer route, unless that route is so much longer and so unusual that it can be said the road for hajj is closed;
+    d. he must have sufficient time to perform the rituals of hajj;
+    e. he must be able to meet the living expenses of those whose maintenance is obligatory on him, such as his wife and children, and those who, if he were to stop spending on them, it would cause him hardship;
+    f. upon returning, he must have a business, a farm, an income from a property, or some other means of earning his livelihood, i.e. it must not be such that because of the expenses he incurs for hajj, he is compelled to live in difficulty when he comes back.
+
+Ruling 2046. With regard to someone who on account of not owning a house experiences hardship, hajj only becomes obligatory on him when he has money for a house as well.
+
+Ruling 2047. With regard to a woman who is able to go to Mecca, if upon her return she will not possess any wealth and her husband is, for example, a poor person (faqīr) who does not meet her living expenses, and if therefore she would have to live in difficulty, then it is not obligatory on her to go for hajj.
+
+Ruling 2048. If someone does not possess the provisions and the means of transportation for the journey, and if someone else tells him to go for hajj and that he will pay for his living expenses and the living expenses of his dependants during his trip for hajj, then, in the event that he is confident (i.e. he has iṭmiʾnān) that the person will pay for his expenses, hajj is obligatory on him.
+
+Ruling 2049. If in order for a person to perform hajj some people gift him the expenses for going to and returning from Mecca, and they also gift him the living expenses of his dependants during the time he is on his journey to Mecca, then hajj is obligatory on him even if he has a debt to pay off and even if he does not possess wealth that he can live on upon his return. However, if the journey for hajj falls on the days when he earns a living, and were he to go for hajj he would not be able to repay his debt on time, or he would not be able to pay for his living expenses for the rest of the year, then hajj is not obligatory on him.
+
+Ruling 2050. If some people provide one’s travel expenses and the living expenses of his dependants for the period he is in Mecca, and they tell him to go for hajj but the money will not be his own, [rather, it will only be permissible for him to use it,] then, in the event that he is confident that they will not take it back from him, hajj is obligatory on him.
+
+Ruling 2051. If some people provide someone with an amount of money that is sufficient for performing hajj, but they make it a condition that during the journey to Mecca he serves someone who is giving him the money, hajj is not obligatory on him.
+
+Ruling 2052. If some people gift an amount of money to someone, making hajj obligatory on him, in the event that he performs hajj and he later acquires wealth himself, hajj is not obligatory on him again.
+
+Ruling 2053. If a person goes on a business trip to Jeddah, for example, and there he acquires some wealth that would enable him to go to Mecca if he wanted to go there, he must go for hajj. And in the event that he performs hajj and he later acquires wealth that enables him to go to Mecca from his home town (waṭan), hajj is not obligatory on him again.
+
+Ruling 2054. If a person is hired to personally go for hajj on behalf of another person, in the event that he is unable to go himself and wants to send someone else on his behalf, he must get authorisation from the person who hired him.
+
+Ruling 2055. If someone becomes able to go to Mecca but does not reach the plains of ʿArafāt and Mashʿar al-Ḥarām at the prescribed time, in the event that he is unable to go for hajj in subsequent years, hajj will not be obligatory on him. However, if for some years he was able to go but did not, then he must go for hajj even if it entails difficulty.
+
+Ruling 2056. If a person who has become able does not go for hajj, and afterwards due to old age, illness, or incapacitation he is unable to perform hajj or it entails hardship, and if he loses hope in being able to perform hajj himself in subsequent years, then he must send someone to perform hajj on his behalf; and if in subsequent years he is able to perform hajj himself, he must do so. The same applies if a person cannot perform hajj due to old age, illness, or incapacitation in the first year that he acquires a sufficient amount of wealth for performing hajj, and he loses hope in being able to perform it in subsequent years. In all of these cases, the recommended precaution (al-iḥtiyāṭ al-mustaḥabb) is that if the person being represented (al-manūb ʿanhu) is a man, then the representative (nāʾib) should be someone who will go for hajj for the first time (ṣarūrah).
+
+Ruling 2057. A person who has been hired to perform hajj on behalf of someone else must perform ṭawāf al-nisāʾ(2) on behalf of that other person, and if he does not, then sexual relations are unlawful for the person who has been hired.
+
+Ruling 2058. If a person does not perform ṭawāf al-nisāʾ correctly or forgets to perform it, in the event that he remembers this after a few days, comes back, and performs it, it is valid. However, in the event that returning causes him excessive difficulty, he can appoint a representative [to perform it on his behalf].
+
+====================================================================================================
+
+CHAPTER 180 | Chapter ten » Buying and Selling
+====================================================================================================
+
+Ruling 2059. It is befitting for a trader to learn the laws (aḥkām) of buying and selling concerning issues that he commonly encounters. In fact, if he would be at risk of committing an unlawful (ḥarām) act or abandoning an obligatory (wājib) act as a result of not learning the laws, then it would be necessary [not just befitting] for him to learn them. It is reported that His Eminence Imam al-Ṣādiq (ʿA) said: ‘One who wishes to engage in buying and selling must learn its laws; if he were to buy and sell before learning its laws, he would fall into ruin by means of invalid (bāṭil) and dubious transactions (muʿāmalāt).’
+
+Ruling 2060. If a person does not know whether a transaction (muʿāmalah) he has conducted is valid (ṣaḥīḥ) or invalid due to him not knowing the ruling (masʾalah), he cannot have disposal over what he received in the transaction nor what he handed over; rather, he must learn the ruling or exercise precaution (iḥtiyāṭ), albeit by means of a settlement (muṣālaḥah). However, if he knows that the other party consents to him having disposal over the item even though the transaction is invalid, then having disposal over it is permitted (jāʾiz).
+
+Ruling 2061. If a person does not have any wealth but certain expenses are obligatory on him – such as providing for his wife and children – he must earn his living. As for recommended (mustaḥabb) matters – such as providing a better livelihood for one’s family and helping the poor (fuqarāʾ) – for such matters, earning is recommended.
+
+====================================================================================================
+
+CHAPTER 181 | Chapter ten » Recommended (mustaḥabb) acts of buying and selling
+====================================================================================================
+
+Some things are considered to be recommended when buying and selling, including:
+
+    1. one should not discriminate between buyers with respect to the price of goods except when taking into account the buyer’s impoverished situation and suchlike;
+    2. at the start of business proceedings, one should say the shahādatayn (two testimonies),(1) and at the time of the transaction one should say takbīr;(2)
+    3. one should give more of what is being sold and take less of what is being bought;
+    4. if the other party involved in the transaction regrets making the transaction and requests to annul it, one should accept his request.
+
+====================================================================================================
+
+CHAPTER 182 | Chapter ten » Disapproved (makrūh) transactions
+====================================================================================================
+
+Ruling 2062. Some disapproved transactions are as follows:
+
+    1. selling real estate, unless one buys another real estate with the money acquired from the transaction;
+    2. to be a butcher;
+    3. selling shrouds (kafans);
+    4. transactions with people of low character;
+    5. transactions between the start of the time for the morning (ṣubḥ) prayer and sunrise;
+    6. making one’s profession the buying and selling of wheat, barley, and suchlike;
+    7. intervening in someone else’s transaction in order to buy the goods that the other person wishes to buy.
+
+====================================================================================================
+
+CHAPTER 183 | Chapter ten » Unlawful (ḥarām) transactions
+====================================================================================================
+
+Ruling 2063. There are many unlawful transactions; some of them are as follows:
+
+    1. buying and selling intoxicating drinks, non-hunting dogs, pigs, and – based on obligatory precaution (al-iḥtiyāṭ al-wājib) – impure (najis) carcasses. Apart from these, buying and selling an intrinsic impurity (ʿayn al-najāsah) is permitted if it is for some significant and lawful use, such as buying and selling impure animal waste for use as fertilisers;
+    2. buying and selling usurped (ghaṣbī) property, if this necessitates having disposal over it, such as handing it over and taking possession of it;
+    3. transactions with money that is no longer legal tender or with counterfeit money, if the other party is unaware of this; but if he is aware, the transaction is permitted;
+    4. transactions of unlawful objects; that is, things that have been made in a form that is usually utilised in an unlawful manner and its value is due to its unlawful utilisation, such as idols, crucifixes, gambling implements, and instruments of unlawful entertainment;
+    5. transactions in which there is deceit. The most noble Messenger (Ṣ) said, ‘One who deceives Muslims in his transactions is not one of us; Allah takes away the blessing of his sustenance, closes the path of his livelihood, and leaves him to himself.’ Deceit can take place in different ways, such as:
+    a. mixing a good item with a bad one or with something else; for example, mixing milk with water;
+    b. making an item appear better than it really is; for example, spraying water onto old vegetables to make them appear fresh;
+    c. feigning an item as something else; for example, gold-plating an item without informing the buyer [that it is not solid gold];
+    d. concealing a defect in an item when a buyer trusts the seller to not conceal defects.
+
+Ruling 2064. There is no problem in selling an item that has become impure but is washable and may become pure (ṭāhir), such as a rug or utensil. The same applies if the item is not washable but the lawful and usual use of it is not dependent on it being pure, such as crude oil. In fact, even if its lawful and usual use is dependent on it being pure, in the event that it has a lawful and significant benefit, it is permitted to sell it.
+
+Ruling 2065. If a person wishes to sell something that is impure, he must tell the buyer that it is impure in the event that were he to not tell him, the buyer would be at risk of committing an unlawful act or abandoning an obligatory act; for example, the buyer would use impure water to perform ablution (wuḍūʾ) or ritual bathing (ghusl) and then perform obligatory prayers (ṣalāh); or, he would use the impure item for eating or drinking. Of course, if one knows that telling the buyer would be of no avail – for example, he is someone who is unconcerned about religious matters – then it is not necessary to tell him.
+
+Ruling 2066. Buying and selling impure consumable and non-consumable medicine is permitted; however, the seller must inform the buyer of it being impure in the case mentioned in the previous ruling.
+
+Ruling 2067. There is no problem in buying and selling oil that has been imported from non-Muslim countries if one does not know it is impure. As for oil and other things that are acquired after the animal has died, such as gelatine, in the event that one acquires them from a disbeliever (kāfir) or they are imported from non-Muslim countries, they are pure and it is permitted to buy and sell them as long as one deems it probable that they have been acquired from an animal which was slaughtered according to Islamic law; however, it is unlawful to consume these things. Furthermore, it is necessary for the seller to tell the buyer how it was acquired in the event that were he to not tell him, the buyer would be at risk of committing an unlawful act or abandoning an obligatory one, similar to what was mentioned in Ruling 2065.
+
+Ruling 2068. If a fox or similar animal is not slaughtered according to Islamic law or it dies by itself, then based on obligatory precaution, buying and selling its skin is not permitted; however, if it is doubtful [as to how the animal died,] then there is no problem.
+
+Ruling 2069. It is permitted to buy and sell leather that is imported from non-Muslim countries or is acquired from a disbeliever in the event that one deems it probable that it is from an animal which was slaughtered according to Islamic law. Moreover, it is correct (ṣaḥīḥ) to perform prayers with it.
+
+Ruling 2070. Oil and other products that are acquired from an animal after it has died are considered pure, and buying and selling them is permitted. The same applies to leather that is acquired from a Muslim whom a person knows to have acquired it from a disbeliever without investigating whether or not the leather was acquired from an animal that was slaughtered according to Islamic law. However, consuming such oil and the like is not permitted.
+
+Ruling 2071. A transaction of wine and other intoxicating drinks is unlawful and invalid.
+
+Ruling 2072. The sale of usurped property is invalid unless the owner subsequently consents to it; and [if the owner does not,] the seller must return to the buyer the money he received from him.
+
+Ruling 2073. If a buyer seriously intends to engage in a transaction but his intention (qaṣd) is to not pay for the item that he is buying, this intention does not affect the validity of the transaction. However, it is necessary for him to pay the seller for the item.
+
+Ruling 2074. If a buyer purchases an item undertaking to pay for it later, but he wishes to pay for it later with unlawful wealth, the transaction is valid. However, he must pay the amount he owes from lawful wealth in order to be absolved of his responsibility [to pay the seller].
+
+Ruling 2075. The buying and selling of unlawful instruments of entertainment is not permitted. As for instruments that can be used for lawful or unlawful purposes, such as radios, recorders, and video players, there is no problem in buying and selling them, and it is permitted to keep them when one is confident (i.e. has iṭmiʾnān) that he and his family will not use them in unlawful ways.
+
+Ruling 2076. If something that can be used in a lawful manner is sold so that it is used in an unlawful way – for example, a person sells grapes so that wine can be produced from them – then, irrespective of whether it was decided to sell that thing for the unlawful use at the time of the transaction or before it, if the transaction takes place on the basis of the unlawful use, it is unlawful. However, if a person does not sell it for that reason but knows that the buyer will produce wine from the grapes, there is no problem with the transaction.
+
+Ruling 2077. Based on obligatory precaution, it is unlawful to make sculptures of living things; however, there is no problem in buying and selling such sculptures. As for illustrating living things, this is permitted.
+
+Ruling 2078. Buying items that have been acquired through gambling, theft, or void (bāṭil) transactions is unlawful if this amounts to having disposal over them. If someone buys such an item and receives it from the buyer, he must return it to its original owner.
+
+Ruling 2079. If a person sells ghee that is mixed with suet and he specifies it – for example, he says, ‘I am selling 1 kilogram of this ghee’ – then in case the amount of suet is a lot, i.e. to the extent that the product could not be said to be ghee, the transaction is void. But if the amount of suet is a little, i.e. to the extent that the product could be said to be ‘ghee mixed with suet’, then the transaction is valid. However, in this case, the buyer has the right to annul due to a defect (khiyār al-ʿayb),(1) i.e. he can annul the transaction and take back his money. Furthermore, if the ghee is distinguishable from the suet, the transaction in relation to the amount of suet mixed in the ghee is void, and the money that the seller takes for the suet belongs to the buyer and the suet belongs to the seller. The buyer can also annul the transaction with respect to the pure ghee within the product. However, if the seller does not specify it and he sells 1 kilogram of ghee, undertaking to give it later, and he later gives ghee mixed with suet, the buyer can return the mixed ghee and demand pure ghee.
+
+Ruling 2080. If a commodity that is sold by weight or measure is sold for a greater weight or measure of the same commodity – for example, 1 kilogram of wheat is sold for 1.5 kilograms of wheat – it is usury (ribā) and unlawful. In fact, if one of two commodities is without defect and the other is defective, or the quality of one of them is good and the other is bad, or they are different to one another in price – then, in the event that the seller receives more than he gives, it is still usury and unlawful. Therefore, if a person gives unbroken copper and receives a greater amount of broken copper, or he gives rice of superior quality and receives a greater amount of inferior quality rice, or he gives gold that has been crafted [such as a piece of jewellery] and receives a greater amount of gold that has not been crafted, it is usury and unlawful.
+
+Ruling 2081. If the extra thing that a seller receives is different to what he sells – for example, he sells 1 kilogram of wheat for 1 kilogram of wheat and 10 pence – it is still usury and unlawful. In fact, even if the seller does not receive any extra goods but makes it a condition that the buyer must do something for him, it is also usury and unlawful.
+
+Ruling 2082. If a person gives a lesser amount but adds something else – for example, he sells 1 kilogram of wheat and one handkerchief for 1.5 kilograms of wheat – there is no problem as long as he intends the handkerchief to be the item for which he is receiving the extra amount [i.e. the extra half kilogram of wheat] and as long as the transaction is an immediate exchange (naqd) transaction.(2) Similarly, there is no problem if both sides add something extra – for example, one of them sells 1 kilogram of wheat and one handkerchief to the other person for 1.5 kilograms of wheat and one handkerchief – as long as they intend the handkerchief and half kilogram of wheat, on the one side, and the handkerchief, on the other, to be the items of exchange.
+
+Ruling 2083. If a person sells a commodity that is sold in metres or yards, such as cloth, or a commodity that is sold by count, such as eggs and walnuts, and he takes more in return, there is no problem except if both [the commodity being sold and the payment in exchange (ʿiwaḍ)] are of the same commodity and the transaction has a time period, in which case its validity is problematic (maḥall al-ishkāl) [i.e. based on obligatory precaution, it is not valid].(3) An example [of such a problematic transaction] is when a person gives ten walnuts at the present time in order to receive twelve walnuts after one month. The same applies to selling currency. Therefore, there is no problem if, for example, a person sells British pounds sterling for another currency such as dinars or dollars, whether that be at the present time or at another time. However, if the person wishes to sell some currency for the same currency and to receive more in return, then that transaction must not have a time period otherwise its validity is problematic [i.e. based on obligatory precaution, it is not valid]. An example [of such a problematic transaction] is when a person sells £100 at the present time in order to receive £110 after six months.
+
+Ruling 2084. With regard to commodities that are sold by weight or measure in one city or in most cities, and by count in other cities, it is permitted to sell that commodity for more in the city in which it is sold by count.
+
+Ruling 2085. With regard to things that are sold by weight or measure, if the thing that is sold and the payment in exchange for it are not of the same commodity and the transaction does not have a time period, there is no problem in taking more. However, if the transaction has a time period, it is problematic [i.e. based on obligatory precaution, it is not valid]. Therefore, if 1 kilogram of rice is sold for 2 kilograms of wheat after one month, the validity of the transaction is problematic [i.e. based on obligatory precaution, it is not valid].
+
+Ruling 2086. Selling ripe fruit for unripe fruit with extra is not permitted. If there is no extra and the transaction does not have a time period, it is disapproved (makrūh), and if it is on credit, it is problematic [i.e. based on obligatory precaution, it is not permitted].
+
+Ruling 2087. With regard to usury based transactions, barley and wheat are considered to be the same commodity. Therefore, if, for example, a person gives 1 kilogram of wheat and receives 1.5 kilograms of barley in return for it, it is usury and unlawful. Also, if, for example, a person buys 10 kilograms of barley in return for 10 kilograms of wheat at the beginning of the harvest, then because he acquires the barley immediately but will give the wheat after some time, it is as if he has acquired something extra and the transaction is unlawful.
+
+Ruling 2088. A father and his child, and a wife and husband can take interest from one another. Similarly, a Muslim can take interest from a disbeliever (kāfir) who is not under the protection of Islam. However, an interest based transaction with a disbeliever who is under the protection of Islam is unlawful. Of course, after the transaction has taken place, one can take more from him if giving interest is permitted in his religion.
+
+Ruling 2089. Shaving one’s beard and taking a fee for doing so is not permitted, based on obligatory precaution. The exception to this rule is if it is done out of necessity or it would result in harm or hardship (ḥaraj) that cannot normally be endured, even if that hardship amounts to being mocked or insulted.
+
+Ruling 2090. Singing (ghinā) is unlawful. The meaning of ‘singing’ here is void (bāṭil) speech that is articulated in a tune appropriate to gatherings of entertainment and amusement. Similarly, it is not permitted to recite the Qur’an, supplications (duʿāʾs), and the like in such a tune. And based on obligatory precaution, other forms of speech, apart from the ones already mentioned, must also not be articulated in such a tune. Similarly, listening to singing is unlawful, and taking a fee for singing is also unlawful and the fee does not become the property of the person who took it. Learning and teaching to sing is also not permitted. Music, i.e. playing instruments that are especially designed for music, is also unlawful if it is in a way that is appropriate to gatherings of entertainment and amusement [and listening to such music is unlawful as well]; other than that, it is not unlawful. Taking a fee for playing unlawful music is unlawful and the fee taken does not become the property of the person who took it. Teaching and learning it is also unlawful.
+
+====================================================================================================
+
+CHAPTER 186 | Chapter ten » The transaction formula (ṣīghah)
+====================================================================================================
+
+Ruling 2107. When buying and selling, it is not necessary to say a particular formula [or for it to be] in Arabic. For example, if a seller says in English, ‘I sell this property in exchange for this money’ and the buyer says, ‘I accept’, the transaction is valid. However, the buyer and the seller must have an intention to establish (qaṣd al-inshāʾ) [a contract of sale]; i.e. when they say these sentences, they must intend to buy/sell.
+
+Ruling 2108. If at the time of the transaction the formula is not said but the seller, in exchange for the property that he takes from the buyer, makes the buyer the owner of his own property, the transaction is valid and both become owners [of the exchanged items].
+
+====================================================================================================
+
+CHAPTER 187 | Chapter ten » Buying and selling fruit
+====================================================================================================
+
+Ruling 2109. The sale of fruit that has shed its flower and developed buds, and about which it is known whether it has been saved from disease or not such that the quantity of that tree’s produce can be estimated, is valid even before it is picked. In fact, even if it is not yet known whether it has been saved from disease or not, in the event that the sale is of two years or more of fruit, or the sale is of the quantity that has grown at the moment, the transaction is valid on condition that the fruit has a significant value. Similarly, if a produce of the earth or something else is sold with it, the transaction is valid. However, the obligatory precaution in this case is that the other produce must be incorporated into the transaction in a way that if the buds do not form into fruit, the capital of the buyer is protected.
+
+Ruling 2110. The sale of fruit that is on trees before the fruit forms buds and sheds its flower is permitted, but it must be sold with something else in the way described in the previous ruling; or, the sale must be for one year or more of fruit.
+
+Ruling 2111. There is no problem in the sale of the fruit of date palms which are on the trees, whether they be ripe or unripe. However, the payment in exchange must not be dates, whether they be from the same tree or from another. However, if the fruit is sold for ripe ruṭab [soft, moist dates] or unripe ones that have not yet become dates, there is no problem. If someone owns one date palm in the house of another person and getting to it is difficult for him, then, in case the quantity is estimated and the owner of the date palm sells it to the owner of the house and receives dates in exchange, there is no problem.
+
+Ruling 2112. There is no problem in selling cucumbers, aubergines, vegetables, and the like which are picked a number of times a year as long as the produce has become apparent and is visible, and as long the number of times the buyer will pick and purchase the produce has been specified. However, if the produce has not become apparent and visible, then selling it is problematic [i.e. based on obligatory precaution, it is not valid].
+
+Ruling 2113. If wheat ears are sold after they have formed grains for wheat that has been acquired from itself or from other wheat ears, the transaction is not valid.
+
+====================================================================================================
+
+CHAPTER 188 | Chapter ten » Immediate exchange (naqd) and credit (nasīʾah) transactions
+====================================================================================================
+
+Ruling 2114. If a commodity is sold in an immediate exchange transaction, both the buyer and the seller can claim the commodity and the payment from each other after the transaction and they can take possession of them. The handing over of a moveable commodity, such as a rug or clothes, and of an immoveable commodity, such as a house or land, is realised by relinquishing the item and making it available to the other party in a way that he could have disposal over it if he wanted. This would be different in different cases.
+
+Ruling 2115. In a credit transaction, the deferment period must be precisely defined. Therefore, if a person sells a commodity with the understanding that he would get the payment at the beginning of harvest, the transaction is invalid because the deferment period has not been precisely defined.
+
+Ruling 2116. If a commodity is sold on credit, the seller cannot claim payment for it from the buyer before the completion of the agreed deferment period. However, if the buyer dies and leaves behind an estate, the seller can claim payment from the heirs before the completion of the deferment period.
+
+Ruling 2117. If a commodity is sold on credit, the seller can claim the payment for it from the buyer after the completion of the agreed deferment period. However, if the buyer is unable to pay, the seller must give him respite or rescind (faskh) the transaction and take back the commodity if it still exists.
+
+Ruling 2118. If a person sells a commodity on credit to a person who does not know its price and the seller does not tell him the price, the transaction is invalid. However, if he sells the commodity for a higher price to a person who knows its immediate exchange transaction price – for example, he says, ‘The commodity I am selling to you on credit is £10 more than its immediate exchange transaction price’, and the buyer accepts, there is no problem.
+
+Ruling 2119. With regard to a person who has sold a commodity on credit and has specified a time for receiving the payment, if he, for example, reduces the amount he is owed after half of the deferment period has passed and takes the rest immediately, there is no problem.
+
+====================================================================================================
+
+CHAPTER 189 | Chapter ten » Prepayment (salaf) transaction and its conditions
+====================================================================================================
+
+Ruling 2120. A prepayment transaction is when a person sells a commodity that has been defined in general terms for an amount that is paid immediately and the seller hands over the commodity after a period of time. Therefore, if the buyer says, for example, ‘I give you this money so that after six months I will take such and such commodity’, and the seller responds by saying, ‘I accept’; or, if the seller takes the money and says, ‘I sell such and such commodity and I will hand it over after six months’, the transaction is valid.
+
+Ruling 2121. If a person sells by way of a prepayment transaction a commodity made of gold or silver and accepts gold or silver money in exchange, the transaction is invalid. However, if a person sells a commodity or currency which is not made of gold or silver and takes another commodity or gold or silver money in exchange, the transaction is valid as per the details that will be mentioned in the seventh condition in the next ruling. And the recommended precaution is that in exchange for the commodity one sells, he should receive money, not another commodity.
+
+Ruling 2122. A prepayment transaction must fulfil the following seven conditions [in order for it to be valid]:
+
+    1. the particulars which determine differences in the commodity’s price must be specified, but a lot of precision is not necessary; it is sufficient to the extent that people would say its particulars are known;
+    2. before the buyer and the seller depart from each other, the buyer must pay the entire price to the seller; or, he must be owed an amount by the seller to be paid immediately which he offsets against the price of the commodity and which the seller accepts. In the event that the buyer pays only part of the price, although the transaction is valid with respect to that part, the seller can annul the transaction;
+    3. the period [within which the commodity must be handed over] must be precisely defined. If the seller says, ‘I will hand over the commodity by the beginning of the harvest’, the transaction is invalid because the period has not been precisely defined;
+    4. the time for handing over the commodity must be specified such that the seller is able to hand over the commodity in that time, whether the item is scarce or abundant;
+    5. based on obligatory precaution, the place where the commodity will be handed over must be precisely specified. And if the place is clear from the discussions of the two parties, it is not necessary to mention the name of the place;
+    6. the weight, measure, or number of items of the commodity must be specified. If commodities that are usually sold by viewing are sold by prepayment, there is no problem. However, as is the case with certain walnuts and eggs, the difference between the individual items of the commodity must be so small that people would not give it importance;
+    7. if the commodity being sold is usually sold by weight or measure, the thing that is received in exchange for it must not be of the same commodity; in fact, based on obligatory precaution, neither must it be a commodity that is sold by weight or measure. And if the thing that is being sold is a commodity that is sold by number, then based on obligatory precaution the thing that is received in exchange for it must not be an extra amount of the same commodity.
+
+====================================================================================================
+
+CHAPTER 190 | Chapter ten » Laws relating to prepayment (salaf) transactions
+====================================================================================================
+
+Ruling 2123. A person cannot sell a commodity that has been acquired by prepayment to a person other than its seller before the end of the stipulated period. However, there is no problem in selling it after the period has expired even if he has not yet taken possession of it. But selling a commodity that is sold by weight or measure – apart from fruit – to a person other than its seller before taking possession of it is not permitted unless it is sold for a price that is equal to or less than the price that was paid for it.
+
+Ruling 2124. In a prepayment transaction, if the seller delivers the agreed commodity on its due date, the buyer must accept it if it is in the same condition that was stipulated. And if the commodity is in a better condition, again he must accept it unless there was a stipulation that allowed for a rejection of a better condition.
+
+Ruling 2125. If the commodity delivered by the seller is of a lower quality than what was agreed, the buyer can choose not to accept it.
+
+Ruling 2126. If the seller delivers a commodity that is different from the commodity that was agreed, there is no problem as long as the buyer consents.
+
+Ruling 2127. If a seller who has sold a commodity by prepayment is unable to obtain it at the time when he must hand it over, the buyer can either wait until he obtains it, or he can annul the transaction and take back what he had given in exchange, or he can take something else instead [of what he had given in exchange]. And based on obligatory precaution, he cannot sell it to the seller at a higher price.
+
+Ruling 2128. If a person sells a commodity and agrees to hand it over after a period of time and to take the payment after a period of time as well, the transaction is invalid.
+
+====================================================================================================
+
+CHAPTER 191 | Chapter ten » Selling gold and silver for gold and silver
+====================================================================================================
+
+Ruling 2129. If gold is sold for gold or silver is sold for silver, irrespective of whether the gold and silver are minted coins or not, in the event that the weight of one of them is more than the weight of the other, the transaction is unlawful and invalid.
+
+Ruling 2130. If gold is sold for silver or silver is sold for gold in an immediate exchange transaction, the transaction is valid and it is not necessary for their weight to be the same. However, if the transaction has a time period, it is invalid.
+
+Ruling 2131. If gold or silver is sold for gold or silver, the seller and buyer must hand over the commodity and the payment in exchange to each other before they depart from each other. If they do not hand over any amount of the thing that they had agreed on, the transaction is invalid; and if they hand over part of it, the transaction relating to that part is valid.
+
+Ruling 2132. If the seller or the buyer hands over everything that was agreed but the other party hands over only a part of what he agreed and they depart from each other, the transaction is in order with respect to the part that was handed over. However, the party that did not receive the whole amount can annul the transaction.
+
+Ruling 2133. If silver dust from a mine is sold for pure silver, or gold dust from a mine is sold for pure gold, the transaction is invalid unless it is known that, for example, the amount of silver dust is equivalent to the amount of pure silver. However, there is no problem in selling silver dust for gold, or gold dust for silver, as explained previously.
+
+====================================================================================================
+
+CHAPTER 192 | Chapter ten » Cases when a person can annul a transaction
+====================================================================================================
+
+Ruling 2134. The right to annul a transaction is referred to as a khiyār (option). A buyer or a seller can annul a transaction in one of the following eleven cases:
+
+    1. when the buyer and the seller have not departed from each other, even though they may have left the meeting place of the transaction. This option is known as ‘the option while meeting’ (khiyār al-majlis);
+    2. when either the buyer or the seller in the case of a sale, or one of the two parties of a transaction in the case other transactions, has been cheated. This is referred to as ‘the option due to cheating’ (khiyār al-ghabn). The establishment of this type of option stems from something that is rooted in common custom, namely, that in every transaction each party in the transaction has in his mind that the property he receives should not be drastically lower in value than the property he gives in return; and if it is drastically lower, he should have the right to annul the transaction. However, in the event that in some cases something else is rooted in a particular custom – for example, that if someone receives a property that is lower in value than the property he gives in return, he can claim the difference between the two from the other party, and if this is not possible he can annul the transaction – then in such cases, that particular custom must be observed;
+    3. when the parties stipulate in the contract that either one of them or both of them can annul the transaction within a specified period of time. This option is referred to as ‘the option due to a stipulated condition’ (khiyār al-sharṭ);
+    4. when one of the parties of the transaction displays his property in a way that it looks better than what it truly is and this makes the other party desirous of it or increases his desire for it. This is referred to as ‘the option due to deceit’ (khiyār al-tadlīs);
+    5. when one of the parties of the transaction makes a condition with the other that he will do something but he does not fulfil that condition; or, he makes it a condition that the specified property which is to be given by the other party must be of a special type but he discovers that it is not of that type. In these cases, the person who makes the condition can annul the transaction. This is known as ‘the option due to a breach of condition’ (khiyār takhalluf al-sharṭ);
+    6. when there is a defect in the commodity or in the payment exchanged for it. This is referred to as ‘the option due to a defect’ (khiyār al-ʿayb);
+    7. when it is later discovered that part of the commodity that was transacted belonged to someone else. In this case, if the owner does not consent to the transaction, the receiver of the commodity can annul the transaction or take back what he paid in exchange for it, in the event that he had already paid for it. This is referred to as ‘the option due to a partnership’ (khiyār al-shirkah);
+    8. when the owner describes to the other party the particulars of a specific commodity which the other party has not seen and it is later discovered that the commodity is not as it was described; or, the other party had previously seen the commodity and thought that it still possessed the qualities he had seen in the past and it is later discovered that it no longer has those qualities. In this case, the other party can annul the transaction. This is referred to as ‘the option pertaining to seeing’ (khiyār al-ruʾyah);
+    9. when the buyer fails to hand over the payment for the commodity he purchased within three days and the seller has not yet handed over the commodity. In this case, the seller can annul the transaction. This applies when the seller gives the buyer a respite for paying the money but does not specify the period of time. However, if he does not give him any respite at all, he can annul the transaction after a short delay in the payment of the money. And if he gives a respite of more than three days, he cannot annul the transaction until the respite period is over. Furthermore, if the commodity he sold is something like vegetables or fruit which deteriorates before three days, the respite period is less. This option is referred to as ‘the option due to delay’ (khiyār al-taʾkhīr);
+    10. when a person purchases an animal, he can annul the transaction within three days. And if he acquires an animal in exchange for something that he sells, the seller can annul the transaction within three days of the sale. This is referred to as ‘the option pertaining to animals’ (khiyār al-ḥayawān);
+    11. when the seller is unable to hand over the commodity he sold; for example, the horse that he sold runs away. In this case, the buyer can annul the transaction. This is referred to as ‘the option due to an inability to hand over’ (khiyār taʿadhdhur al-taslīm).
+
+Ruling 2135. If the buyer does not know the price of the commodity or is unmindful of it at the time of the transaction and buys it for a price that is higher than its normal price, then, in the event that he buys it for a significantly inflated price, he can annul the transaction. Of course, this is on condition that at the time of annulling the transaction he is still being cheated; otherwise, the right to annul is problematic [i.e. based on obligatory precaution, he does not have the right to annul]. Similarly, if the seller does not know the commodity’s price or is unmindful of it at the time of the transaction and sells it for a price that is lower than its normal price, then, in case he sells it for a significantly deflated price, he can annul the transaction on the same condition mentioned previously.
+
+Ruling 2136. In a transaction involving a conditional sale, wherein, for example, a house worth £100,000 is sold for £50,000 with an agreement that if the seller returns the money within a stipulated period he can annul the transaction, the transaction is valid provided the buyer and the seller have a genuine intention (qaṣd) to buy and sell.
+
+Ruling 2137. In a transaction involving a conditional sale, even if the seller is confident that should he fail to return the money within the stipulated period the buyer will give him the property, the transaction is valid. However, if he fails to return the money within the stipulated period, he does not have the right to claim the property from the buyer. Furthermore, if the buyer dies, he cannot claim the property from his inheritors.
+
+Ruling 2138. If a person mixes high grade tea with low grade tea and sells it under the label of high grade tea, the buyer can annul the transaction.
+
+Ruling 2139. If a buyer realises that a specified item has a defect – for example, he buys an animal and realises that it is blind in one eye – then, in the event that the defect was present in the item before the transaction and the buyer did not know about it, he can annul the transaction and return the item to the seller. And in the event that returning the item is not possible – for instance, the item has changed in some way; for example, it has become defective; or, it has been utilised in a manner that prevents it from being returned; for example, the buyer sold it or hired it out; or, [the item was a piece of cloth and] the buyer cut the cloth or stitched it – then in such cases, the difference in price between a non-defective and defective item must be determined, and in proportion to the difference between the two, the buyer can take back part of the money he paid to the seller. For example, if he realises that an item he bought for £4 is defective, in the event that the price of a non-defective item is £8 and a defective one is £6, then since the difference in price between the non-defective item and the defective one is 25%, he can take back 25% of the money he paid to the seller, that is, £1.
+
+Ruling 2140. If a seller realises that there is a defect in the specified payment of exchange for the item that he sold, in the event that the defect was present before the transaction and he did not know about it, he can annul the transaction and return the payment of exchange to its owner. And in the event that he is unable to return it due to a change in it or it having been utilised, he can claim back the difference in price between a non-defective and a defective item as per the instructions mentioned in the previous ruling.
+
+Ruling 2141. If a defect is discovered in an item after the transaction but before it is handed over, the buyer can annul the transaction. Also, if a defect is discovered in the payment of exchange for the item after the transaction but before it is handed over, the seller can annul the transaction. And if they wish to take the difference in price, this is permitted if returning the item is not possible.
+
+Ruling 2142. If after a transaction a person realises that the item has a defect, in the event that he wishes to annul the transaction, he must do so immediately. If he delays in annulling for more than a normal amount of time – taking into account the type of case it is – he cannot annul the transaction.
+
+Ruling 2143. If at any time after buying a commodity a person realises that it has a defect, he can annul the transaction even if the seller is not prepared to accept it. The same rule applies to the other options for annulling a transaction.
+
+Ruling 2144. In the following two cases, a buyer cannot annul a transaction due to a defect in the item nor claim the difference in price:
+
+    1. at the time of the transaction, he knew about the defect in the item;
+    2. at the time of the transaction, the seller says, ‘I am selling this item with all the defects it has.’ However, if he specifies a particular defect and says, ‘I am selling this item with this defect’, and later another defect is discovered, the buyer can return the item owing to the defect that the seller did not specify. And in case he cannot return it, he can claim the difference in price.
+
+Ruling 2145. If a buyer realises that an item has a defect and after taking possession of the item another defect is discovered, he cannot annul the transaction. However, he can claim the difference in price between a non-defective item and a defective one. But if he buys a defective animal and he discovers another defect before the passage of time for the option with animals, which is three days,(1) he can return it even if he has taken possession of the animal. Also, if [in a particular transaction] only the buyer has the right to annul the transaction until a particular period of time and during that period another defect is discovered, he can annul the transaction even though he has taken possession of the item.
+
+Ruling 2146. If a person has an item that he himself has not seen and its particulars are described to him by another person, in the event that he describes the same particulars to a buyer and sells it to him, and after the sale he realises that it was in fact better than what he had described, he can annul the transaction.
+
+====================================================================================================
+
+CHAPTER 205 | Chapter twenty » Loan (Qarḍ)
+====================================================================================================
+
+Giving a loan to believers, especially the needy among them, is one of the recommended (mustaḥabb) acts that has been highly advised in traditions. For example, it has been reported that the most noble Messenger (Ṣ) said: ‘Whoever gives a loan to his brother in faith and gives him respite until he is financially able to repay it, his wealth will increase and angels will send mercy upon him until the time he takes his money back.’ And it is reported that Imam al-Ṣādiq (ʿA) said: ‘Every believer who gives another believer a loan with the intention of attaining proximity to Allah, Allah will record for him the reward of giving alms to the poor (ṣadaqah) until he takes his property back.’
+
+Ruling 2291. It is not necessary to say a particular formula (ṣīghah) when giving a loan; rather, if one gives something to someone with the intention (niyyah) of giving a loan and the latter takes it with the same intention, it is valid (ṣaḥīḥ).
+
+Ruling 2292. Whenever a borrower repays his loan, the lender must accept it unless a period for repaying it at the request of the lender or both parties was agreed upon. In that case, the lender can refuse to receive what he is owed before the end of the period.
+
+Ruling 2293. If a period for repaying the loan is agreed upon in the loan agreement, in the event that specifying the period was done at the request of the borrower or both parties, the lender cannot claim what he is owed before the end of the period. However, if specifying the period was done at the request of the lender or no period was specified at all, the lender can claim what he is owed whenever he wishes.
+
+Ruling 2294. If a lender claims what he is owed and there is no time [period specified in the loan agreement] or the time for repayment is due, in the event that the borrower can repay his loan, he must do so immediately. If he delays in doing so, he will have sinned.
+
+Ruling 2295. If a borrower owns nothing besides a house that he resides in and some household furniture and some other things which, taking into consideration his status and social position, he needs and without which he would fall into difficulty, the lender cannot claim what he is owed from him. Instead, he must wait until the borrower can repay his loan.
+
+Ruling 2296. If a borrower cannot repay his loan but it is easy for him to trade, or if his job is trading, then it is obligatory (wājib) on him to earn and repay his loan. In fact, if none of the above apply to him but he can earn by doing something that is worthy of his status, the obligatory precaution (al-iḥtiyāṭ al-wājib) is that he must earn and repay his loan.
+
+Ruling 2297. If a person has no access to his lender and has no hope of finding him or his heirs in the future, he must give what he owes to a poor person (faqīr) on behalf of the lender. The obligatory precaution here is that he must obtain authorisation from a fully qualified jurist (al-ḥākim al-sharʿī). However, if he has hope of finding his lender or his heirs, he must wait and search for him. In the event that he does not find him, he must make a will (waṣiyyah) to the effect that if he dies and his lender or his heirs are found, he/they must be paid from his estate what he/they are owed.
+
+Ruling 2298. If the estate of a deceased person is not greater than the costs of his obligatory shroud (kafan), burial (dafn), and debts, his estate must be spent on these items and his heirs do not inherit anything.
+
+Ruling 2299. If a person borrows an amount of money, wheat, barley, or something else that is fungible and its value depreciates or appreciates, he must return the same amount of those items with the same qualities and particulars that effect the desirability of those items. And there is no problem if the borrower and the lender are content with receiving something else instead. However, if he borrows something that is non-fungible, such as sheep, he must give back an amount that is equivalent to the item’s value on the day he took it on loan.
+
+Ruling 2300. If the property that someone has borrowed is not destroyed and the owner claims it, it is not obligatory on the borrower to return the same property to him. Likewise, if the borrower wishes to return it, the lender can refuse to accept it.
+
+Ruling 2301. If the lender stipulates a condition that he will take back more than he gives – for example, he gives 10 kilograms of wheat and stipulates that he will take back 11 kilograms, or he gives ten eggs and stipulates that he will take back eleven eggs – this is usury (ribā) and unlawful (ḥarām). In fact, if it is agreed that the lender will perform a task for him or will return the loan along with some other commodity – for example, he stipulates that the £10 he has given on loan must be returned along with one matchstick – this is also usury and unlawful. Furthermore, if he stipulates a condition that the item being taken on loan must be returned in a particular manner – for example, he gives an amount of gold that has not been crafted and stipulates that gold that has been crafted [such as a piece of jewellery] must be returned – again, this is usury and unlawful. However, if the borrower himself returns the loaned item with an extra amount without such a thing being stipulated, there is no problem in it; in fact, it is recommended.
+
+Ruling 2302. Giving interest (ribā), just like taking interest, is unlawful, but the loan itself is valid. Someone who takes a usurious loan becomes the owner of it but the lender does not become the owner of the extra that he takes, and any use he makes of it is unlawful. Furthermore, if the lender purchases something with the same item [i.e. the extra item he received in the usurious loan], he does not become the owner of it. And in the event that had he not made an agreement of usury, the borrower would have consented for the lender to use the money, then his use of it is permitted (jāʾiz). Similarly, if due to not knowing the ruling (masʾalah) the lender takes interest and after finding out the ruling he repents, then what he took when he did not know the ruling is lawful (ḥalāl) for him.
+
+Ruling 2303. If a person acquires wheat or something similar through a usurious loan and cultivates it, he becomes the owner of the resulting produce.
+
+Ruling 2304. If a person purchases some clothing and afterwards pays for it with money acquired through usury or with lawful money mixed with such money, he becomes the owner of it and there is no problem in him wearing it and performing prayers in it. However, if he says to the seller, ‘I am purchasing this clothing with this money’, then he does not become the owner of it and wearing it is unlawful.
+
+Ruling 2305. If a person gives an amount of money to someone so that someone else in another city takes a lesser amount on his behalf, there is no problem. This is called ‘ṣarf al-barāt’ [a type of bill of exchange].
+
+Ruling 2306. If a person gives something to someone so that he may take a greater amount in another city, and if the item is gold, silver, wheat, or barley which can be weighed or measured, it is usury and unlawful. However, if the party that is taking the extra amount gives or does something in return, there is no problem. If bank notes are given on loan, it is not permitted to take back more. If a person sells them as an immediate exchange (naqd)(1) transaction, or on credit (nasīʾah) but the money is in two currencies, such as pounds sterling and dollars, then there is no problem with any extra received. However, if it is a credit sale and the money is in one currency only, then receiving an extra amount is problematic (maḥall al-ishkāl) [i.e. based on obligatory precaution, it is to be avoided].(2)
+
+Ruling 2307. If a person is owed by someone a commodity that is neither weighed nor measured, he can sell it to the borrower or to someone else for a lower price and take the sum immediately. Therefore, in present times, a lender can take a cheque or promissory note from the borrower and sell it to a bank or to another person for less than what he is owed – which is commonly known as ‘cheque cashing’ – and he can take the sum immediately.
+
+====================================================================================================
+
+CHAPTER 211 | Chapter twenty-six » Gratuitous Loan (ʿĀriyah)
+====================================================================================================
+
+Ruling 2363. A gratuitous loan is when a person gives his property to someone to use without taking anything in return.
+
+Ruling 2364. It is not necessary that the parties say a particular formula (ṣīghah) [for a gratuitous loan agreement to be valid (ṣaḥīḥ)]. If, for example, a person gives some clothing to someone with the intention (qaṣd) of a gratuitous loan and the latter accepts it with the same intention, it is valid.
+
+Ruling 2365. Lending a usurped (ghaṣbī) item or an item that belongs to the lender but its usufruct has been granted to someone else – such as property that has been given on rent (ijārah) – is valid only if the owner or the lessee consents to the loan.
+
+Ruling 2366. If the usufruct of a property belongs to a particular individual – because he has rented it, for example – then that individual is allowed to loan it to someone else unless a condition is stipulated in the rental contract that only he can use it. And if no such condition is stipulated in the rental contract, then based on obligatory precaution (al-iḥtiyāṭ al-wājib) he cannot hand it over without the owner’s permission.
+
+Ruling 2367. It is not valid if a child, insane person, or someone who has been proclaimed bankrupt (mufallas) or is foolish with finances (safīh)(1) lends out his property. However, if the guardian (walī) deems it a matter of primary importance and lends out property belonging to someone over whom he has guardianship (wilāyah), it is not a problem. Similarly, there is no problem in a child merely being an intermediary for delivering the property to the borrower.
+
+Ruling 2368. If a person is neither negligent in safeguarding the loaned property nor excessive in using it, but it so happens that the property perishes, he is not responsible (ḍāmin) for it. However, if a condition is stipulated that in the event that the property perishes the borrower will be responsible for it, or, if the loaned item is gold or silver, then the property must be replaced.
+
+Ruling 2369. If a person borrows gold or silver and stipulates a condition that if it perishes he will not be responsible for it, in the event that it does perish, he will not be responsible for it.
+
+Ruling 2370. If the lender dies, the borrower must act in accordance with the sequence of steps mentioned in Ruling 2358 concerning the death of an owner in a deposit agreement.
+
+Ruling 2371. If the lender can no longer legally (sharʿan) have disposal over his property – for example, he becomes insane or unconscious – the borrower must act in accordance with the sequence of steps mentioned in Ruling 2357 concerning deposits.
+
+Ruling 2372. The lender and the borrower can annul the gratuitous loan agreement whenever they like.
+
+Ruling 2373. Lending an item that has no lawful (ḥalāl) use – such as instruments of amusement and gambling – is invalid (bāṭil). The same applies to lending gold or silver utensils for the purpose of eating and drinking from them. In fact, based on obligatory precaution, using these utensils in general is unlawful. However, it is permitted (jāʾiz) to lend them for decoration.(2)
+
+Ruling 2374. Lending a sheep for use of its milk and wool and lending a male animal so that it can mate with a female one is valid.
+
+Ruling 2375. If a borrower returns the loaned item to its owner or to the owner’s agent (wakīl) or guardian, and afterwards the item perishes, the borrower is not responsible for it. However, if the borrower takes the property to another location without the permission of its owner or the owner’s agent or guardian, he will be responsible for it, even if the location is one to where the owner would usually take the property. For example, if the borrower ties a horse in a stable which was built by the owner for that very purpose and afterwards the horse perishes or someone causes it to perish, he is responsible for it.
+
+Ruling 2376. If a person lends an impure (najis) item, he must inform the borrower of this in accordance with the instructions mentioned in Ruling 2065.
+
+Ruling 2377. A person cannot give on rent or lend an item that he has borrowed without the owner’s consent.
+
+Ruling 2378. If a person lends some property that he has borrowed to someone without the owner’s consent, in the event that the person who first borrowed it dies or becomes insane, the second person’s loan does not become invalid.
+
+Ruling 2379. If a person knows that the property he has borrowed is usurped, he must return it to its owner; he cannot return it to the lender.
+
+Ruling 2380. If a person borrows some property that he knows is usurped and uses it and it perishes in his possession, the owner can claim compensation for the property and for its use from the borrower or from the usurper. And if the owner acquires compensation from the borrower, the latter cannot claim anything that he has given to the owner from the lender.
+
+Ruling 2381. If a borrower does not know that the property he has borrowed is usurped and it perishes in his possession, in the event that the owner acquires compensation from him, he in turn can claim what he gave to the owner from the lender. However, if the borrowed item is gold or silver, or if the lender stipulates a condition that in the event that the item is destroyed the borrower must replace it, then the latter cannot claim what he gave to the owner from the lender. However, if the owner takes something from him for using the property, he can claim that from the lender.
+
+====================================================================================================
+

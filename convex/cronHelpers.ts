@@ -168,17 +168,23 @@ export const detectSpikesForAllUsers = internalMutation({
           const increase = ((recentAmount - previousAmount) / previousAmount) * 100;
           
           if (increase > 50 && recentAmount > 50) {
-            // Check if we already have a recent spike insight for this category
-            const existingInsight = await ctx.db
+            // Check if we already have a recent spike insight for THIS SPECIFIC category
+            const recentSpikeInsights = await ctx.db
               .query("insights")
               .withIndex("by_user_type", (q) => 
                 q.eq("userId", user._id).eq("type", "spending_spike")
               )
-              .order("desc")
-              .first();
+              .collect();
             
-            // Don't create if we have one from the last 7 days
-            if (existingInsight && existingInsight.createdAt > sevenDaysAgo) {
+            // Filter to find insights for this specific category from the last 7 days
+            const existingInsightForCategory = recentSpikeInsights.find(
+              insight => 
+                insight.createdAt > sevenDaysAgo &&
+                insight.metadata.categoryId === (categoryId !== "uncategorized" ? categoryId : undefined)
+            );
+            
+            // Don't create if we already have one for THIS category from the last 7 days
+            if (existingInsightForCategory) {
               continue;
             }
             

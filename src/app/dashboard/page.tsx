@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import DashboardHeader from "@/components/client/DashboardHeader";
+import ContextualInsight from "@/components/client/ContextualInsight";
 import { useFinanceMode } from "@/context/FinanceModeContext";
 import { useUser } from "@/context/UserContext";
 import { useDashboardSummary } from "@/hooks/useDashboard";
@@ -17,6 +18,8 @@ import {
   Brain,
   Sparkles,
   Loader2,
+  Target,
+  PieChart,
 } from "lucide-react";
 
 // Format currency
@@ -30,14 +33,21 @@ const fallbackSuggestions = [
   {
     title: "Welcome to Lumina!",
     description: "Start tracking your spending to get personalized insights.",
+    type: "info" as const,
+    actionLabel: "Add transaction",
+    actionHref: "/dashboard/transactions",
   },
   {
     title: "Set Up Your Goals",
     description: "Create savings goals to help you stay on track financially.",
+    type: "tip" as const,
+    actionLabel: "Create goal",
+    actionHref: "/dashboard/goals",
   },
   {
     title: "Connect Your Accounts",
     description: "Import transactions to get a complete picture of your finances.",
+    type: "info" as const,
   },
 ];
 
@@ -45,14 +55,20 @@ const islamicFallbackSuggestions = [
   {
     title: "Bismillah!",
     description: "Welcome to your Shariah-compliant financial dashboard.",
+    type: "info" as const,
   },
   {
     title: "Zakat Tracker",
     description: "We'll help you calculate and track your Zakat obligations.",
+    type: "tip" as const,
+    actionLabel: "Calculate Zakat",
   },
   {
     title: "Hajj Savings",
     description: "Start saving for your pilgrimage with our guided savings plan.",
+    type: "success" as const,
+    actionLabel: "Start saving",
+    actionHref: "/dashboard/goals",
   },
 ];
 
@@ -149,6 +165,12 @@ export default function DashboardPage() {
     ? insights.map((insight) => ({
         title: insight.title,
         description: insight.message,
+        type: (insight.severity === "celebration" 
+          ? "success" 
+          : insight.severity === "warning" || insight.severity === "alert"
+            ? "warning"
+            : "info") as "info" | "success" | "warning" | "tip",
+        actionLabel: insight.severity === "warning" ? "Take action" : "Learn more",
       }))
     : isIslamic
       ? islamicFallbackSuggestions
@@ -205,35 +227,46 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-light flex items-center gap-2">
                 <Sparkles className={`w-5 h-5 ${accentColor}`} />
-                {isIslamic ? "Barakah Insights" : "AI Suggestions"}
+                {isIslamic ? "Barakah Insights" : "AI Insights"}
               </h2>
+              <span className="text-xs text-cream/30">Personalized for you</span>
             </div>
 
-            <div
-              className={`border rounded-xl p-6 space-y-4 ${isIslamic ? "bg-sentience-gold/5 border-sentience-gold/10" : "bg-violet-500/5 border-violet-500/10"}`}
-            >
+            <div className="space-y-3">
               {displayInsights.map((suggestion, i) => (
-                <div
+                <ContextualInsight
                   key={i}
-                  className="flex items-start gap-4 p-4 bg-black/20 rounded-lg"
-                >
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"}`}
-                  >
-                    <span className={`text-sm font-medium ${accentColor}`}>
-                      {i + 1}
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-cream font-light mb-1">
-                      {suggestion.title}
-                    </h4>
-                    <p className="text-sm text-cream/50">
-                      {suggestion.description}
-                    </p>
-                  </div>
-                </div>
+                  title={suggestion.title}
+                  message={suggestion.description}
+                  type={suggestion.type}
+                  actionLabel={suggestion.actionLabel}
+                  actionHref={"actionHref" in suggestion ? suggestion.actionHref : undefined}
+                  isIslamic={isIslamic}
+                  dismissible={true}
+                />
               ))}
+            </div>
+
+            {/* Quick Actions */}
+            <div className="flex flex-wrap gap-2 pt-2">
+              <QuickAction
+                icon={<Target className="w-4 h-4" />}
+                label="Set a goal"
+                href="/dashboard/goals"
+                isIslamic={isIslamic}
+              />
+              <QuickAction
+                icon={<PieChart className="w-4 h-4" />}
+                label="View analytics"
+                href="/dashboard/analytics"
+                isIslamic={isIslamic}
+              />
+              <QuickAction
+                icon={<CreditCard className="w-4 h-4" />}
+                label="Add transaction"
+                href="/dashboard/transactions"
+                isIslamic={isIslamic}
+              />
             </div>
           </div>
 
@@ -358,5 +391,32 @@ function StatCard({
       </div>
       <div className="text-xs text-cream/40">{subtitle || title}</div>
     </div>
+  );
+}
+
+// Quick Action Component
+function QuickAction({
+  icon,
+  label,
+  href,
+  isIslamic,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  href: string;
+  isIslamic?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs transition-all duration-200 border ${
+        isIslamic
+          ? "bg-sentience-gold/5 border-sentience-gold/10 text-sentience-gold/70 hover:bg-sentience-gold/10 hover:text-sentience-gold"
+          : "bg-violet-500/5 border-violet-500/10 text-violet-400/70 hover:bg-violet-500/10 hover:text-violet-400"
+      }`}
+    >
+      {icon}
+      {label}
+    </a>
   );
 }

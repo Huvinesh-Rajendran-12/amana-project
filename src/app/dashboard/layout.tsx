@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import DashboardSidebar from "@/components/client/DashboardSidebar";
-import AIChatbot from "@/components/client/AIChatbot";
+import AIInputBar from "@/components/client/AIInputBar";
 
 export const metadata: Metadata = {
   title: "Dashboard | Sentience",
@@ -15,8 +15,10 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen bg-black">
       <DashboardSidebar />
-      <main className="lg:ml-64 min-h-screen">{children}</main>
-      <AIChatbot />
+      <main className="lg:ml-64 min-h-screen">
+        <AIInputBar />
+        {children}
+      </main>
     </div>
   );
 }

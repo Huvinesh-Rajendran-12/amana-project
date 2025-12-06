@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import DashboardHeader from "@/components/client/DashboardHeader";
+import ContextualInsight from "@/components/client/ContextualInsight";
 import { useFinanceMode } from "@/context/FinanceModeContext";
 import { useUser } from "@/context/UserContext";
 import {
@@ -100,27 +101,64 @@ export default function AnalyticsPage() {
 
   // Process insights
   const displayInsights = useMemo(() => {
+    const baseInsights: Array<{
+      title: string;
+      message: string;
+      type: "info" | "success" | "warning" | "tip";
+      actionLabel?: string;
+    }> = [];
+
     if (!insights || insights.length === 0) {
-      return [
-        {
-          title: "Spending Analysis",
-          description: "Add more transactions to get personalized insights.",
-          trend: "info",
-        },
-      ];
+      baseInsights.push({
+        title: "Spending Analysis",
+        message: "Add more transactions to get personalized insights and recommendations.",
+        type: "info",
+      });
+    } else {
+      insights.forEach((insight) => {
+        baseInsights.push({
+          title: insight.title,
+          message: insight.message,
+          type: insight.severity === "celebration"
+            ? "success"
+            : insight.severity === "warning" || insight.severity === "alert"
+              ? "warning"
+              : "info",
+          actionLabel: insight.severity === "warning" ? "Take action" : undefined,
+        });
+      });
     }
 
-    return insights.map((insight) => ({
-      title: insight.title,
-      description: insight.message,
-      trend:
-        insight.severity === "celebration"
-          ? "positive"
-          : insight.severity === "warning" || insight.severity === "alert"
-            ? "warning"
-            : "info",
-    }));
-  }, [insights]);
+    // Add trend-based insight
+    if (spendingTrend) {
+      if (spendingTrend.direction === "down" && spendingTrend.change > 10) {
+        baseInsights.push({
+          title: "Spending decreased",
+          message: `Great job! You've reduced spending by ${spendingTrend.change.toFixed(0)}% compared to last period.`,
+          type: "success",
+        });
+      } else if (spendingTrend.direction === "up" && spendingTrend.change > 20) {
+        baseInsights.push({
+          title: "Spending spike detected",
+          message: `Your spending increased by ${spendingTrend.change.toFixed(0)}% compared to last period. Review your recent transactions.`,
+          type: "warning",
+          actionLabel: "Review transactions",
+        });
+      }
+    }
+
+    // Add savings tip
+    if (spendingSummary && spendingSummary.savingsRate < 20) {
+      baseInsights.push({
+        title: "Savings opportunity",
+        message: "Try the 50/30/20 rule: 50% needs, 30% wants, 20% savings. You're currently below the recommended savings rate.",
+        type: "tip",
+        actionLabel: "Learn more",
+      });
+    }
+
+    return baseInsights.slice(0, 3);
+  }, [insights, spendingTrend, spendingSummary]);
 
   // Loading state
   if (!mounted || userLoading || (userId && spendingByCategory === undefined)) {
@@ -299,56 +337,24 @@ export default function AnalyticsPage() {
         </div>
 
         {/* AI Insights */}
-        <div
-          className={`border rounded-xl p-6 ${
-            isIslamic
-              ? "bg-sentience-gold/5 border-sentience-gold/10"
-              : "bg-violet-500/5 border-violet-500/10"
-          }`}
-        >
-          <h3 className="text-sm font-light text-white/40 uppercase tracking-wider mb-4 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
             <Sparkles className={`w-4 h-4 ${accentColor}`} />
-            {isIslamic ? "Barakah Insights" : "AI Insights"}
-          </h3>
+            <h3 className="text-sm font-light text-white/60">
+              {isIslamic ? "Barakah Analytics" : "AI Analytics"}
+            </h3>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {displayInsights.map((insight, i) => (
-              <div
+              <ContextualInsight
                 key={i}
-                className={`p-4 rounded-lg border ${
-                  insight.trend === "positive"
-                    ? "bg-emerald-500/5 border-emerald-500/10"
-                    : insight.trend === "warning"
-                      ? "bg-amber-500/5 border-amber-500/10"
-                      : "bg-white/2 border-white/5"
-                }`}
-              >
-                <div className="flex items-start gap-3">
-                  <div
-                    className={`w-2 h-2 rounded-full mt-1.5 ${
-                      insight.trend === "positive"
-                        ? "bg-emerald-400"
-                        : insight.trend === "warning"
-                          ? "bg-amber-400"
-                          : "bg-white/40"
-                    }`}
-                  />
-                  <div>
-                    <h4
-                      className={`text-sm font-medium mb-1 ${
-                        insight.trend === "positive"
-                          ? "text-emerald-400"
-                          : insight.trend === "warning"
-                            ? "text-amber-400"
-                            : "text-white"
-                      }`}
-                    >
-                      {insight.title}
-                    </h4>
-                    <p className="text-xs text-white/50">{insight.description}</p>
-                  </div>
-                </div>
-              </div>
+                title={insight.title}
+                message={insight.message}
+                type={insight.type}
+                actionLabel={insight.actionLabel}
+                isIslamic={isIslamic}
+              />
             ))}
           </div>
         </div>

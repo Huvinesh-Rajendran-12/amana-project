@@ -42,6 +42,14 @@ crons.daily(
   internal.cronHelpers.detectSpikesForAllUsers
 );
 
+// Detect behavioral patterns weekly
+// Runs every Monday at 6:00 AM UTC
+crons.weekly(
+  "detect-behavioral-triggers",
+  { dayOfWeek: "monday", hourUTC: 6, minuteUTC: 0 },
+  internal.cronHelpers.detectBehavioralTriggersForAllUsers
+);
+
 // ============================================
 // WEEKLY JOBS
 // ============================================

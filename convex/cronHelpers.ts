@@ -48,6 +48,8 @@ export const detectSubscriptionsForAllUsers = internalMutation({
         
         const amounts = txs.map(t => t.amount);
         const avgAmount = amounts.reduce((a, b) => a + b, 0) / amounts.length;
+        // Skip zero-amount transactions (e.g., free trials) to avoid division by zero
+        if (avgAmount === 0) continue;
         const isConsistentAmount = amounts.every(
           a => Math.abs(a - avgAmount) / avgAmount < 0.1
         );

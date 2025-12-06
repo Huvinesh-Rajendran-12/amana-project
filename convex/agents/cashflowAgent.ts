@@ -1,11 +1,13 @@
 /**
  * CASHFLOW_AGENT - Ultra-Simple Prototype
  * Uses system prompt from agentPrompts.ts
+ * Integrated with RAG pipeline for Islamic finance context
  */
 
 import { v } from "convex/values";
 import { internalAction } from "../_generated/server";
 import { AGENT_PROMPTS } from "../lib/agentPrompts";
+import { enhanceSystemPromptWithRAGContext } from "../lib/ragPipeline";
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -42,10 +44,16 @@ export const analyzeTransactions = internalAction({
     const savingsRate: number =
       monthlySavings > 0 ? ((monthlySavings - monthlyBurn) / monthlySavings) * 100 : 0;
 
+    // Enhance system prompt with Islamic finance context
+    const enhancedSystemPrompt = enhanceSystemPromptWithRAGContext(
+      AGENT_PROMPTS.CASHFLOW_AGENT.systemPrompt,
+      "general"
+    );
+
     const response = await client.messages.create({
       model: "claude-3-5-sonnet-20241022",
       max_tokens: 200,
-      system: AGENT_PROMPTS.CASHFLOW_AGENT.systemPrompt,
+      system: enhancedSystemPrompt,
       messages: [
         {
           role: "user",
@@ -53,7 +61,7 @@ export const analyzeTransactions = internalAction({
 Monthly Expenses: RM${monthlyBurn.toFixed(0)}
 Savings Rate: ${savingsRate.toFixed(1)}%
 
-Provide one actionable insight.`,
+Provide one actionable insight. Connect to Islamic financial goals when relevant (Zakat eligibility, Hajj savings potential).`,
         },
       ],
     });

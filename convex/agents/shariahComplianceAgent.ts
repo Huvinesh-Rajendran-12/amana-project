@@ -1,11 +1,16 @@
 /**
  * SHARIAH_COMPLIANCE_AGENT - Ultra-Simple Prototype
  * Uses system prompt from agentPrompts.ts
+ * Integrated with RAG pipeline for Islamic rulings context
  */
 
 import { v } from "convex/values";
 import { internalAction } from "../_generated/server";
 import { AGENT_PROMPTS } from "../lib/agentPrompts";
+import {
+  buildShariahComplianceRAGContext,
+  enhanceSystemPromptWithRAGContext,
+} from "../lib/ragPipeline";
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -42,12 +47,26 @@ export const checkTransaction = internalAction({
       }
     }
 
-    // Claude review for uncertain cases
+    // Claude review for uncertain cases with RAG context
     if (status === "halal" && args.amount > 500) {
+      // Build RAG context with relevant Islamic rulings
+      const ragContext = buildShariahComplianceRAGContext(
+        args.merchant,
+        args.amount,
+        args.description
+      );
+
+      // Enhance system prompt with RAG knowledge
+      const enhancedSystemPrompt = enhanceSystemPromptWithRAGContext(
+        AGENT_PROMPTS.SHARIAH_COMPLIANCE_AGENT.systemPrompt,
+        "shariah",
+        ragContext
+      );
+
       const response = await client.messages.create({
         model: "claude-3-5-sonnet-20241022",
         max_tokens: 150,
-        system: AGENT_PROMPTS.SHARIAH_COMPLIANCE_AGENT.systemPrompt,
+        system: enhancedSystemPrompt,
         messages: [
           {
             role: "user",

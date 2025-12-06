@@ -2,68 +2,80 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { RoundedBox, ContactShadows } from "@react-three/drei";
+import { ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
 // Warm cream/slate color for text (30% whiter)
 const CREAM_COLOR = "#efece4";
 const CREAM_LIGHT = "#f5f3ed";
-const CARD_BG = "#222222"; // Slightly darker grey
+const CARD_BG = "#1a1a1a"; // Darker background for Islamic aesthetic
 
-// Card texture creation with chevron pattern
+// Card texture creation with Islamic geometric pattern
 function createCardTexture(): HTMLCanvasElement {
   const canvas = document.createElement("canvas");
   canvas.width = 1024;
   canvas.height = 645;
   const ctx = canvas.getContext("2d")!;
 
-  // Dark grey background
+  // Dark background
   ctx.fillStyle = CARD_BG;
   ctx.fillRect(0, 0, 1024, 645);
 
-  // Draw chevron/arrow pattern (like reference image)
+  // Draw Islamic geometric pattern (8-pointed stars / octagonal pattern)
   ctx.save();
-  const chevronSize = 24;
-  const spacing = 45;
-  ctx.strokeStyle = "rgba(239, 236, 228, 0.05)";
-  ctx.lineWidth = 2;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.08)"; // Emerald green - Islamic color
+  ctx.lineWidth = 1.5;
 
-  for (let row = 0; row < 20; row++) {
-    for (let col = 0; col < 30; col++) {
-      const x = col * spacing + (row % 2) * (spacing / 2);
-      const y = row * spacing + 30;
+  const patternSize = 50;
+  for (let row = 0; row < 15; row++) {
+    for (let col = 0; col < 25; col++) {
+      const x = col * patternSize + (row % 2) * (patternSize / 2);
+      const y = row * patternSize + 20;
 
-      // Draw chevron (^)
+      // Draw 8-pointed star pattern
       ctx.beginPath();
-      ctx.moveTo(x - chevronSize / 2, y + chevronSize / 3);
-      ctx.lineTo(x, y - chevronSize / 3);
-      ctx.lineTo(x + chevronSize / 2, y + chevronSize / 3);
+      const points = 8;
+      const outerRadius = 18;
+      const innerRadius = 9;
+
+      for (let i = 0; i < points * 2; i++) {
+        const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        const angle = (i * Math.PI) / points - Math.PI / 2;
+        const px = x + radius * Math.cos(angle);
+        const py = y + radius * Math.sin(angle);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
       ctx.stroke();
     }
   }
   ctx.restore();
 
-  // Top accent line - gradient
+  // Top accent line - emerald gradient (Islamic green)
   const accentGrad = ctx.createLinearGradient(0, 0, 1024, 0);
-  accentGrad.addColorStop(0, "#8b5cf6");
-  accentGrad.addColorStop(0.5, "#a78bfa");
+  accentGrad.addColorStop(0, "#10b981");
+  accentGrad.addColorStop(0.5, "#34d399");
   accentGrad.addColorStop(1, "#06b6d4");
   ctx.fillStyle = accentGrad;
   ctx.fillRect(0, 0, 1024, 5);
 
-  // Brand logo area (top right) - simple asterisk/star mark
+  // Brand logo area (top right) - crescent moon and star
   ctx.fillStyle = CREAM_LIGHT;
-  ctx.font = "400 36px Outfit, sans-serif";
+  ctx.font = "400 32px Outfit, sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("✳", 950, 60);
+  ctx.fillText("☪", 950, 60);
 
-  // Brand name - SENTIENCE (top left) - lighter weight
+  // Brand name - BARAKAH (top left)
   ctx.font = "300 38px Outfit, sans-serif";
   ctx.fillStyle = CREAM_COLOR;
   ctx.textAlign = "left";
-  ctx.fillText("SENTIENCE", 50, 65);
+  ctx.fillText("BARAKAH", 50, 65);
+
+  // Tagline below brand
+  ctx.font = "200 14px Outfit, sans-serif";
+  ctx.fillStyle = "rgba(239, 236, 228, 0.5)";
+  ctx.fillText("Shariah Compliant Banking", 50, 90);
 
   // EMV Chip
   const chipX = 50;
@@ -100,7 +112,7 @@ function createCardTexture(): HTMLCanvasElement {
   ctx.stroke();
 
   // Contactless symbol
-  ctx.strokeStyle = "rgba(239, 236, 228, 0.6)";
+  ctx.strokeStyle = "rgba(16, 185, 129, 0.6)"; // Emerald color
   ctx.lineWidth = 2.5;
   for (let i = 0; i < 3; i++) {
     ctx.beginPath();
@@ -124,20 +136,26 @@ function createCardTexture(): HTMLCanvasElement {
   ctx.fillStyle = CREAM_COLOR;
   ctx.fillText("12/28", 50, 480);
 
-  // Cardholder name
+  // Cardholder name - Islamic name
   ctx.font = "400 26px Outfit, sans-serif";
   ctx.fillStyle = CREAM_COLOR;
-  ctx.fillText("ALEXANDER VAULT", 50, 560);
+  ctx.fillText("AHMAD IBRAHIM", 50, 560);
+
+  // Halal indicator badge (bottom middle)
+  ctx.font = "300 14px Outfit, sans-serif";
+  ctx.fillStyle = "rgba(16, 185, 129, 0.8)";
+  ctx.textAlign = "center";
+  ctx.fillText("✓ HALAL CERTIFIED", 512, 600);
 
   // Network logo - two overlapping circles
   ctx.globalAlpha = 0.9;
   ctx.beginPath();
   ctx.arc(920, 560, 28, 0, Math.PI * 2);
-  ctx.fillStyle = "#eb001b";
+  ctx.fillStyle = "#10b981";
   ctx.fill();
   ctx.beginPath();
   ctx.arc(955, 560, 28, 0, Math.PI * 2);
-  ctx.fillStyle = "#f79e1b";
+  ctx.fillStyle = "#06b6d4";
   ctx.fill();
   ctx.globalAlpha = 1.0;
 

@@ -14,19 +14,19 @@ import {
  * In production, you would integrate with Convex Auth or a provider like Clerk.
  */
 
-// Helper to get the current user from the database
-export async function getCurrentUser(ctx: QueryCtx | MutationCtx, userId: string) {
+// Helper to get the current user from the database by email
+export async function getCurrentUser(ctx: QueryCtx | MutationCtx, email: string) {
   const user = await ctx.db
     .query("users")
-    .withIndex("by_email", (q) => q.eq("email", userId))
+    .withIndex("by_email", (q) => q.eq("email", email))
     .first();
   
   return user;
 }
 
 // Helper to require authentication - throws if no user found
-export async function requireUser(ctx: QueryCtx | MutationCtx, userId: string) {
-  const user = await getCurrentUser(ctx, userId);
+export async function requireUser(ctx: QueryCtx | MutationCtx, email: string) {
+  const user = await getCurrentUser(ctx, email);
   
   if (!user) {
     throw new ConvexError({

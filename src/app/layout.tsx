@@ -5,7 +5,7 @@ import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
 import { UserProvider } from "@/context/UserContext";
 
 export const metadata: Metadata = {
-  title: "Lumina | Intelligent Banking",
+  title: "Amana | Intelligent Banking",
   description:
     "Malaysia's first dual-mode digital bank. Seamlessly switch between Conventional and Islamic finance with AI-powered insights.",
   keywords: [
@@ -14,11 +14,11 @@ export const metadata: Metadata = {
     "Conventional Banking",
     "Fintech",
     "Malaysia",
-    "Lumina",
+    "Amana",
   ],
-  authors: [{ name: "Lumina Financial Technologies" }],
+  authors: [{ name: "Amana Financial Technologies" }],
   openGraph: {
-    title: "Lumina | Dual-Mode Financial Intelligence",
+    title: "Amana | Dual-Mode Financial Intelligence",
     description: "Malaysia's first dual-mode digital bank.",
     type: "website",
   },

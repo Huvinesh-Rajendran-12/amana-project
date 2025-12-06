@@ -102,7 +102,7 @@ function createIslamicCardTexture(): HTMLCanvasElement {
   ctx.font = "300 38px Outfit, sans-serif";
   ctx.fillStyle = CREAM_COLOR;
   ctx.textAlign = "left";
-  ctx.fillText("LUMINA", 50, 65);
+  ctx.fillText("AMANA", 50, 65);
 
   // Tagline
   ctx.font = "200 14px Outfit, sans-serif";
@@ -186,11 +186,11 @@ function createConventionalCardTexture(): HTMLCanvasElement {
   ctx.textAlign = "center";
   ctx.fillText("◆", 950, 60);
 
-  // Brand name - LUMINA
+  // Brand name - AMANA
   ctx.font = "300 38px Outfit, sans-serif";
   ctx.fillStyle = CREAM_COLOR;
   ctx.textAlign = "left";
-  ctx.fillText("LUMINA", 50, 65);
+  ctx.fillText("AMANA", 50, 65);
 
   // Tagline
   ctx.font = "200 14px Outfit, sans-serif";
@@ -278,7 +278,7 @@ function CardMesh() {
       islamicTex.magFilter = THREE.LinearFilter;
       setFrontTexture(islamicTex);
 
-      // Back side - Conventional (Lumina)
+      // Back side - Conventional (Amana)
       const conventionalCanvas = createConventionalCardTexture();
       const conventionalTex = new THREE.CanvasTexture(conventionalCanvas);
       conventionalTex.needsUpdate = true;
@@ -323,7 +323,7 @@ function CardMesh() {
         />
       </mesh>
 
-      {/* Back face - Conventional (Lumina) */}
+      {/* Back face - Conventional (Amana) */}
       <mesh position={[0, 0, -0.001]} rotation={[0, Math.PI, 0]}>
         <planeGeometry args={[cardWidth, cardHeight]} />
         <meshStandardMaterial

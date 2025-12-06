@@ -372,6 +372,100 @@ export const getUserContext = internalQuery({
   },
 });
 
+// Get Zakat-relevant financial data for user
+export const getZakatContext = internalQuery({
+  args: {
+    userId: v.id("users"),
+  },
+  handler: async (ctx, args) => {
+    const user = await ctx.db.get(args.userId);
+    if (!user) return null;
+
+    const now = Date.now();
+    const oneYearAgo = now - 365 * 24 * 60 * 60 * 1000;
+
+    // Get bank connections and balances
+    const bankConnections = await ctx.db
+      .query("bankConnections")
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
+      .collect();
+
+    // Get latest Zakat calculation if exists
+    const latestZakatCalc = await ctx.db
+      .query("zakatCalculations")
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
+      .order("desc")
+      .first();
+
+    // Get Hajj savings if any
+    const hajjGoal = await ctx.db
+      .query("hajjSavingsGoals")
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
+      .first();
+
+    // Calculate cash from income transactions over the year
+    const yearTransactions = await ctx.db
+      .query("transactions")
+      .withIndex("by_user_date", (q) =>
+        q.eq("userId", args.userId).gte("date", oneYearAgo)
+      )
+      .collect();
+
+    const totalIncome = yearTransactions
+      .filter(t => t.type === "income")
+      .reduce((sum, t) => sum + t.amount, 0);
+    
+    const totalExpenses = yearTransactions
+      .filter(t => t.type === "expense")
+      .reduce((sum, t) => sum + t.amount, 0);
+
+    // Estimate cash balance from transaction flow
+    const estimatedCashBalance = totalIncome - totalExpenses;
+
+    // Get latest nisab price
+    const latestNisab = await ctx.db
+      .query("nisabPrices")
+      .withIndex("by_date")
+      .order("desc")
+      .first();
+
+    // Current nisab threshold (default to ~27,200 MYR for 85g gold)
+    const nisabThreshold = latestNisab?.goldNisabValue ?? 27200;
+
+    // Build comprehensive Zakat context
+    return {
+      hasExistingCalculation: !!latestZakatCalc,
+      lastCalculation: latestZakatCalc ? {
+        date: latestZakatCalc.calculationDate,
+        totalAssets: latestZakatCalc.totalZakatableAssets,
+        zakatAmount: latestZakatCalc.zakatAmount,
+        paymentStatus: latestZakatCalc.paymentStatus,
+        amountPaid: latestZakatCalc.amountPaid,
+        assets: latestZakatCalc.assets,
+      } : null,
+      estimatedAssets: {
+        cashBalance: Math.max(0, estimatedCashBalance),
+        bankAccounts: bankConnections.map(b => ({
+          bank: b.bankName,
+          isIslamic: b.isIslamicAccount,
+          lastSync: b.lastSyncAt,
+        })),
+        tabungHaji: hajjGoal?.tabungHajiBalance ?? 0,
+        monthlyIncome: user.monthlyIncome ?? 0,
+      },
+      nisab: {
+        threshold: nisabThreshold,
+        priceDate: latestNisab?.date ?? now,
+      },
+      transactionSummary: {
+        yearlyIncome: totalIncome,
+        yearlyExpenses: totalExpenses,
+        transactionCount: yearTransactions.length,
+      },
+    };
+  },
+});
+
 // Determine which agent to route to based on message content
 function routeToAgent(message: string, isIslamic: boolean): string {
   const lowerMessage = message.toLowerCase();
@@ -403,7 +497,8 @@ function routeToAgent(message: string, isIslamic: boolean): string {
 function buildSystemPrompt(
   agentName: string, 
   userContext: any, 
-  isIslamic: boolean
+  isIslamic: boolean,
+  zakatContext?: any
 ): string {
   const agent = AGENT_PROMPTS[agentName as keyof typeof AGENT_PROMPTS];
   const coachingStyle = COACHING_STYLES[userContext?.user?.coachingStyle as keyof typeof COACHING_STYLES] ?? COACHING_STYLES.gentle;
@@ -424,6 +519,34 @@ Active Mode: ${userContext.user?.activeMode ?? "normal"}
 Current Month Spending: RM ${userContext.spending?.totalExpenses?.toFixed(2) ?? 0}
 Savings Rate: ${userContext.spending?.savingsRate?.toFixed(1) ?? 0}%
 Top Spending Categories: ${userContext.spending?.topCategories?.map((c: any) => `${c.name}: RM${c.amount.toFixed(2)}`).join(", ") ?? "None yet"}`;
+  }
+
+  // Add Zakat-specific context when relevant
+  if (agentName === "ZAKAT_AGENT" && zakatContext) {
+    systemPrompt += `\n\n--- ZAKAT FINANCIAL DATA (USE THIS TO CALCULATE ZAKAT) ---
+You have access to the user's financial data. USE THIS DATA to calculate Zakat - don't ask for information you already have.
+
+CURRENT NISAB THRESHOLD: RM ${zakatContext.nisab?.threshold?.toLocaleString() ?? "27,200"} (based on 85g gold)
+
+ESTIMATED ASSETS FROM TRANSACTION DATA:
+- Estimated Cash/Bank Balance: RM ${zakatContext.estimatedAssets?.cashBalance?.toLocaleString() ?? 0}
+- Monthly Income: RM ${zakatContext.estimatedAssets?.monthlyIncome?.toLocaleString() ?? 0}
+- Tabung Haji Balance: RM ${zakatContext.estimatedAssets?.tabungHaji?.toLocaleString() ?? 0}
+- Connected Bank Accounts: ${zakatContext.estimatedAssets?.bankAccounts?.length ?? 0} accounts
+
+YEARLY TRANSACTION SUMMARY:
+- Total Income (12 months): RM ${zakatContext.transactionSummary?.yearlyIncome?.toLocaleString() ?? 0}
+- Total Expenses (12 months): RM ${zakatContext.transactionSummary?.yearlyExpenses?.toLocaleString() ?? 0}
+- Net Savings (estimated zakatable cash): RM ${(zakatContext.transactionSummary?.yearlyIncome - zakatContext.transactionSummary?.yearlyExpenses)?.toLocaleString() ?? 0}
+
+${zakatContext.hasExistingCalculation ? `PREVIOUS ZAKAT CALCULATION:
+- Last Calculated: ${new Date(zakatContext.lastCalculation.date).toLocaleDateString()}
+- Total Assets: RM ${zakatContext.lastCalculation.totalAssets?.toLocaleString()}
+- Zakat Due: RM ${zakatContext.lastCalculation.zakatAmount?.toLocaleString()}
+- Payment Status: ${zakatContext.lastCalculation.paymentStatus}
+- Amount Paid: RM ${zakatContext.lastCalculation.amountPaid?.toLocaleString()}` : "No previous Zakat calculation on record."}
+
+IMPORTANT: Calculate Zakat using the available data. Only ask for information you DON'T have (like gold/silver holdings, investments, business inventory). Provide a preliminary estimate based on cash/savings data.`;
   }
 
   // Add Islamic context if needed
@@ -463,8 +586,16 @@ export const sendMessage = action({
     // Route to appropriate agent
     const agentName = routeToAgent(args.message, args.isIslamic);
     
+    // Get Zakat context if routing to Zakat agent
+    let zakatContext = null;
+    if (agentName === "ZAKAT_AGENT") {
+      zakatContext = await ctx.runQuery(internal.chat.getZakatContext, {
+        userId: args.userId,
+      });
+    }
+    
     // Build system prompt
-    const systemPrompt = buildSystemPrompt(agentName, userContext, args.isIslamic);
+    const systemPrompt = buildSystemPrompt(agentName, userContext, args.isIslamic, zakatContext);
 
     // Check for API key
     const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
@@ -477,6 +608,9 @@ export const sendMessage = action({
       };
     }
 
+    // Use claude-haiku-4-5 for Zakat agent, otherwise use default
+    const model = agentName === "ZAKAT_AGENT" ? "claude-haiku-4-5" : "claude-3-haiku-20240307";
+    
     try {
       const response = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
@@ -486,7 +620,7 @@ export const sendMessage = action({
           "anthropic-version": "2023-06-01",
         },
         body: JSON.stringify({
-          model: "claude-3-haiku-20240307",
+          model: model,
           max_tokens: 500,
           system: systemPrompt,
           messages: [
@@ -500,7 +634,7 @@ export const sendMessage = action({
         console.error("Claude API error:", response.status, errorText);
         // Fall back to smart response
         return {
-          response: generateFallbackResponse(args.message, agentName, userContext, args.isIslamic),
+          response: generateFallbackResponse(args.message, agentName, userContext, args.isIslamic, zakatContext),
           agent: agentName,
         };
       }
@@ -515,7 +649,7 @@ export const sendMessage = action({
     } catch (error) {
       console.error("Chat error:", error);
       return {
-        response: generateFallbackResponse(args.message, agentName, userContext, args.isIslamic),
+        response: generateFallbackResponse(args.message, agentName, userContext, args.isIslamic, zakatContext),
         agent: agentName,
       };
     }
@@ -527,26 +661,56 @@ function generateFallbackResponse(
   message: string,
   agentName: string,
   userContext: any,
-  isIslamic: boolean
+  isIslamic: boolean,
+  zakatContext?: any
 ): string {
   const lowerMessage = message.toLowerCase();
   const currency = userContext?.user?.currency ?? "MYR";
   const spending = userContext?.spending;
   
-  // Zakat-related
+  // Zakat-related - use comprehensive Zakat context when available
   if (agentName === "ZAKAT_AGENT" || lowerMessage.includes("zakat")) {
+    const nisab = zakatContext?.nisab?.threshold ?? 27200;
+    
+    // Use Zakat context if available
+    if (zakatContext) {
+      const estimatedCash = zakatContext.estimatedAssets?.cashBalance ?? 0;
+      const tabungHaji = zakatContext.estimatedAssets?.tabungHaji ?? 0;
+      const netSavings = (zakatContext.transactionSummary?.yearlyIncome ?? 0) - (zakatContext.transactionSummary?.yearlyExpenses ?? 0);
+      const totalEstimatedWealth = Math.max(estimatedCash, netSavings) + tabungHaji;
+      
+      // Check if they have a previous calculation
+      if (zakatContext.hasExistingCalculation && zakatContext.lastCalculation) {
+        const lastCalc = zakatContext.lastCalculation;
+        const remainingZakat = lastCalc.zakatAmount - lastCalc.amountPaid;
+        
+        if (remainingZakat > 0) {
+          return `Assalamu'alaikum! Based on your last Zakat calculation on ${new Date(lastCalc.date).toLocaleDateString()}, you have RM ${remainingZakat.toLocaleString()} remaining Zakat to pay (total due: RM ${lastCalc.zakatAmount.toLocaleString()}). Your total zakatable assets were RM ${lastCalc.totalAssets.toLocaleString()}. Would you like me to recalculate based on your current assets, or help you arrange payment to your state Zakat authority?`;
+        }
+        return `Assalamu'alaikum! Your last Zakat calculation shows you've fulfilled your obligation of RM ${lastCalc.zakatAmount.toLocaleString()}. Based on your current transaction data, your estimated wealth is now RM ${totalEstimatedWealth.toLocaleString()}. ${totalEstimatedWealth >= nisab ? `This exceeds the nisab threshold of RM ${nisab.toLocaleString()}, so you may have new Zakat obligations.` : `This is below the nisab threshold of RM ${nisab.toLocaleString()}.`} Would you like me to do a fresh calculation?`;
+      }
+      
+      // No previous calculation - provide estimate based on available data
+      if (totalEstimatedWealth >= nisab) {
+        const estimatedZakat = totalEstimatedWealth * 0.025;
+        return `Assalamu'alaikum! Based on your financial data:\n\n• Estimated Cash/Savings: RM ${Math.max(estimatedCash, netSavings).toLocaleString()}\n• Tabung Haji: RM ${tabungHaji.toLocaleString()}\n• Total: RM ${totalEstimatedWealth.toLocaleString()}\n\nThis exceeds the nisab threshold of RM ${nisab.toLocaleString()}. Your preliminary Zakat estimate is **RM ${estimatedZakat.toFixed(2)}** (2.5%).\n\nTo complete the calculation, do you have any gold, silver, or other investments to include?`;
+      } else {
+        return `Assalamu'alaikum! Based on your transaction history, your estimated wealth is RM ${totalEstimatedWealth.toLocaleString()}, which is below the current nisab threshold of RM ${nisab.toLocaleString()} (85g gold value). Zakat becomes obligatory when your wealth exceeds nisab for one lunar year. Keep building your savings - you're making good progress! Do you have any gold, silver, or investments not reflected in your transactions?`;
+      }
+    }
+    
+    // Fallback if no Zakat context
     if (spending?.savings > 0) {
       const estimatedAnnualSavings = spending.savings * 12;
-      const nisab = 27200; // Approximate nisab in MYR
       const zakatDue = estimatedAnnualSavings >= nisab ? estimatedAnnualSavings * 0.025 : 0;
       
       if (zakatDue > 0) {
-        return `Based on your estimated annual savings of RM ${estimatedAnnualSavings.toFixed(2)}, your Zakat obligation would be approximately RM ${zakatDue.toFixed(2)} (2.5% of wealth above nisab). The nisab threshold is currently around RM ${nisab.toLocaleString()}. Would you like me to help you set up a Zakat payment plan?`;
+        return `Assalamu'alaikum! Based on your estimated annual savings of RM ${estimatedAnnualSavings.toFixed(2)}, your Zakat obligation would be approximately RM ${zakatDue.toFixed(2)} (2.5% of wealth above nisab). The nisab threshold is currently around RM ${nisab.toLocaleString()}. Would you like me to help you set up a Zakat payment plan?`;
       } else {
-        return `Your current savings are below the nisab threshold (RM ${nisab.toLocaleString()}). Zakat becomes obligatory when your wealth exceeds this amount for one lunar year. Keep building your savings, and I'll notify you when you approach the threshold.`;
+        return `Assalamu'alaikum! Your current savings are below the nisab threshold (RM ${nisab.toLocaleString()}). Zakat becomes obligatory when your wealth exceeds this amount for one lunar year. Keep building your savings, and I'll notify you when you approach the threshold.`;
       }
     }
-    return "To calculate your Zakat accurately, I'll need to know your total zakatable assets including cash, gold, silver, and investments held for one lunar year above the nisab threshold. Would you like me to guide you through the calculation?";
+    return "Assalamu'alaikum! To calculate your Zakat accurately, I'll need to know your total zakatable assets including cash, gold, silver, and investments held for one lunar year above the nisab threshold. Would you like me to guide you through the calculation?";
   }
 
   // Hajj-related

@@ -74,7 +74,7 @@ export default function DashboardHeader({
                 <Percent className="w-5 h-5 text-violet-400" />
               )}
               <span className="text-lg font-light tracking-widest text-white">
-                LUMINA
+                AMANA
               </span>
             </Link>
           </div>
@@ -136,7 +136,7 @@ export default function DashboardHeader({
                   <Percent className="w-5 h-5 text-violet-400" />
                 )}
                 <span className="text-lg font-light tracking-widest text-white">
-                  LUMINA
+                  AMANA
                 </span>
               </Link>
               <button

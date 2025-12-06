@@ -50,7 +50,7 @@ export default function DashboardSidebar() {
             )}
           </div>
           <span className="text-lg font-light tracking-[0.2em] text-white">
-            LUMINA
+            AMANA
           </span>
         </Link>
 

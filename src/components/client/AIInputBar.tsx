@@ -141,8 +141,8 @@ export default function AIInputBar() {
             onFocus={() => setIsExpanded(true)}
             placeholder={
               isIslamic
-                ? "Ask Lumina about Zakat, Hajj, halal investments..."
-                : "Ask Lumina about spending, savings, investments..."
+                ? "Ask Amana about Zakat, Hajj, halal investments..."
+                : "Ask Amana about spending, savings, investments..."
             }
             className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 focus:outline-none"
             disabled={isLoading}

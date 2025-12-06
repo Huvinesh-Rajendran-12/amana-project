@@ -12,7 +12,7 @@ export default function Footer() {
               <Moon className="w-3 h-3 text-cream" />
             </div>
             <span className="text-lg font-light tracking-[0.2em] text-cream">
-              LUMINA
+              AMANA
             </span>
           </Link>
           <p className="text-xs text-cream/30 font-light max-w-xs leading-relaxed">
@@ -53,7 +53,7 @@ export default function Footer() {
       {/* Legal Footer */}
       <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-cream/5">
         <div className="text-[10px] text-cream/20 font-mono text-center">
-          © 2026 LUMINA DIGITAL BANK. LICENSED BY BANK NEGARA MALAYSIA. DEPOSITS
+          © 2026 AMANA DIGITAL BANK. LICENSED BY BANK NEGARA MALAYSIA. DEPOSITS
           PROTECTED BY PIDM.
         </div>
       </div>

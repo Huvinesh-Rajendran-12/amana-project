@@ -50,7 +50,7 @@ export default function Home() {
             <p className="text-lg font-light text-cream/60 leading-relaxed max-w-lg border-l border-cream/10 pl-6">
               Whether you prefer conventional banking or{" "}
               Shariah-compliant finance
-             , Lumina adapts to you. One AI-driven banking service, personalized to
+             , Amana adapts to you. One AI-driven banking service, personalized to
               your values and goals.
             </p>
 
@@ -115,7 +115,7 @@ export default function Home() {
               <span className="font-normal text-cream">Your Way.</span>
             </h2>
             <p className="text-cream/50 max-w-2xl mx-auto text-lg font-light leading-relaxed">
-              Lumina adapts to how you want to bank. Explore what each
+              Amana adapts to how you want to bank. Explore what each
               experience offers.
             </p>
           </div>
@@ -325,7 +325,7 @@ export default function Home() {
             </span>
           </h2>
           <p className="text-cream/50 text-lg font-light mb-10 max-w-xl mx-auto">
-            Be among the first Malaysians to access Lumina. Open your account in
+            Be among the first Malaysians to access Amana. Open your account in
             5 minutes. No commitments.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

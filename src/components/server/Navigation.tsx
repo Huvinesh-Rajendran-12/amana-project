@@ -22,7 +22,7 @@ export default function Navigation({ scrolled = false }: NavigationProps) {
             <Moon className="w-4 h-4 text-cream group-hover:text-violet-400 transition-colors" />
           </div>
           <span className="text-xl font-light tracking-[0.2em] text-cream">
-            LUMINA
+            AMANA
           </span>
         </Link>
 

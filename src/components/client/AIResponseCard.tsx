@@ -68,7 +68,7 @@ export default function AIResponseCard({
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2">
               <span className={`text-xs font-medium ${accentColor}`}>
-                {isIslamic ? "Lumina Nur" : "Lumina AI"}
+                {isIslamic ? "Amana Nur" : "Amana AI"}
               </span>
               <div className="flex items-center gap-1">
                 {timestamp && (

@@ -36,7 +36,7 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 // Demo user email for development
-const DEMO_EMAIL = "demo@lumina.my";
+const DEMO_EMAIL = "demo@amana.my";
 const DEMO_NAME = "Firdaus";
 
 export function UserProvider({ children }: { children: ReactNode }) {

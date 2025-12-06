@@ -189,7 +189,7 @@ export default function ModeShowcase() {
                       : "text-sentience-gold"
                   }`}
                 >
-                  {activeTab === "conventional" ? "LUMINA CORE" : "LUMINA NUR"}
+                  {activeTab === "conventional" ? "AMANA CORE" : "AMANA NUR"}
                 </h3>
                 <p className="text-xs text-cream/40">
                   {activeTab === "conventional"

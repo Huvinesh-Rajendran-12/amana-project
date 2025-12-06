@@ -31,7 +31,7 @@ const formatCurrency = (amount: number, currency: string = "USD") => {
 // Fallback suggestions when no insights
 const fallbackSuggestions = [
   {
-    title: "Welcome to Lumina!",
+    title: "Welcome to Amana!",
     description: "Start tracking your spending to get personalized insights.",
     type: "info" as const,
     actionLabel: "Add transaction",
@@ -98,7 +98,7 @@ export default function DashboardPage() {
           <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center ${isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"}`}>
             <Brain className={`w-8 h-8 ${accentColor}`} />
           </div>
-          <h2 className="text-2xl font-light">Welcome to Lumina</h2>
+          <h2 className="text-2xl font-light">Welcome to Amana</h2>
           <p className="text-cream/50">
             Let&apos;s set up your demo account with sample financial data to explore all features.
           </p>

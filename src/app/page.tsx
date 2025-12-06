@@ -15,7 +15,7 @@ export default function Home() {
       <NavigationWrapper />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-40 pb-20 md:pt-48 md:pb-32 px-6 min-h-screen flex flex-col justify-center">
+      <section className="relative z-10 pt-40 pb-20 md:pt-38 md:pb-32 px-6 min-h-screen flex flex-col justify-center">
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
           
           {/* Hero Copy */}
@@ -35,7 +35,7 @@ export default function Home() {
             </h1>
             
             {/* Subheadline */}
-            <p className="text-lg font-light text-[#efece4]/60 leading-relaxed max-w-lg border-l border-[#efece4]/10 pl-6">
+            <p className="text-lg font-light text-justify text-[#efece4]/60 leading-relaxed max-w-lg border-l border-[#efece4]/10 pl-6">
               Sentience acts as your 24/7 financial underwriter. Using real-time LLMs, 
               it audits every swipe to block impulse buys and enforce the discipline 
               you promised yourself.

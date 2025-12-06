@@ -18,8 +18,8 @@ export default function Navigation({ scrolled = false }: NavigationProps) {
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 cursor-pointer group">
-          <div className="w-8 h-8 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-emerald-500 transition-colors duration-500">
-            <Moon className="w-4 h-4 text-cream group-hover:text-emerald-400 transition-colors" />
+          <div className="w-8 h-8 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-violet-500 transition-colors duration-500">
+            <Moon className="w-4 h-4 text-cream group-hover:text-violet-400 transition-colors" />
           </div>
           <span className="text-xl font-light tracking-[0.2em] text-cream">
             LUMINA

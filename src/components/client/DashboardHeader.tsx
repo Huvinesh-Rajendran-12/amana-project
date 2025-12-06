@@ -1,7 +1,7 @@
 "use client";
 
 import { Bell, Menu } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useFinanceMode } from "@/context/FinanceModeContext";
 import {
@@ -33,8 +33,14 @@ export default function DashboardHeader({
   subtitle,
 }: DashboardHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { mode } = useFinanceMode();
-  const isIslamic = mode === "islamic";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isIslamic = mounted && mode === "islamic";
 
   return (
     <>

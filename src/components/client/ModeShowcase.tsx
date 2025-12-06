@@ -257,17 +257,23 @@ export default function ModeShowcase() {
                     {activeTab === "conventional" ? "Insurance" : "Takaful"}
                   </p>
                   <p className="text-lg font-mono text-cream">RM 500K</p>
-                  <p className="text-xs text-emerald-400 mt-1">
+                  <p
+                    className={`text-xs mt-1 ${
+                      activeTab === "conventional"
+                        ? "text-violet-400"
+                        : "text-sentience-gold"
+                    }`}
+                  >
                     Coverage Active ✓
                   </p>
                 </div>
               </div>
 
               {activeTab === "islamic" && (
-                <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                <div className="p-4 rounded-xl bg-sentience-gold/5 border border-sentience-gold/10">
                   <div className="flex items-center gap-2 mb-2">
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span className="text-sm text-emerald-400">
+                    <Check className="w-4 h-4 text-sentience-gold" />
+                    <span className="text-sm text-sentience-gold">
                       100% Shariah Compliant
                     </span>
                   </div>
@@ -290,7 +296,7 @@ export default function ModeShowcase() {
             : "Designed for Muslims who want their finances aligned with Islamic principles."}
         </p>
         <p className="text-cream/60 text-sm mt-2">
-          <span className="text-emerald-400">Switch anytime</span> — your
+          <span className="text-cream">Switch anytime</span> — your
           account, your choice.
         </p>
       </div>

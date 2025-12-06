@@ -88,12 +88,12 @@ export default function AIChatbot() {
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-cream/5 bg-[#0a0a0a]">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                <Moon className="w-4 h-4 text-emerald-400" />
+              <div className="w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center">
+                <Moon className="w-4 h-4 text-violet-400" />
               </div>
               <div>
                 <h3 className="text-sm font-medium text-cream">Lumina AI</h3>
-                <p className="text-xs text-emerald-400">
+                <p className="text-xs text-violet-400">
                   Your Financial Assistant
                 </p>
               </div>
@@ -116,7 +116,7 @@ export default function AIChatbot() {
                 <div
                   className={`max-w-[80%] p-3 rounded-2xl text-sm ${
                     message.isUser
-                      ? "bg-emerald-500/15 text-cream rounded-br-md"
+                      ? "bg-violet-500/15 text-cream rounded-br-md"
                       : "bg-cream/5 text-cream/80 rounded-bl-md"
                   }`}
                 >
@@ -156,12 +156,12 @@ export default function AIChatbot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about Zakat, investments, Takaful..."
-                className="flex-1 bg-cream/5 border border-cream/10 rounded-xl px-4 py-3 text-sm text-cream placeholder:text-cream/30 focus:outline-none focus:border-emerald-500/30 transition-colors"
+                className="flex-1 bg-cream/5 border border-cream/10 rounded-xl px-4 py-3 text-sm text-cream placeholder:text-cream/30 focus:outline-none focus:border-violet-500/30 transition-colors"
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim()}
-                className="p-3 bg-emerald-500/15 text-emerald-400 rounded-xl hover:bg-emerald-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="p-3 bg-violet-500/15 text-violet-400 rounded-xl hover:bg-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -176,7 +176,7 @@ export default function AIChatbot() {
         className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg z-50 flex items-center justify-center transition-all duration-300 ${
           isOpen
             ? "bg-cream/10 text-cream"
-            : "bg-linear-to-br from-emerald-600/80 to-cyan-600/80 text-white hover:from-emerald-600 hover:to-cyan-600"
+            : "bg-linear-to-br from-violet-600/80 to-fuchsia-600/80 text-white hover:from-violet-600 hover:to-fuchsia-600"
         }`}
       >
         {isOpen ? <X className="w-6 h-6" /> : <Moon className="w-6 h-6" />}

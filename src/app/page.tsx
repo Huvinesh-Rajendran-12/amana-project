@@ -38,14 +38,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
           {/* Hero Copy */}
           <div className="space-y-10 animate-fade-in-up">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-cream/5 border border-cream/5 backdrop-blur-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[10px] font-light tracking-widest uppercase text-cream/70">
-                🇲🇾 Malaysia&apos;s First AI-Native Digital Bank
-              </span>
-            </div>
-
+            
             {/* Headline */}
             <h1 className="text-5xl md:text-7xl font-thin leading-[1.1] tracking-tight text-cream">
               Banking for{" "}
@@ -78,24 +71,8 @@ export default function Home() {
                 className="h-14 px-8 border border-cream/30 text-cream hover:border-cream hover:bg-cream/5 transition-all duration-500 text-xs font-medium tracking-[0.2em] uppercase flex items-center justify-center gap-2"
               >
                 Explore Dashboard
-                <span className="text-emerald-400">→</span>
+                <span className="text-cream">→</span>
               </a>
-            </div>
-
-            {/* Trust Badges */}
-            <div className="flex flex-wrap items-center gap-6 text-[10px] font-light tracking-widest uppercase text-cream/40">
-              <div className="flex items-center gap-2">
-                <Shield className="w-3 h-3 text-emerald-400" />
-                <span>BNM Licensed</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="w-3 h-3" />
-                <span>PIDM Protected</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Moon className="w-3 h-3 text-sentience-gold" />
-                <span>JAKIM Certified</span>
-              </div>
             </div>
           </div>
 
@@ -114,64 +91,23 @@ export default function Home() {
       {/* Manifesto Section */}
       <section className="py-32 px-6 relative border-t border-cream/5">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
-            <Heart className="w-4 h-4 text-emerald-400" />
-            <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">
-              Our Mission
-            </span>
-          </div>
-
-          <h2 className="text-3xl md:text-5xl font-thin mb-8 text-cream leading-tight">
-            Financial inclusion isn&apos;t a feature.
-            <br />
-            <span className="font-normal text-emerald-400">
-              It&apos;s our purpose.
+          <h2 className="text-3xl md:text-5xl font-thin mb-12 text-cream leading-tight">
+            Liberating digital finance for <br />
+            <span className="font-normal text-cream">
+              every Malaysian.
             </span>
           </h2>
 
-          <div className="space-y-6 text-lg text-cream/60 font-light leading-relaxed max-w-3xl mx-auto">
+          <div className="space-y-8 text-lg text-cream/60 font-light leading-relaxed max-w-3xl mx-auto">
             <p>
-              In Malaysia, millions still struggle to access quality financial
-              services. Complex banking jargon, hidden fees, and
-              one-size-fits-all products leave too many behind — especially
-              those seeking Shariah-compliant options.
+              In a rapidly evolving digital landscape, financial freedom shouldn't be a privilege. It should be the standard. We are here to dismantle the barriers of complexity, exclusivity, and opacity that have long defined the banking industry.
             </p>
             <p className="text-cream/80">
-              <span className="text-emerald-400 font-medium">
-                We believe everyone deserves financial clarity.
+              <span className="text-cream font-medium">
+                We believe in a future where your money works for you, on your terms.
               </span>{" "}
-              Whether you&apos;re a fresh graduate in KL, a small business owner
-              in Kelantan, or a retiree in Penang — your money should work for
-              you, aligned with your values.
+              Whether you seek the precision of conventional banking or the ethical grounding of Shariah-compliant finance, we provide a unified, intelligent platform that respects your choices and amplifies your potential.
             </p>
-            <p>
-              Lumina exists to bridge this gap. We&apos;re building the most
-              intelligent, inclusive digital bank Malaysia has ever seen. No one
-              gets left behind.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-cream/5">
-            <div>
-              <div className="text-4xl font-light text-emerald-400 mb-2">
-                32M+
-              </div>
-              <div className="text-sm text-cream/40">Malaysians to serve</div>
-            </div>
-            <div>
-              <div className="text-4xl font-light text-violet-400 mb-2">
-                60%
-              </div>
-              <div className="text-sm text-cream/40">
-                Seek Islamic finance options
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl font-light text-sentience-gold mb-2">
-                1
-              </div>
-              <div className="text-sm text-cream/40">Platform for everyone</div>
-            </div>
           </div>
         </div>
       </section>
@@ -257,21 +193,6 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-
-                <div className="flex gap-4">
-                  <div className="shrink-0 w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-cream mb-1">
-                      Scholar-Verified Responses
-                    </h4>
-                    <p className="text-sm text-cream/50">
-                      Every answer is grounded in authenticated sources. No
-                      hallucinations — just trustworthy guidance.
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -343,7 +264,7 @@ export default function Home() {
               description="Track your Hajj savings, latest hibah rates (4.1%), and waiting list position. Direct top-up support."
             />
             <FeatureCard
-              icon={<Shield className="w-5 h-5 text-emerald-400" />}
+              icon={<Shield className="w-5 h-5 text-sentience-gold" />}
               title="Flexible Protection"
               description="Insurance or Takaful — choose the protection that suits your needs. PIDM protected up to RM250,000."
             />
@@ -353,7 +274,7 @@ export default function Home() {
               description="Personalized guidance that respects your preferences. Get smart recommendations aligned with your values."
             />
             <FeatureCard
-              icon={<Activity className="w-5 h-5 text-emerald-400" />}
+              icon={<Activity className="w-5 h-5 text-violet-400" />}
               title="Real-time Analytics"
               description="Comprehensive dashboard with spending charts, savings progress, and halal compliance tracking."
             />
@@ -371,7 +292,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-4xl font-thin mb-4 text-cream">
-              Trusted by Malaysian Institutions
+              Our Potential Partners
             </h2>
             <p className="text-cream/50 max-w-xl mx-auto text-sm font-light">
               We partner with Malaysia&apos;s leading financial institutions to
@@ -398,7 +319,7 @@ export default function Home() {
 
         <div className="max-w-4xl mx-auto text-center relative">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cream/5 border border-cream/10 mb-8">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+            <Sparkles className="w-4 h-4 text-violet-400" />
             <span className="text-xs font-medium text-cream/70 uppercase tracking-wider">
               Join the Waitlist
             </span>
@@ -406,7 +327,7 @@ export default function Home() {
 
           <h2 className="text-3xl md:text-5xl font-thin mb-6 text-cream">
             Ready to experience{" "}
-            <span className="font-normal text-emerald-400">
+            <span className="font-normal text-violet-400">
               banking done right?
             </span>
           </h2>

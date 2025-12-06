@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="mt-12 min-h-screen bg-black text-white antialiased selection:bg-emerald-500/30">
+      <body className="mt-12 min-h-screen bg-black text-white antialiased selection:bg-violet-500/30">
         <FinanceModeProvider>{children}</FinanceModeProvider>
       </body>
     </html>

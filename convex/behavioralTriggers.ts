@@ -319,13 +319,27 @@ async function detectWeekendSplurge(
   
   if (weekendTxs.length < 10 || weekdayTxs.length < 10) return null;
   
-  // Calculate average daily spending
+  // Calculate average daily spending by counting actual unique days in dataset
   const weekendTotal = weekendTxs.reduce((sum, t) => sum + t.amount, 0);
   const weekdayTotal = weekdayTxs.reduce((sum, t) => sum + t.amount, 0);
   
-  // Weekends are 3 days, weekdays are 4 days
-  const avgWeekendDaily = weekendTotal / 3;
-  const avgWeekdayDaily = weekdayTotal / 4;
+  // Count unique days for accurate normalization
+  const getUniqueDays = (txs: Doc<"transactions">[]) => {
+    const days = new Set(txs.map(t => new Date(t.date).toISOString().split("T")[0]));
+    return days.size;
+  };
+  
+  const uniqueWeekendDays = getUniqueDays(weekendTxs);
+  const uniqueWeekdayDays = getUniqueDays(weekdayTxs);
+  
+  // Guard against division by zero
+  if (uniqueWeekendDays === 0 || uniqueWeekdayDays === 0) return null;
+  
+  const avgWeekendDaily = weekendTotal / uniqueWeekendDays;
+  const avgWeekdayDaily = weekdayTotal / uniqueWeekdayDays;
+  
+  // Guard against division by zero if weekday average is 0
+  if (avgWeekdayDaily === 0) return null;
   
   const spendingIncrease = ((avgWeekendDaily - avgWeekdayDaily) / avgWeekdayDaily) * 100;
   
@@ -343,10 +357,15 @@ async function detectWeekendSplurge(
   
   if (existing) {
     await ctx.db.patch(existing._id, {
+      pattern: {
+        daysOfWeek: weekendDays,
+        avgAmount: spendingIncrease, // Store weekend vs weekday spending increase %
+      },
       occurrences: weekendTxs.length,
       totalAmount: weekendTotal,
       avgPerOccurrence: weekendTotal / weekendTxs.length,
       lastOccurrence: weekendTxs[weekendTxs.length - 1]?.date ?? now,
+      severity: spendingIncrease > 100 ? "high" : spendingIncrease > 60 ? "medium" : "low",
       isActive: true,
       updatedAt: now,
     });
@@ -356,6 +375,7 @@ async function detectWeekendSplurge(
       triggerType: "day_of_week",
       pattern: {
         daysOfWeek: weekendDays,
+        avgAmount: spendingIncrease, // Store weekend vs weekday spending increase %
       },
       occurrences: weekendTxs.length,
       totalAmount: weekendTotal,
@@ -846,7 +866,7 @@ export const generateInsightMessage = query({
       day_of_week: {
         gentle: `Weekends seem to be when you treat yourself! Your spending goes up quite a bit on Fri-Sun. Just something to be aware of.`,
         brutal: `Weekend warrior? More like weekend spender. You're hemorrhaging cash every Fri-Sun.`,
-        nerdy: `Weekend spending is ${((trigger.avgPerOccurrence / (trigger.totalAmount / trigger.occurrences)) * 100 - 100).toFixed(0)}% above weekday average. Statistical significance: high.`,
+        nerdy: `Weekend spending is ${(trigger.pattern.avgAmount ?? 0).toFixed(0)}% above weekday average. ${trigger.occurrences} weekend transactions totaling $${trigger.totalAmount.toFixed(2)}. Statistical significance: high.`,
         meme: `POV: It's Friday and your wallet is already crying 😭 Weekend you is a menace to savings`,
       },
       payday_effect: {

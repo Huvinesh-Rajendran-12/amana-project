@@ -1,5 +1,6 @@
 import { v } from "convex/values";
-import { query, mutation, internalMutation } from "./_generated/server";
+import { query, mutation, internalMutation, internalAction, internalQuery, action } from "./_generated/server";
+import { internal, api } from "./_generated/api";
 import { Id } from "./_generated/dataModel";
 
 /**
@@ -15,6 +16,7 @@ export const list = query({
     categoryId: v.optional(v.id("categories")),
     merchantId: v.optional(v.id("merchants")),
     type: v.optional(v.union(v.literal("expense"), v.literal("income"), v.literal("transfer"))),
+    shariahStatus: v.optional(v.union(v.literal("halal"), v.literal("haram"), v.literal("doubtful"), v.literal("pending_review"))),
     limit: v.optional(v.number()),
     cursor: v.optional(v.string()),
   },
@@ -48,6 +50,9 @@ export const list = query({
     }
     if (args.type) {
       filtered = filtered.filter(t => t.type === args.type);
+    }
+    if (args.shariahStatus) {
+      filtered = filtered.filter(t => t.shariahStatus === args.shariahStatus);
     }
     
     const hasMore = filtered.length > limit;
@@ -109,6 +114,7 @@ export const create = mutation({
     date: v.number(),
     categoryId: v.optional(v.id("categories")),
     notes: v.optional(v.string()),
+    skipShariahCheck: v.optional(v.boolean()), // For non-Islamic mode users
   },
   handler: async (ctx, args) => {
     const now = Date.now();
@@ -149,12 +155,172 @@ export const create = mutation({
       isExcludedFromInsights: false,
       userCategorized: !!args.categoryId,
       markedAsRegret: false,
+      shariahStatus: args.skipShariahCheck ? undefined : "pending_review",
       notes: args.notes,
       createdAt: now,
       updatedAt: now,
     });
     
+    // Schedule Shariah compliance check if not skipped
+    if (!args.skipShariahCheck && args.type === "expense") {
+      await ctx.scheduler.runAfter(0, internal.transactions.checkShariahCompliance, {
+        transactionId,
+        merchant: args.merchantName,
+        amount: args.amount,
+        description: args.description,
+      });
+    }
+    
     return transactionId;
+  },
+});
+
+// Internal mutation to update Shariah status
+export const updateShariahStatus = internalMutation({
+  args: {
+    transactionId: v.id("transactions"),
+    status: v.union(v.literal("halal"), v.literal("haram"), v.literal("doubtful"), v.literal("pending_review")),
+    reason: v.string(),
+  },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.transactionId, {
+      shariahStatus: args.status,
+      shariahReason: args.reason,
+      updatedAt: Date.now(),
+    });
+  },
+});
+
+// Internal action to check Shariah compliance using the AI agent
+export const checkShariahCompliance = internalAction({
+  args: {
+    transactionId: v.id("transactions"),
+    merchant: v.string(),
+    amount: v.number(),
+    description: v.string(),
+  },
+  handler: async (ctx, args): Promise<{ status: "halal" | "haram" | "doubtful"; reason: string }> => {
+    // Call the Shariah compliance agent
+    const result: { status: "halal" | "haram" | "doubtful"; reason: string } = await ctx.runAction(
+      internal.agents.shariahComplianceAgent.checkTransaction, 
+      {
+        merchant: args.merchant,
+        amount: args.amount,
+        description: args.description,
+      }
+    );
+    
+    // Update the transaction with the result
+    await ctx.runMutation(internal.transactions.updateShariahStatus, {
+      transactionId: args.transactionId,
+      status: result.status,
+      reason: result.reason,
+    });
+    
+    return result;
+  },
+});
+
+// Public action to batch run Shariah checks on transactions (for backfilling)
+export const batchRunShariahChecks = action({
+  args: {
+    userId: v.id("users"),
+    limit: v.optional(v.number()),
+  },
+  handler: async (ctx, args): Promise<{ checked: number; results: Array<{ merchant: string; status: string }> }> => {
+    const limit = args.limit ?? 10;
+    
+    // Get transactions without Shariah status
+    const transactions = await ctx.runQuery(internal.transactions.getTransactionsNeedingShariahCheck, {
+      userId: args.userId,
+      limit,
+    });
+    
+    const results: Array<{ merchant: string; status: string }> = [];
+    
+    for (const tx of transactions) {
+      // Run the Shariah compliance agent
+      const result: { status: "halal" | "haram" | "doubtful"; reason: string } = await ctx.runAction(
+        internal.agents.shariahComplianceAgent.checkTransaction,
+        {
+          merchant: tx.merchantName,
+          amount: tx.amount,
+          description: tx.description,
+        }
+      );
+      
+      // Update the transaction
+      await ctx.runMutation(internal.transactions.updateShariahStatus, {
+        transactionId: tx._id as Id<"transactions">,
+        status: result.status,
+        reason: result.reason,
+      });
+      
+      results.push({ merchant: tx.merchantName, status: result.status });
+    }
+    
+    return { checked: results.length, results };
+  },
+});
+
+// Internal query to get transactions needing Shariah check
+export const getTransactionsNeedingShariahCheck = internalQuery({
+  args: {
+    userId: v.id("users"),
+    limit: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const transactions = await ctx.db
+      .query("transactions")
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
+      .collect();
+    
+    return transactions
+      .filter(t => t.type === "expense" && !t.shariahStatus)
+      .slice(0, args.limit)
+      .map(t => ({
+        _id: t._id,
+        merchantName: t.merchantName,
+        amount: t.amount,
+        description: t.description,
+      }));
+  },
+});
+
+// Run Shariah compliance check on existing transactions that don't have a status
+export const runShariahCheckForUser = mutation({
+  args: {
+    userId: v.id("users"),
+    limit: v.optional(v.number()), // Limit to avoid timeout
+  },
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 20;
+    
+    // Get transactions without Shariah status
+    const transactions = await ctx.db
+      .query("transactions")
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
+      .collect();
+    
+    // Filter to expenses without Shariah status
+    const needsCheck = transactions
+      .filter(t => t.type === "expense" && !t.shariahStatus)
+      .slice(0, limit);
+    
+    // Schedule Shariah checks for each
+    for (const tx of needsCheck) {
+      await ctx.scheduler.runAfter(0, internal.transactions.checkShariahCompliance, {
+        transactionId: tx._id,
+        merchant: tx.merchantName,
+        amount: tx.amount,
+        description: tx.description,
+      });
+    }
+    
+    return {
+      scheduled: needsCheck.length,
+      remaining: transactions.filter(t => t.type === "expense" && !t.shariahStatus).length - needsCheck.length,
+    };
   },
 });
 

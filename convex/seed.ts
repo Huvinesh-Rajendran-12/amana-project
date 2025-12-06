@@ -26,113 +26,143 @@ const DEFAULT_CATEGORIES = [
   { name: "Other", icon: "📦", color: "#BDC3C7", subcategories: [] },
 ];
 
-// Common merchants with their typical categories
+// Common Malaysian merchants with their typical categories
 const MERCHANTS = [
-  // Food & Dining
-  { name: "Shake Shack", category: "Food & Dining", isSubscription: false },
-  { name: "Chipotle", category: "Food & Dining", isSubscription: false },
-  { name: "Starbucks", category: "Food & Dining", isSubscription: false },
-  { name: "McDonald's", category: "Food & Dining", isSubscription: false },
-  { name: "Whole Foods", category: "Food & Dining", isSubscription: false },
-  { name: "Trader Joe's", category: "Food & Dining", isSubscription: false },
-  { name: "Domino's Pizza", category: "Food & Dining", isSubscription: false },
-  { name: "Uber Eats", category: "Food & Dining", isSubscription: false },
-  { name: "DoorDash", category: "Food & Dining", isSubscription: false },
+  // Food & Dining - Malaysian
+  { name: "Mamak Corner", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Old Town White Coffee", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Secret Recipe", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "McDonald's Malaysia", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "KFC Malaysia", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "The Chicken Rice Shop", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Nando's Malaysia", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "GrabFood", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Foodpanda", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Mydin Supermarket", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Jaya Grocer", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Nasi Kandar Pelita", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Sate Kajang Haji Samuri", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Starbucks Malaysia", category: "Food & Dining", isSubscription: false, isHaram: false },
+  { name: "Tealive", category: "Food & Dining", isSubscription: false, isHaram: false },
   
-  // Transportation
-  { name: "Uber", category: "Transportation", isSubscription: false },
-  { name: "Lyft", category: "Transportation", isSubscription: false },
-  { name: "Shell Gas", category: "Transportation", isSubscription: false },
-  { name: "Chevron", category: "Transportation", isSubscription: false },
-  { name: "City Parking", category: "Transportation", isSubscription: false },
+  // HARAM Food - Non-halal establishments
+  { name: "Bak Kut Teh Restaurant", category: "Food & Dining", isSubscription: false, isHaram: true },
+  { name: "Char Siu King", category: "Food & Dining", isSubscription: false, isHaram: true },
   
-  // Shopping
-  { name: "Amazon", category: "Shopping", isSubscription: false },
-  { name: "Target", category: "Shopping", isSubscription: false },
-  { name: "Walmart", category: "Shopping", isSubscription: false },
-  { name: "Apple Store", category: "Shopping", isSubscription: false },
-  { name: "Best Buy", category: "Shopping", isSubscription: false },
-  { name: "IKEA", category: "Shopping", isSubscription: false },
-  { name: "Nike", category: "Shopping", isSubscription: false },
-  { name: "Zara", category: "Shopping", isSubscription: false },
+  // Transportation - Malaysian
+  { name: "Grab", category: "Transportation", isSubscription: false, isHaram: false },
+  { name: "MyCar", category: "Transportation", isSubscription: false, isHaram: false },
+  { name: "Petronas", category: "Transportation", isSubscription: false, isHaram: false },
+  { name: "Shell Malaysia", category: "Transportation", isSubscription: false, isHaram: false },
+  { name: "Touch n Go", category: "Transportation", isSubscription: false, isHaram: false },
+  { name: "RapidKL", category: "Transportation", isSubscription: false, isHaram: false },
+  { name: "KLIA Ekspres", category: "Transportation", isSubscription: false, isHaram: false },
   
-  // Entertainment
-  { name: "AMC Theaters", category: "Entertainment", isSubscription: false },
-  { name: "Steam", category: "Entertainment", isSubscription: false },
-  { name: "Ticketmaster", category: "Entertainment", isSubscription: false },
+  // Shopping - Malaysian
+  { name: "Lazada", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Shopee", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "AEON Mall", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Pavilion KL", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Sunway Pyramid", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Mid Valley", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Uniqlo Malaysia", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "H&M Malaysia", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Watsons", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Guardian", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Harvey Norman", category: "Shopping", isSubscription: false, isHaram: false },
+  { name: "Courts", category: "Shopping", isSubscription: false, isHaram: false },
   
-  // Subscriptions
-  { name: "Netflix", category: "Subscriptions", isSubscription: true },
-  { name: "Spotify", category: "Subscriptions", isSubscription: true },
-  { name: "Disney+", category: "Subscriptions", isSubscription: true },
-  { name: "HBO Max", category: "Subscriptions", isSubscription: true },
-  { name: "YouTube Premium", category: "Subscriptions", isSubscription: true },
-  { name: "Apple Music", category: "Subscriptions", isSubscription: true },
-  { name: "Amazon Prime", category: "Subscriptions", isSubscription: true },
-  { name: "Hulu", category: "Subscriptions", isSubscription: true },
-  { name: "Adobe Creative Cloud", category: "Subscriptions", isSubscription: true },
-  { name: "Microsoft 365", category: "Subscriptions", isSubscription: true },
-  { name: "iCloud Storage", category: "Subscriptions", isSubscription: true },
-  { name: "Dropbox", category: "Subscriptions", isSubscription: true },
-  { name: "ChatGPT Plus", category: "Subscriptions", isSubscription: true },
-  { name: "Notion", category: "Subscriptions", isSubscription: true },
-  { name: "Gym Membership", category: "Subscriptions", isSubscription: true },
+  // Entertainment - Malaysian
+  { name: "GSC Cinemas", category: "Entertainment", isSubscription: false, isHaram: false },
+  { name: "TGV Cinemas", category: "Entertainment", isSubscription: false, isHaram: false },
+  { name: "Steam", category: "Entertainment", isSubscription: false, isHaram: false },
+  { name: "PlayStation Store", category: "Entertainment", isSubscription: false, isHaram: false },
   
-  // Bills & Utilities
-  { name: "Verizon", category: "Bills & Utilities", isSubscription: true },
-  { name: "AT&T", category: "Bills & Utilities", isSubscription: true },
-  { name: "Comcast", category: "Bills & Utilities", isSubscription: true },
-  { name: "Electric Company", category: "Bills & Utilities", isSubscription: true },
-  { name: "Water Utility", category: "Bills & Utilities", isSubscription: true },
+  // HARAM Entertainment - Gambling & Alcohol
+  { name: "Genting Casino", category: "Entertainment", isSubscription: false, isHaram: true },
+  { name: "Sports Toto", category: "Entertainment", isSubscription: false, isHaram: true },
+  { name: "Magnum 4D", category: "Entertainment", isSubscription: false, isHaram: true },
+  { name: "Da Ma Cai", category: "Entertainment", isSubscription: false, isHaram: true },
+  { name: "Zouk Club KL", category: "Entertainment", isSubscription: false, isHaram: true },
+  { name: "Changkat Bar", category: "Entertainment", isSubscription: false, isHaram: true },
+  { name: "Carlsberg Malaysia", category: "Entertainment", isSubscription: false, isHaram: true },
+  { name: "Tiger Beer", category: "Entertainment", isSubscription: false, isHaram: true },
   
-  // Health
-  { name: "CVS Pharmacy", category: "Health & Fitness", isSubscription: false },
-  { name: "Walgreens", category: "Health & Fitness", isSubscription: false },
-  { name: "GNC", category: "Health & Fitness", isSubscription: false },
+  // Subscriptions - Malaysian
+  { name: "Netflix Malaysia", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "Spotify Malaysia", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "Disney+ Hotstar", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "Viu", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "iQiyi", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "YouTube Premium", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "Apple Music", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "Fitness First Malaysia", category: "Subscriptions", isSubscription: true, isHaram: false },
+  { name: "Celebrity Fitness", category: "Subscriptions", isSubscription: true, isHaram: false },
   
-  // Personal Care
-  { name: "Great Clips", category: "Personal Care", isSubscription: false },
-  { name: "Sephora", category: "Personal Care", isSubscription: false },
+  // Bills & Utilities - Malaysian
+  { name: "Maxis", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  { name: "Digi", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  { name: "Celcom", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  { name: "U Mobile", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  { name: "TM Unifi", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  { name: "TNB", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  { name: "Indah Water", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  { name: "Syabas", category: "Bills & Utilities", isSubscription: true, isHaram: false },
+  
+  // Health & Fitness - Malaysian
+  { name: "Guardian Pharmacy", category: "Health & Fitness", isSubscription: false, isHaram: false },
+  { name: "Watsons Health", category: "Health & Fitness", isSubscription: false, isHaram: false },
+  { name: "Caring Pharmacy", category: "Health & Fitness", isSubscription: false, isHaram: false },
+  { name: "Alpro Pharmacy", category: "Health & Fitness", isSubscription: false, isHaram: false },
+  { name: "KPJ Healthcare", category: "Health & Fitness", isSubscription: false, isHaram: false },
+  { name: "Pantai Hospital", category: "Health & Fitness", isSubscription: false, isHaram: false },
+  
+  // Personal Care - Malaysian
+  { name: "A Cut Above", category: "Personal Care", isSubscription: false, isHaram: false },
+  { name: "Sephora Malaysia", category: "Personal Care", isSubscription: false, isHaram: false },
+  { name: "Number76", category: "Personal Care", isSubscription: false, isHaram: false },
+  
+  // Banking - Mix of Islamic and Conventional
+  { name: "Bank Islam", category: "Other", isSubscription: false, isHaram: false },
+  { name: "Bank Muamalat", category: "Other", isSubscription: false, isHaram: false },
+  { name: "Tabung Haji", category: "Other", isSubscription: false, isHaram: false },
 ];
 
-// Subscription pricing (monthly)
+// Subscription pricing (monthly) - Malaysian Ringgit
 const SUBSCRIPTION_PRICES: Record<string, number> = {
-  "Netflix": 15.99,
-  "Spotify": 10.99,
-  "Disney+": 13.99,
-  "HBO Max": 15.99,
-  "YouTube Premium": 13.99,
-  "Apple Music": 10.99,
-  "Amazon Prime": 14.99,
-  "Hulu": 17.99,
-  "Adobe Creative Cloud": 54.99,
-  "Microsoft 365": 9.99,
-  "iCloud Storage": 2.99,
-  "Dropbox": 11.99,
-  "ChatGPT Plus": 20.00,
-  "Notion": 10.00,
-  "Gym Membership": 49.99,
-  "Verizon": 85.00,
-  "AT&T": 75.00,
-  "Comcast": 89.99,
-  "Electric Company": 120.00,
-  "Water Utility": 45.00,
+  "Netflix Malaysia": 54.90,
+  "Spotify Malaysia": 14.90,
+  "Disney+ Hotstar": 54.90,
+  "Viu": 12.00,
+  "iQiyi": 19.90,
+  "YouTube Premium": 23.90,
+  "Apple Music": 14.90,
+  "Fitness First Malaysia": 199.00,
+  "Celebrity Fitness": 149.00,
+  "Maxis": 98.00,
+  "Digi": 68.00,
+  "Celcom": 78.00,
+  "U Mobile": 58.00,
+  "TM Unifi": 129.00,
+  "TNB": 180.00,
+  "Indah Water": 25.00,
+  "Syabas": 35.00,
 };
 
-// Random amount ranges by category
+// Random amount ranges by category - Malaysian Ringgit
 const AMOUNT_RANGES: Record<string, [number, number]> = {
-  "Food & Dining": [8, 80],
-  "Transportation": [5, 60],
-  "Shopping": [15, 200],
-  "Entertainment": [10, 100],
-  "Bills & Utilities": [30, 150],
-  "Subscriptions": [5, 60],
-  "Health & Fitness": [10, 100],
-  "Travel": [50, 500],
-  "Personal Care": [15, 80],
-  "Education": [20, 200],
-  "Gifts & Donations": [20, 150],
-  "Other": [10, 50],
+  "Food & Dining": [12, 120],
+  "Transportation": [8, 80],
+  "Shopping": [50, 500],
+  "Entertainment": [25, 200],
+  "Bills & Utilities": [50, 250],
+  "Subscriptions": [15, 100],
+  "Health & Fitness": [30, 200],
+  "Travel": [150, 1500],
+  "Personal Care": [40, 180],
+  "Education": [80, 500],
+  "Gifts & Donations": [50, 300],
+  "Other": [20, 100],
 };
 
 // Helper to generate random number in range
@@ -268,39 +298,21 @@ export const seedTransactions = mutation({
     
     const transactionsToCreate = [];
     
-    // Generate monthly income (salary on 1st and 15th)
+    // Generate monthly income (salary on 25th of month - common in Malaysia)
     for (let m = 0; m < months; m++) {
       const monthDate = new Date();
       monthDate.setMonth(monthDate.getMonth() - m);
       
-      // Salary payment (1st of month)
-      const salaryDate1 = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1).getTime();
+      // Salary payment (25th of month - Malaysian standard)
+      const salaryDate = new Date(monthDate.getFullYear(), monthDate.getMonth(), 25).getTime();
       transactionsToCreate.push({
         userId: args.userId,
-        amount: -3500, // negative = income
+        amount: -8000, // RM 8,000 monthly salary
         type: "income" as const,
-        description: "Salary Deposit",
+        description: "Gaji Bulanan",
         categoryId: categoryMap["Income"],
-        merchantName: "Employer Direct Deposit",
-        date: salaryDate1,
-        isRecurring: true,
-        isExcludedFromInsights: false,
-        userCategorized: false,
-        markedAsRegret: false,
-        createdAt: now,
-        updatedAt: now,
-      });
-      
-      // Salary payment (15th of month)
-      const salaryDate2 = new Date(monthDate.getFullYear(), monthDate.getMonth(), 15).getTime();
-      transactionsToCreate.push({
-        userId: args.userId,
-        amount: -3500,
-        type: "income" as const,
-        description: "Salary Deposit",
-        categoryId: categoryMap["Income"],
-        merchantName: "Employer Direct Deposit",
-        date: salaryDate2,
+        merchantName: "Majikan Sdn Bhd",
+        date: salaryDate,
         isRecurring: true,
         isExcludedFromInsights: false,
         userCategorized: false,
@@ -333,15 +345,22 @@ export const seedTransactions = mutation({
         });
       }
       
-      // Generate random transactions
+      // Generate random transactions (mostly halal)
       const randomTxCount = txPerMonth + Math.floor(Math.random() * 20) - 10;
+      
+      // Get halal-only merchants
+      const halalMerchants = nonSubMerchants.filter(m => {
+        const merchantData = MERCHANTS.find(md => md.name === m.name);
+        return !merchantData?.isHaram;
+      });
+      
       for (let i = 0; i < randomTxCount; i++) {
-        const merchant = randomItem(nonSubMerchants);
+        const merchant = randomItem(halalMerchants);
         const category = categoryByName[
           MERCHANTS.find(m => m.name === merchant.name)?.category ?? "Other"
         ];
         
-        const amountRange = AMOUNT_RANGES[category?.name ?? "Other"] ?? [10, 50];
+        const amountRange = AMOUNT_RANGES[category?.name ?? "Other"] ?? [20, 100];
         const amount = randomInRange(amountRange[0], amountRange[1]);
         
         const txDate = new Date(
@@ -368,6 +387,48 @@ export const seedTransactions = mutation({
           isExcludedFromInsights: false,
           userCategorized: false,
           markedAsRegret: isRegret,
+          createdAt: now,
+          updatedAt: now,
+        });
+      }
+      
+      // Add a few haram transactions per month (2-4 for testing Shariah compliance)
+      const haramMerchantNames = [
+        { name: "Genting Casino", amount: randomInRange(200, 1000), description: "Casino chips" },
+        { name: "Sports Toto", amount: randomInRange(20, 100), description: "4D Lottery" },
+        { name: "Magnum 4D", amount: randomInRange(20, 100), description: "Lottery ticket" },
+        { name: "Da Ma Cai", amount: randomInRange(20, 100), description: "Lottery ticket" },
+        { name: "Zouk Club KL", amount: randomInRange(150, 500), description: "Club entrance & drinks" },
+        { name: "Changkat Bar", amount: randomInRange(80, 250), description: "Bar tab" },
+        { name: "Carlsberg Malaysia", amount: randomInRange(50, 150), description: "Beer purchase" },
+        { name: "Tiger Beer", amount: randomInRange(40, 120), description: "Beer purchase" },
+        { name: "Bak Kut Teh Restaurant", amount: randomInRange(30, 80), description: "Pork soup meal" },
+      ];
+      
+      // Add 2-4 random haram transactions per month
+      const haramTxCount = Math.floor(Math.random() * 3) + 2;
+      for (let h = 0; h < haramTxCount; h++) {
+        const haramMerchant = randomItem(haramMerchantNames);
+        const txDate = new Date(
+          monthDate.getFullYear(),
+          monthDate.getMonth(),
+          Math.floor(Math.random() * 28) + 1,
+          Math.floor(Math.random() * 8) + 18, // 6pm - 2am (nightlife hours)
+          Math.floor(Math.random() * 60)
+        ).getTime();
+        
+        transactionsToCreate.push({
+          userId: args.userId,
+          amount: haramMerchant.amount,
+          type: "expense" as const,
+          description: haramMerchant.description,
+          categoryId: categoryMap["Entertainment"] ?? categoryMap["Other"],
+          merchantName: haramMerchant.name,
+          date: txDate,
+          isRecurring: false,
+          isExcludedFromInsights: false,
+          userCategorized: false,
+          markedAsRegret: Math.random() < 0.3, // 30% regret rate for haram purchases
           createdAt: now,
           updatedAt: now,
         });
@@ -504,12 +565,12 @@ export const seedAll = mutation({
     if (!user) {
       const userId = await ctx.db.insert("users", {
         email: args.email,
-        name: args.name ?? "Demo User",
+        name: args.name ?? "Ahmad Demo",
         age: 28,
-        city: "New York",
-        country: "US",
-        currency: "USD",
-        monthlyIncome: 7000,
+        city: "Kuala Lumpur",
+        country: "MY",
+        currency: "MYR",
+        monthlyIncome: 8000,
         coachingStyle: "gentle",
         activeMode: "normal",
         excludedCategoryIds: [],
@@ -527,6 +588,64 @@ export const seedAll = mutation({
     return {
       message: "User created. Run seedCategories, seedMerchants, seedBenchmarks, and seedTransactions separately.",
       userId: user._id,
+    };
+  },
+});
+
+// Clear and reseed all data for a user (for testing)
+export const reseedMalaysianData = mutation({
+  args: {
+    userId: v.id("users"),
+    months: v.optional(v.number()),
+    transactionsPerMonth: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    // 1. Delete existing transactions for this user
+    const existingTx = await ctx.db
+      .query("transactions")
+      .withIndex("by_user", q => q.eq("userId", args.userId))
+      .collect();
+    
+    for (const tx of existingTx) {
+      await ctx.db.delete(tx._id);
+    }
+    
+    // 2. Delete existing merchants
+    const existingMerchants = await ctx.db.query("merchants").collect();
+    for (const m of existingMerchants) {
+      await ctx.db.delete(m._id);
+    }
+    
+    // 3. Re-seed merchants with Malaysian data
+    const categories = await ctx.db.query("categories").collect();
+    const categoryMap: Record<string, Id<"categories">> = {};
+    for (const cat of categories) {
+      categoryMap[cat.name] = cat._id;
+    }
+    
+    const now = Date.now();
+    for (const merchant of MERCHANTS) {
+      await ctx.db.insert("merchants", {
+        name: merchant.name,
+        normalizedName: merchant.name.toLowerCase().replace(/[^a-z0-9]/g, ""),
+        defaultCategoryId: categoryMap[merchant.category],
+        isSubscription: merchant.isSubscription,
+        createdAt: now,
+      });
+    }
+    
+    // 4. Update user to Malaysian settings
+    await ctx.db.patch(args.userId, {
+      currency: "MYR",
+      country: "MY",
+      city: "Kuala Lumpur",
+    });
+    
+    return { 
+      message: "Data cleared. Now run seedTransactions to generate new Malaysian transactions.",
+      deletedTransactions: existingTx.length,
+      deletedMerchants: existingMerchants.length,
+      newMerchants: MERCHANTS.length,
     };
   },
 });

@@ -237,6 +237,10 @@ export default defineSchema({
     userCategorized: v.boolean(), // did user manually set category?
     markedAsRegret: v.boolean(), // user regretted this purchase
     
+    // Shariah compliance (AI-powered)
+    shariahStatus: v.optional(shariahComplianceStatus), // halal, haram, doubtful, pending_review
+    shariahReason: v.optional(v.string()), // reason for the status
+    
     // Source info
     sourceId: v.optional(v.string()), // external ID if from bank import
     notes: v.optional(v.string()),
@@ -246,6 +250,7 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_user_date", ["userId", "date"])
+    .index("by_shariah_status", ["userId", "shariahStatus"])
     .index("by_user_category", ["userId", "categoryId"])
     .index("by_user_merchant", ["userId", "merchantId"])
     .index("by_merchant_name", ["userId", "merchantName"])

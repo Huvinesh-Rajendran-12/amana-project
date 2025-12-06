@@ -25,8 +25,16 @@ import {
   Wallet,
   AlertCircle,
   Sparkles,
+  CheckCircle2,
+  XCircle,
+  HelpCircle,
+  Clock,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
+
+// Shariah status type
+type ShariahStatus = "halal" | "haram" | "doubtful" | "pending_review";
 
 // Enriched transaction type (backend adds these fields)
 type EnrichedTransaction = {
@@ -39,6 +47,8 @@ type EnrichedTransaction = {
   categoryName?: string;
   categoryColor?: string;
   categoryIcon?: string;
+  shariahStatus?: ShariahStatus;
+  shariahReason?: string;
 };
 
 // Icon mapping for categories
@@ -84,12 +94,57 @@ const formatTime = (timestamp: number) => {
   });
 };
 
+// Shariah status badge component
+const ShariahBadge = ({ status, reason }: { status?: ShariahStatus; reason?: string }) => {
+  if (!status) return null;
+  
+  const config = {
+    halal: { 
+      icon: CheckCircle2, 
+      label: "Halal", 
+      className: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
+    },
+    haram: { 
+      icon: XCircle, 
+      label: "Haram", 
+      className: "bg-red-500/10 text-red-400 border-red-500/20" 
+    },
+    doubtful: { 
+      icon: HelpCircle, 
+      label: "Doubtful", 
+      className: "bg-amber-500/10 text-amber-400 border-amber-500/20" 
+    },
+    pending_review: { 
+      icon: Clock, 
+      label: "Reviewing", 
+      className: "bg-blue-500/10 text-blue-400 border-blue-500/20" 
+    },
+  };
+  
+  const { icon: Icon, label, className } = config[status];
+  
+  return (
+    <div className="group relative">
+      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs border ${className}`}>
+        <Icon className="w-3 h-3" />
+        {label}
+      </span>
+      {reason && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/90 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+          {reason}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function TransactionsPage() {
   const { user, userId, isLoading: userLoading } = useUser();
   const { mode } = useFinanceMode();
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [shariahFilter, setShariahFilter] = useState<ShariahStatus | "all">("all");
 
   // Debounce search
   useEffect(() => {
@@ -116,13 +171,22 @@ export default function TransactionsPage() {
   // Get AI-powered transaction insights
   const { insights: aiInsights, isLoading: insightsLoading } = useTransactionInsights(isIslamic);
 
-  // Use search results if searching, otherwise use full list
+  // Use search results if searching, otherwise use full list (with Shariah filter)
   const transactions = useMemo((): EnrichedTransaction[] => {
+    let txList: EnrichedTransaction[];
     if (debouncedSearch.length > 0 && searchResults) {
-      return searchResults as EnrichedTransaction[];
+      txList = searchResults as EnrichedTransaction[];
+    } else {
+      txList = (transactionsData?.transactions ?? []) as EnrichedTransaction[];
     }
-    return (transactionsData?.transactions ?? []) as EnrichedTransaction[];
-  }, [debouncedSearch, searchResults, transactionsData]);
+    
+    // Apply Shariah filter in Islamic mode
+    if (isIslamic && shariahFilter !== "all") {
+      txList = txList.filter(t => t.shariahStatus === shariahFilter);
+    }
+    
+    return txList;
+  }, [debouncedSearch, searchResults, transactionsData, isIslamic, shariahFilter]);
 
   // Calculate stats
   const totalTransactions = transactions.length;
@@ -130,6 +194,13 @@ export default function TransactionsPage() {
   const expenseCount = transactions.filter((t) => t.type === "expense").length;
   const incomeCount = transactions.filter((t) => t.type === "income").length;
   const regretCount = transactions.filter((t) => t.markedAsRegret).length;
+  
+  // Shariah compliance stats (use unfiltered data)
+  const allTx = (transactionsData?.transactions ?? []) as EnrichedTransaction[];
+  const halalCount = allTx.filter((t) => t.shariahStatus === "halal").length;
+  const haramCount = allTx.filter((t) => t.shariahStatus === "haram").length;
+  const doubtfulCount = allTx.filter((t) => t.shariahStatus === "doubtful").length;
+  const pendingCount = allTx.filter((t) => t.shariahStatus === "pending_review").length;
 
   // Generate AI insights for transactions
   const transactionInsights = useMemo(() => {
@@ -194,19 +265,38 @@ export default function TransactionsPage() {
       }
     }
 
-    // Islamic-specific insights
-    if (isIslamic && transactions.length > 0) {
-      const nonHalalCategories = ["Entertainment", "Subscriptions"];
-      const potentialNonHalal = transactions.filter(
-        (t) => nonHalalCategories.includes(t.categoryName || "")
-      );
-      
-      if (potentialNonHalal.length > 0) {
+    // Islamic-specific insights using AI-powered Shariah compliance
+    if (isIslamic && allTx.length > 0) {
+      if (haramCount > 0) {
+        const haramTotal = allTx
+          .filter((t) => t.shariahStatus === "haram")
+          .reduce((sum, t) => sum + t.amount, 0);
         insights.push({
-          title: "Shariah compliance check",
-          message: `${potentialNonHalal.length} transaction(s) in categories that may need review for Shariah compliance.`,
+          title: `${haramCount} non-compliant transaction${haramCount > 1 ? "s" : ""} detected`,
+          message: `AI detected ${formatCurrency(haramTotal, currency)} in transactions that may not be Shariah-compliant. Consider reviewing these.`,
+          type: "warning",
+          actionLabel: "Review haram",
+        });
+      } else if (doubtfulCount > 0) {
+        insights.push({
+          title: `${doubtfulCount} doubtful transaction${doubtfulCount > 1 ? "s" : ""}`,
+          message: `Some transactions need your review to determine Shariah compliance. Tap to review.`,
           type: "tip",
-          actionLabel: "Review transactions",
+          actionLabel: "Review doubtful",
+        });
+      } else if (halalCount > 0 && haramCount === 0) {
+        insights.push({
+          title: "Alhamdulillah! All spending is halal",
+          message: `All ${halalCount} analyzed transactions are Shariah-compliant. May Allah bless your earnings.`,
+          type: "success",
+        });
+      }
+      
+      if (pendingCount > 0) {
+        insights.push({
+          title: `Analyzing ${pendingCount} transaction${pendingCount > 1 ? "s" : ""}`,
+          message: `AI is checking Shariah compliance for recent transactions. Results will appear shortly.`,
+          type: "info",
         });
       }
     }
@@ -277,6 +367,43 @@ export default function TransactionsPage() {
             </button>
           </div>
         </div>
+
+        {/* Shariah Compliance Filter (Islamic Mode Only) */}
+        {isIslamic && (
+          <div className="flex items-center gap-3">
+            <ShieldCheck className="w-4 h-4 text-sentience-gold" />
+            <span className="text-sm text-white/50">Shariah Status:</span>
+            <div className="flex gap-2 flex-wrap">
+              {[
+                { value: "all", label: "All", count: allTx.length },
+                { value: "halal", label: "Halal", count: halalCount, color: "emerald" },
+                { value: "haram", label: "Haram", count: haramCount, color: "red" },
+                { value: "doubtful", label: "Doubtful", count: doubtfulCount, color: "amber" },
+                { value: "pending_review", label: "Pending", count: pendingCount, color: "blue" },
+              ].map((filter) => (
+                <button
+                  key={filter.value}
+                  onClick={() => setShariahFilter(filter.value as ShariahStatus | "all")}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                    shariahFilter === filter.value
+                      ? filter.value === "all"
+                        ? "bg-sentience-gold/20 text-sentience-gold border border-sentience-gold/30"
+                        : filter.color === "emerald"
+                          ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                          : filter.color === "red"
+                            ? "bg-red-500/20 text-red-400 border border-red-500/30"
+                            : filter.color === "amber"
+                              ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                              : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      : "bg-white/5 text-white/50 border border-white/10 hover:bg-white/10"
+                  }`}
+                >
+                  {filter.label} ({filter.count})
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -351,6 +478,11 @@ export default function TransactionsPage() {
                   <th className="text-left text-xs font-light text-white/40 uppercase tracking-wider px-6 py-4">
                     Type
                   </th>
+                  {isIslamic && (
+                    <th className="text-left text-xs font-light text-white/40 uppercase tracking-wider px-6 py-4">
+                      Shariah
+                    </th>
+                  )}
                   <th className="text-right text-xs font-light text-white/40 uppercase tracking-wider px-6 py-4">
                     Amount
                   </th>
@@ -420,6 +552,11 @@ export default function TransactionsPage() {
                             {tx.type.charAt(0).toUpperCase() + tx.type.slice(1)}
                           </span>
                         </td>
+                        {isIslamic && (
+                          <td className="px-6 py-4">
+                            <ShariahBadge status={tx.shariahStatus} reason={tx.shariahReason} />
+                          </td>
+                        )}
                         <td className="px-6 py-4 text-right">
                           <span
                             className={`font-mono ${
@@ -434,9 +571,11 @@ export default function TransactionsPage() {
                   })
                 ) : (
                   <tr>
-                    <td colSpan={5} className="px-6 py-12 text-center text-white/40">
+                    <td colSpan={isIslamic ? 6 : 5} className="px-6 py-12 text-center text-white/40">
                       {debouncedSearch ? (
                         <>No transactions found for &quot;{debouncedSearch}&quot;</>
+                      ) : shariahFilter !== "all" ? (
+                        <>No transactions with {shariahFilter.replace("_", " ")} status</>
                       ) : (
                         <>No transactions yet. Add some to get started!</>
                       )}

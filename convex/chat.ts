@@ -164,9 +164,9 @@ Last 30 Days Summary:
 - Impulse Purchases: ${data.summary.regretCount} (RM ${data.summary.regretTotal.toFixed(2)})
 
 Top Spending Categories:
-${data.categories.slice(0, 5).map((c) => `- ${c.name}: RM ${c.amount.toFixed(2)} (${c.percentage.toFixed(0)}%)`).join("\n")}
+${data.categories.slice(0, 5).map((c: { name: string; amount: number; percentage: number }) => `- ${c.name}: RM ${c.amount.toFixed(2)} (${c.percentage.toFixed(0)}%)`).join("\n")}
 
-Recent Merchants: ${data.recentTransactions.map((t) => t.merchantName).slice(0, 5).join(", ")}
+Recent Merchants: ${data.recentTransactions.map((t: { merchantName: string }) => t.merchantName).slice(0, 5).join(", ")}
 
 Generate 3 personalized insights.`;
 

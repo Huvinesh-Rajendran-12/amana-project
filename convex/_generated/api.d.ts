@@ -9,6 +9,7 @@
  */
 
 import type * as auth from "../auth.js";
+import type * as behavioralTriggers from "../behavioralTriggers.js";
 import type * as benchmarks from "../benchmarks.js";
 import type * as cronHelpers from "../cronHelpers.js";
 import type * as crons from "../crons.js";
@@ -28,6 +29,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  behavioralTriggers: typeof behavioralTriggers;
   benchmarks: typeof benchmarks;
   cronHelpers: typeof cronHelpers;
   crons: typeof crons;

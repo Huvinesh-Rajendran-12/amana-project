@@ -256,6 +256,77 @@ export const getAllUsers = internalQuery({
   },
 });
 
+// Detect behavioral triggers for all users
+export const detectBehavioralTriggersForAllUsers = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const users = await ctx.db.query("users").collect();
+    
+    let processed = 0;
+    let totalDetected = 0;
+    
+    for (const user of users) {
+      const now = Date.now();
+      const ninetyDaysAgo = now - 90 * 24 * 60 * 60 * 1000;
+      
+      const transactions = await ctx.db
+        .query("transactions")
+        .withIndex("by_user", (q) => q.eq("userId", user._id))
+        .collect();
+      
+      const recentTxs = transactions
+        .filter(t => t.date >= ninetyDaysAgo && t.type === "expense");
+      
+      if (recentTxs.length < 20) continue;
+      
+      // Import and run detection functions inline
+      // Late-night detection
+      const lateNightHours = [22, 23, 0, 1, 2];
+      const lateNightTxs = recentTxs.filter(tx => {
+        const hour = new Date(tx.date).getHours();
+        return lateNightHours.includes(hour);
+      });
+      
+      if (lateNightTxs.length >= 10) {
+        const lateNightPercentage = (lateNightTxs.length / recentTxs.length) * 100;
+        if (lateNightPercentage >= 15) {
+          const totalLateNight = lateNightTxs.reduce((sum, t) => sum + t.amount, 0);
+          
+          const existing = await ctx.db
+            .query("behavioralTriggers")
+            .withIndex("by_user_type", (q) => 
+              q.eq("userId", user._id).eq("triggerType", "time_of_day")
+            )
+            .first();
+          
+          if (!existing) {
+            await ctx.db.insert("behavioralTriggers", {
+              userId: user._id,
+              triggerType: "time_of_day",
+              pattern: { hourStart: 22, hourEnd: 2 },
+              occurrences: lateNightTxs.length,
+              totalAmount: totalLateNight,
+              avgPerOccurrence: totalLateNight / lateNightTxs.length,
+              lastOccurrence: lateNightTxs[lateNightTxs.length - 1]?.date ?? now,
+              severity: lateNightPercentage > 30 ? "high" : lateNightPercentage > 20 ? "medium" : "low",
+              isActive: true,
+              isAcknowledged: false,
+              nudgeEnabled: false,
+              createdAt: now,
+              updatedAt: now,
+            });
+            totalDetected++;
+          }
+        }
+      }
+      
+      processed++;
+    }
+    
+    return { usersProcessed: processed, triggersDetected: totalDetected };
+  },
+});
+
 // Clean up old dismissed insights
 export const cleanupOldInsights = internalMutation({
   args: {},

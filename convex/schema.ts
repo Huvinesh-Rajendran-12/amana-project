@@ -252,6 +252,82 @@ export default defineSchema({
     .index("by_segment", ["categoryId", "ageGroup", "incomeRange", "country"])
     .index("by_month", ["month"]),
 
+  // Behavioral triggers - detected spending patterns
+  behavioralTriggers: defineTable({
+    userId: v.id("users"),
+    
+    // Trigger type
+    triggerType: v.union(
+      v.literal("time_of_day"),      // Late-night spending
+      v.literal("day_of_week"),      // Weekend splurges
+      v.literal("payday_effect"),    // Post-paycheck spending spree
+      v.literal("stress_spending"),  // Multiple purchases in short time
+      v.literal("category_binge"),   // Repeated spending in same category
+      v.literal("merchant_habit"),   // Frequent visits to same merchant
+      v.literal("end_of_month"),     // Frugal or splurge at month end
+      v.literal("emotional_pattern") // Detected emotional spending
+    ),
+    
+    // Pattern details
+    pattern: v.object({
+      // Time patterns
+      hourStart: v.optional(v.number()),    // 0-23
+      hourEnd: v.optional(v.number()),
+      daysOfWeek: v.optional(v.array(v.number())), // 0=Sun, 6=Sat
+      dayOfMonth: v.optional(v.number()),   // 1-31 (for payday)
+      
+      // Spending patterns
+      categoryId: v.optional(v.id("categories")),
+      merchantName: v.optional(v.string()),
+      
+      // Thresholds
+      avgAmount: v.optional(v.number()),
+      frequency: v.optional(v.number()),    // times per period
+      periodDays: v.optional(v.number()),   // period length
+    }),
+    
+    // Statistics
+    occurrences: v.number(),           // How many times detected
+    totalAmount: v.number(),           // Total spent during trigger
+    avgPerOccurrence: v.number(),
+    lastOccurrence: v.number(),
+    
+    // Severity and status
+    severity: v.union(v.literal("low"), v.literal("medium"), v.literal("high")),
+    isActive: v.boolean(),             // Still occurring?
+    isAcknowledged: v.boolean(),       // User has seen this
+    
+    // User preferences for this trigger
+    nudgeEnabled: v.boolean(),
+    nudgeMessage: v.optional(v.string()),
+    nudgeTime: v.optional(v.number()), // When to send nudge (hour)
+    
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_user_type", ["userId", "triggerType"])
+    .index("by_user_active", ["userId", "isActive"]),
+
+  // Nudge history - when we sent nudges and if they helped
+  nudgeHistory: defineTable({
+    userId: v.id("users"),
+    triggerId: v.id("behavioralTriggers"),
+    
+    // Nudge details
+    message: v.string(),
+    sentAt: v.number(),
+    
+    // Outcome tracking
+    wasOpened: v.boolean(),
+    spendingAfter: v.optional(v.number()),  // Did they still spend?
+    wasEffective: v.optional(v.boolean()),  // Did it prevent spending?
+    
+    createdAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_trigger", ["triggerId"]),
+
   // SpendingModes table - mode configurations and history
   spendingModes: defineTable({
     userId: v.id("users"),

@@ -3,6 +3,10 @@
 import { useState, useEffect } from "react";
 import DashboardHeader from "@/components/client/DashboardHeader";
 import { useFinanceMode } from "@/context/FinanceModeContext";
+import { useUser } from "@/context/UserContext";
+import { useDashboardSummary } from "@/hooks/useDashboard";
+import { useSpendingByCategory } from "@/hooks/useTransactions";
+import { useInsightsList } from "@/hooks/useInsights";
 import {
   Wallet,
   CreditCard,
@@ -12,62 +16,55 @@ import {
   ArrowDownRight,
   Brain,
   Sparkles,
+  Loader2,
 } from "lucide-react";
 
-// AI Suggestions
-const suggestions = [
+// Format currency
+const formatCurrency = (amount: number, currency: string = "USD") => {
+  const symbol = currency === "MYR" ? "RM " : "$";
+  return `${symbol}${Math.abs(amount).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+};
+
+// Fallback suggestions when no insights
+const fallbackSuggestions = [
   {
-    title: "Reduce Dining Expenses",
-    description:
-      "You've spent 78% of your dining budget. Consider cooking at home more to stay within limits.",
+    title: "Welcome to Lumina!",
+    description: "Start tracking your spending to get personalized insights.",
   },
   {
-    title: "Emergency Fund Progress",
-    description:
-      "Great job! You're on track to complete your emergency fund by December. Keep it up!",
+    title: "Set Up Your Goals",
+    description: "Create savings goals to help you stay on track financially.",
   },
   {
-    title: "Investment Opportunity",
-    description:
-      "Based on your savings rate, you could increase your monthly investment by $200.",
+    title: "Connect Your Accounts",
+    description: "Import transactions to get a complete picture of your finances.",
   },
 ];
 
-const islamicSuggestions = [
+const islamicFallbackSuggestions = [
   {
-    title: "Zakat Reminder",
-    description:
-      "Based on your savings, your estimated Zakat this year is RM3,571. Consider setting aside monthly.",
+    title: "Bismillah!",
+    description: "Welcome to your Shariah-compliant financial dashboard.",
   },
   {
-    title: "Tabung Haji Progress",
-    description:
-      "MasyaAllah! You're 63% towards your Hajj savings goal. Maintain RM1,000/month to reach target.",
+    title: "Zakat Tracker",
+    description: "We'll help you calculate and track your Zakat obligations.",
   },
   {
-    title: "Halal Investment",
-    description:
-      "Your portfolio is 100% Shariah-compliant. Consider diversifying into Sukuk for stable returns.",
+    title: "Hajj Savings",
+    description: "Start saving for your pilgrimage with our guided savings plan.",
   },
-];
-
-const spendingCategories = [
-  { name: "Housing", amount: 2400, budget: 2400, color: "#8b5cf6" },
-  { name: "Groceries", amount: 680, budget: 800, color: "#06b6d4" },
-  { name: "Dining", amount: 390, budget: 500, color: "#f59e0b" },
-  { name: "Transport", amount: 245, budget: 400, color: "#10b981" },
-];
-
-const islamicSpendingCategories = [
-  { name: "Housing (BBA)", amount: 2400, budget: 2400, color: "#d4a853" },
-  { name: "Halal Groceries", amount: 680, budget: 800, color: "#10b981" },
-  { name: "Zakat & Sadaqah", amount: 390, budget: 500, color: "#d4a853" },
-  { name: "Tabung Haji", amount: 500, budget: 1000, color: "#d4a853" },
 ];
 
 export default function DashboardPage() {
   const { mode } = useFinanceMode();
+  const { user, userId, isLoading: userLoading, isSeeding, seedDemoData } = useUser();
   const [mounted, setMounted] = useState(false);
+
+  // Fetch data from Convex
+  const dashboardSummary = useDashboardSummary();
+  const spendingByCategory = useSpendingByCategory(1);
+  const insights = useInsightsList({ limit: 3 });
 
   useEffect(() => {
     setMounted(true);
@@ -75,14 +72,92 @@ export default function DashboardPage() {
 
   // Default to conventional during SSR to prevent hydration mismatch
   const isIslamic = mounted ? mode === "islamic" : false;
-
-  const categories = isIslamic ? islamicSpendingCategories : spendingCategories;
   const accentColor = isIslamic ? "text-sentience-gold" : "text-violet-400";
+
+  // Show seeding prompt if no user
+  if (mounted && !userLoading && !userId) {
+    return (
+      <div className="text-cream min-h-[60vh] flex items-center justify-center">
+        <div className="text-center space-y-6 max-w-md mx-auto p-8">
+          <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center ${isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"}`}>
+            <Brain className={`w-8 h-8 ${accentColor}`} />
+          </div>
+          <h2 className="text-2xl font-light">Welcome to Lumina</h2>
+          <p className="text-cream/50">
+            Let&apos;s set up your demo account with sample financial data to explore all features.
+          </p>
+          <button
+            onClick={seedDemoData}
+            disabled={isSeeding}
+            className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 mx-auto ${
+              isIslamic
+                ? "bg-sentience-gold/10 border border-sentience-gold/20 text-sentience-gold hover:bg-sentience-gold/15"
+                : "bg-violet-500/10 border border-violet-500/20 text-violet-400 hover:bg-violet-500/15"
+            } disabled:opacity-50`}
+          >
+            {isSeeding ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Setting up...
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-4 h-4" />
+                Create Demo Account
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Loading state
+  if (!mounted || userLoading || (userId && dashboardSummary === undefined)) {
+    return (
+      <div className="text-cream min-h-[60vh] flex items-center justify-center">
+        <Loader2 className={`w-8 h-8 animate-spin ${accentColor}`} />
+      </div>
+    );
+  }
+
+  // Prepare display data
+  const userName = user?.name || dashboardSummary?.user?.name || "Guest";
+  const currency = user?.currency || dashboardSummary?.user?.currency || "USD";
+
+  // Stats from real data
+  const monthSpending = dashboardSummary?.spending?.month ?? 0;
+  const todaySpending = dashboardSummary?.spending?.today ?? 0;
+  const weekSpending = dashboardSummary?.spending?.week ?? 0;
+
+  // Calculate savings (mock for now - would need income data)
+  const estimatedIncome = user?.monthlyIncome ?? 7000;
+  const savings = estimatedIncome - monthSpending;
+  const savingsRate = estimatedIncome > 0 ? ((savings / estimatedIncome) * 100).toFixed(1) : "0";
+
+  // Spending categories from real data
+  const categories = spendingByCategory?.categories ?? [];
+  const topCategories = categories.slice(0, 4).map((cat) => ({
+    name: cat.categoryName,
+    amount: cat.total,
+    budget: cat.total * 1.2, // Estimate budget as 120% of current spending
+    color: cat.categoryColor,
+  }));
+
+  // Use real insights or fallbacks
+  const displayInsights = insights && insights.length > 0
+    ? insights.map((insight) => ({
+        title: insight.title,
+        description: insight.message,
+      }))
+    : isIslamic
+      ? islamicFallbackSuggestions
+      : fallbackSuggestions;
 
   return (
     <div className="text-cream">
       <DashboardHeader
-        title="Welcome back, Firdaus"
+        title={`Welcome back, ${userName}`}
         subtitle="Here's your financial overview"
       />
 
@@ -91,33 +166,33 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
             title="Available Balance"
-            value="$12,847.32"
-            change="+2.4%"
-            trend="up"
+            value={formatCurrency(savings, currency)}
+            change={`${Number(savingsRate) > 0 ? "+" : ""}${savingsRate}%`}
+            trend={Number(savingsRate) > 0 ? "up" : Number(savingsRate) < 0 ? "down" : undefined}
             icon={<Wallet className="w-5 h-5" />}
             isIslamic={isIslamic}
           />
           <StatCard
             title="Monthly Spending"
-            value="$3,895.43"
-            change="-12.3%"
-            trend="down"
+            value={formatCurrency(monthSpending, currency)}
+            change={weekSpending > 0 ? `${formatCurrency(weekSpending, currency)} this week` : undefined}
+            subtitle={weekSpending > 0 ? undefined : "This month"}
             icon={<CreditCard className="w-5 h-5" />}
             isIslamic={isIslamic}
           />
           <StatCard
-            title="Blocked This Month"
-            value="$4,240.00"
-            subtitle="3 transactions"
+            title="Today's Spending"
+            value={formatCurrency(todaySpending, currency)}
+            subtitle={todaySpending === 0 ? "No spending yet" : "Spent today"}
             icon={<Shield className="w-5 h-5" />}
             highlight
             isIslamic={isIslamic}
           />
           <StatCard
-            title={isIslamic ? "Tabung Haji" : "Vault Balance"}
-            value="$8,432.00"
-            change={isIslamic ? "+4.1% Hibah" : "+5.2% APY"}
-            trend="up"
+            title={isIslamic ? "Tabung Haji" : "Savings Rate"}
+            value={isIslamic ? formatCurrency(savings * 0.3, currency) : `${savingsRate}%`}
+            change={isIslamic ? "+4.1% Hibah" : savings > 0 ? "On track" : "Needs attention"}
+            trend={savings > 0 ? "up" : "down"}
             icon={<TrendingUp className="w-5 h-5" />}
             isIslamic={isIslamic}
           />
@@ -137,30 +212,28 @@ export default function DashboardPage() {
             <div
               className={`border rounded-xl p-6 space-y-4 ${isIslamic ? "bg-sentience-gold/5 border-sentience-gold/10" : "bg-violet-500/5 border-violet-500/10"}`}
             >
-              {(isIslamic ? islamicSuggestions : suggestions).map(
-                (suggestion, i) => (
+              {displayInsights.map((suggestion, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-4 p-4 bg-black/20 rounded-lg"
+                >
                   <div
-                    key={i}
-                    className="flex items-start gap-4 p-4 bg-black/20 rounded-lg"
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"}`}
                   >
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"}`}
-                    >
-                      <span className={`text-sm font-medium ${accentColor}`}>
-                        {i + 1}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="text-cream font-light mb-1">
-                        {suggestion.title}
-                      </h4>
-                      <p className="text-sm text-cream/50">
-                        {suggestion.description}
-                      </p>
-                    </div>
+                    <span className={`text-sm font-medium ${accentColor}`}>
+                      {i + 1}
+                    </span>
                   </div>
-                )
-              )}
+                  <div>
+                    <h4 className="text-cream font-light mb-1">
+                      {suggestion.title}
+                    </h4>
+                    <p className="text-sm text-cream/50">
+                      {suggestion.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -172,44 +245,51 @@ export default function DashboardPage() {
             </h2>
 
             <div className="bg-cream/2 border border-cream/5 rounded-xl p-6 space-y-6">
-              {categories.map((category) => (
-                <div key={category.name} className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-cream/60">{category.name}</span>
-                    <span className="font-mono text-cream">
-                      ${category.amount.toLocaleString()}
-                      <span className="text-cream/30">
-                        {" "}
-                        / ${category.budget.toLocaleString()}
+              {topCategories.length > 0 ? (
+                topCategories.map((category) => (
+                  <div key={category.name} className="space-y-2">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-cream/60">{category.name}</span>
+                      <span className="font-mono text-cream">
+                        {formatCurrency(category.amount, currency)}
+                        <span className="text-cream/30">
+                          {" "}
+                          / {formatCurrency(category.budget, currency)}
+                        </span>
                       </span>
+                    </div>
+                    <div className="h-1.5 bg-cream/5 rounded-full overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${Math.min((category.amount / category.budget) * 100, 100)}%`,
+                          backgroundColor: category.color,
+                          opacity: category.amount > category.budget ? 1 : 0.7,
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8 text-cream/40">
+                  <p>No spending data yet</p>
+                  <p className="text-sm mt-1">Add transactions to see breakdown</p>
+                </div>
+              )}
+
+              {topCategories.length > 0 && (
+                <div className="pt-4 border-t border-cream/5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-cream/60 text-sm">Total Spent</span>
+                    <span className="text-lg font-light font-mono text-cream">
+                      {formatCurrency(spendingByCategory?.totalSpent ?? 0, currency)}
                     </span>
                   </div>
-                  <div className="h-1.5 bg-cream/5 rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full transition-all duration-500"
-                      style={{
-                        width: `${Math.min((category.amount / category.budget) * 100, 100)}%`,
-                        backgroundColor: category.color,
-                        opacity: category.amount > category.budget ? 1 : 0.7,
-                      }}
-                    />
-                  </div>
                 </div>
-              ))}
-
-              <div className="pt-4 border-t border-cream/5">
-                <div className="flex items-center justify-between">
-                  <span className="text-cream/60 text-sm">Total Spent</span>
-                  <span className="text-lg font-light font-mono text-cream">
-                    $3,715{" "}
-                    <span className="text-cream/30 text-sm">/ $4,100</span>
-                  </span>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -255,7 +335,7 @@ function StatCard({
         >
           {icon}
         </div>
-        {change && (
+        {change && trend && (
           <div
             className={`flex items-center gap-1 text-xs ${
               trend === "up" ? "text-emerald-400" : "text-red-400"
@@ -268,6 +348,9 @@ function StatCard({
             )}
             {change}
           </div>
+        )}
+        {change && !trend && (
+          <div className="text-xs text-cream/40">{change}</div>
         )}
       </div>
       <div className="text-2xl font-light mb-1 font-mono text-cream">

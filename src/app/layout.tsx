@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { FinanceModeProvider } from "@/context/FinanceModeContext";
+import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
+import { UserProvider } from "@/context/UserContext";
 
 export const metadata: Metadata = {
   title: "Lumina | Intelligent Banking",
@@ -36,7 +38,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="mt-12 min-h-screen bg-black text-white antialiased selection:bg-violet-500/30">
-        <FinanceModeProvider>{children}</FinanceModeProvider>
+        <ConvexClientProvider>
+          <UserProvider>
+            <FinanceModeProvider>{children}</FinanceModeProvider>
+          </UserProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );

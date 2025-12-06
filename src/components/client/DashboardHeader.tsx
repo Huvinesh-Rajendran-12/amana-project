@@ -4,6 +4,9 @@ import { Bell, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useFinanceMode } from "@/context/FinanceModeContext";
+import { useUser } from "@/context/UserContext";
+import { useUnreadInsightsCount } from "@/hooks/useInsights";
+import SpendingModeSelector from "./SpendingModeSelector";
 import {
   Moon,
   Percent,
@@ -35,12 +38,22 @@ export default function DashboardHeader({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { mode } = useFinanceMode();
+  const { user, userId } = useUser();
+  const unreadCount = useUnreadInsightsCount();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const isIslamic = mounted && mode === "islamic";
+  const userInitials = user?.name
+    ? user.name
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2)
+    : "LU";
 
   return (
     <>
@@ -74,12 +87,34 @@ export default function DashboardHeader({
 
           {/* Actions */}
           <div className="flex items-center gap-4">
+            {/* Spending Mode Selector */}
+            {userId && (
+              <div className="hidden sm:block">
+                <SpendingModeSelector />
+              </div>
+            )}
+
+            {/* Notifications */}
             <button className="relative p-2 text-white/60 hover:text-white transition-colors">
               <Bell className="w-5 h-5" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-violet-500/60 rounded-full" />
+              {unreadCount && unreadCount.count > 0 && (
+                <span
+                  className={`absolute top-1 right-1 min-w-[8px] h-2 rounded-full ${
+                    isIslamic ? "bg-sentience-gold/60" : "bg-violet-500/60"
+                  }`}
+                />
+              )}
             </button>
-            <div className="w-8 h-8 rounded-full bg-linear-to-br from-violet-500 to-cyan-500 flex items-center justify-center text-xs font-medium text-white">
-              AV
+
+            {/* User Avatar */}
+            <div
+              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium text-white ${
+                isIslamic
+                  ? "bg-linear-to-br from-sentience-gold to-amber-600"
+                  : "bg-linear-to-br from-violet-500 to-cyan-500"
+              }`}
+            >
+              {userInitials}
             </div>
           </div>
         </div>

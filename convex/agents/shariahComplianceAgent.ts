@@ -14,7 +14,7 @@ import {
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
-  apiKey: process.env.CLAUDE_API_KEY,
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 const HARAM_KEYWORDS: Record<string, string[]> = {

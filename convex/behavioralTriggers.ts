@@ -852,7 +852,7 @@ export const generateInsightMessage = query({
       payday_effect: {
         gentle: `I noticed you spend quite a bit right after payday. Totally normal! Maybe we could spread it out a little?`,
         brutal: `You burn through your paycheck like it's on fire. First 5 days = gone.`,
-        nerdy: `${((trigger.totalAmount / trigger.occurrences) * 30 / trigger.totalAmount * 100).toFixed(0)}% of monthly spending occurs within 5 days of payday (day ${trigger.pattern.dayOfMonth}). Expected: 16%.`,
+        nerdy: `Post-payday spending analysis: ${trigger.occurrences} pay cycles tracked, averaging $${trigger.avgPerOccurrence.toFixed(0)} spent within 5 days of payday (day ${trigger.pattern.dayOfMonth}). Total: $${trigger.totalAmount.toFixed(0)}. Optimal distribution: 16% of monthly spend in first 5 days.`,
         meme: `Paycheck hits: 💰 // 5 days later: 🪹 Every. Single. Time. 😩`,
       },
       stress_spending: {

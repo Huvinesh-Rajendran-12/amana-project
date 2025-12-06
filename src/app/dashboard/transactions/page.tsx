@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useMemo } from "react";
 import DashboardHeader from "@/components/client/DashboardHeader";
+import ContextualInsight from "@/components/client/ContextualInsight";
 import { useUser } from "@/context/UserContext";
 import { useFinanceMode } from "@/context/FinanceModeContext";
-import { useTransactionsList, useSearchTransactions, useSpendingSummary } from "@/hooks/useTransactions";
+import { useTransactionsList, useSearchTransactions, useSpendingSummary, useSpendingByCategory } from "@/hooks/useTransactions";
 import {
   ShoppingBag,
   Car,
@@ -22,6 +23,7 @@ import {
   TrendingUp,
   Wallet,
   AlertCircle,
+  Sparkles,
 } from "lucide-react";
 
 // Icon mapping for categories
@@ -90,9 +92,11 @@ export default function TransactionsPage() {
   const transactionsData = useTransactionsList({ limit: 50 });
   const searchResults = useSearchTransactions(debouncedSearch);
   const spendingSummary = useSpendingSummary(1);
+  const spendingByCategory = useSpendingByCategory(1);
 
   const isIslamic = mounted ? mode === "islamic" : false;
   const currency = user?.currency || "USD";
+  const accentColor = isIslamic ? "text-sentience-gold" : "text-violet-400";
 
   // Use search results if searching, otherwise use full list
   const transactions = useMemo(() => {
@@ -107,6 +111,101 @@ export default function TransactionsPage() {
   const totalSpent = spendingSummary?.totalExpenses ?? 0;
   const expenseCount = transactions.filter((t) => t.type === "expense").length;
   const incomeCount = transactions.filter((t) => t.type === "income").length;
+  const regretCount = transactions.filter((t) => t.markedAsRegret).length;
+
+  // Generate AI insights for transactions
+  const transactionInsights = useMemo(() => {
+    const insights: Array<{
+      title: string;
+      message: string;
+      type: "info" | "success" | "warning" | "tip";
+      actionLabel?: string;
+    }> = [];
+
+    // Spending pattern analysis
+    if (spendingByCategory?.categories && spendingByCategory.categories.length > 0) {
+      const topCategory = spendingByCategory.categories[0];
+      const topPercentage = topCategory.percentage;
+      
+      if (topPercentage > 40) {
+        insights.push({
+          title: `${topCategory.categoryName} dominates your spending`,
+          message: `${topPercentage}% of your spending goes to ${topCategory.categoryName}. Consider if this aligns with your financial goals.`,
+          type: "warning",
+          actionLabel: "Review spending",
+        });
+      } else {
+        insights.push({
+          title: "Balanced spending pattern",
+          message: `Your spending is well-distributed across categories, with ${topCategory.categoryName} being the highest at ${topPercentage}%.`,
+          type: "success",
+        });
+      }
+    }
+
+    // Regret analysis
+    if (regretCount > 0) {
+      const regretTotal = transactions
+        .filter((t) => t.markedAsRegret)
+        .reduce((sum, t) => sum + t.amount, 0);
+      
+      insights.push({
+        title: `${regretCount} impulse purchase${regretCount > 1 ? "s" : ""} detected`,
+        message: `You've marked ${formatCurrency(regretTotal, currency)} worth of purchases as impulse buys. That's money you could redirect to savings.`,
+        type: "warning",
+        actionLabel: "Set spending limit",
+      });
+    }
+
+    // Savings rate insight
+    if (spendingSummary) {
+      const savingsRate = spendingSummary.savingsRate;
+      if (savingsRate >= 25) {
+        insights.push({
+          title: "Excellent savings discipline",
+          message: `With a ${savingsRate.toFixed(0)}% savings rate, you're building wealth faster than most. Keep it up!`,
+          type: "success",
+        });
+      } else if (savingsRate < 10 && savingsRate >= 0) {
+        insights.push({
+          title: "Savings rate needs attention",
+          message: `Your ${savingsRate.toFixed(0)}% savings rate is below the recommended 20%. Look for expenses you can reduce.`,
+          type: "warning",
+          actionLabel: "Find savings",
+        });
+      }
+    }
+
+    // Islamic-specific insights
+    if (isIslamic && transactions.length > 0) {
+      const nonHalalCategories = ["Entertainment", "Subscriptions"];
+      const potentialNonHalal = transactions.filter(
+        (t) => nonHalalCategories.includes(t.categoryName || "")
+      );
+      
+      if (potentialNonHalal.length > 0) {
+        insights.push({
+          title: "Shariah compliance check",
+          message: `${potentialNonHalal.length} transaction(s) in categories that may need review for Shariah compliance.`,
+          type: "tip",
+          actionLabel: "Review transactions",
+        });
+      }
+    }
+
+    // Default insight if no others
+    if (insights.length === 0) {
+      insights.push({
+        title: transactions.length > 0 ? "Tracking your spending" : "Start tracking",
+        message: transactions.length > 0 
+          ? "I'm analyzing your transactions to provide personalized insights. Keep adding transactions for better recommendations."
+          : "Add your first transaction to get AI-powered spending insights and recommendations.",
+        type: "info",
+      });
+    }
+
+    return insights.slice(0, 3);
+  }, [transactions, spendingByCategory, spendingSummary, regretCount, currency, isIslamic]);
 
   // Loading state
   if (!mounted || userLoading || (userId && transactionsData === undefined)) {
@@ -181,11 +280,38 @@ export default function TransactionsPage() {
               {expenseCount}
             </p>
           </div>
-          <div className="p-4 bg-violet-500/5 border border-violet-500/10 rounded-xl">
-            <p className="text-xs text-violet-400/70 mb-1">Income</p>
-            <p className="text-2xl font-light font-mono text-violet-400">
+          <div className={`p-4 rounded-xl ${
+            isIslamic 
+              ? "bg-sentience-gold/5 border border-sentience-gold/10" 
+              : "bg-violet-500/5 border border-violet-500/10"
+          }`}>
+            <p className={`text-xs mb-1 ${isIslamic ? "text-sentience-gold/70" : "text-violet-400/70"}`}>Income</p>
+            <p className={`text-2xl font-light font-mono ${accentColor}`}>
               {incomeCount}
             </p>
+          </div>
+        </div>
+
+        {/* AI Analysis Section */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <Sparkles className={`w-4 h-4 ${accentColor}`} />
+            <h3 className="text-sm font-light text-white/60">
+              {isIslamic ? "Barakah Analysis" : "AI Analysis"}
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {transactionInsights.map((insight, i) => (
+              <ContextualInsight
+                key={i}
+                title={insight.title}
+                message={insight.message}
+                type={insight.type}
+                actionLabel={insight.actionLabel}
+                isIslamic={isIslamic}
+                compact
+              />
+            ))}
           </div>
         </div>
 

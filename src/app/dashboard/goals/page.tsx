@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import DashboardHeader from "@/components/client/DashboardHeader";
+import ContextualInsight from "@/components/client/ContextualInsight";
 import { useFinanceMode } from "@/context/FinanceModeContext";
 import { useUser } from "@/context/UserContext";
 import { useGoalsSummary } from "@/hooks/useGoals";
@@ -194,40 +195,66 @@ export default function GoalsPage() {
 
   // Generate suggestions based on real data
   const suggestions = useMemo(() => {
-    const baseSuggestions = [];
+    const baseSuggestions: Array<{
+      title: string;
+      message: string;
+      type: "info" | "success" | "warning" | "tip";
+      actionLabel?: string;
+    }> = [];
 
     if (goalsSummary.savingsRate < 20) {
-      baseSuggestions.push(
-        "Your savings rate is below 20%. Consider reducing discretionary spending to reach your goals faster."
-      );
+      baseSuggestions.push({
+        title: "Low savings rate detected",
+        message: "Your savings rate is below 20%. Consider reducing discretionary spending to reach your goals faster.",
+        type: "warning",
+        actionLabel: "View spending",
+      });
     } else if (goalsSummary.savingsRate >= 30) {
-      baseSuggestions.push(
-        `Excellent savings rate of ${goalsSummary.savingsRate.toFixed(0)}%! You're on track to exceed your goals.`
-      );
+      baseSuggestions.push({
+        title: "Excellent savings discipline",
+        message: `Savings rate of ${goalsSummary.savingsRate.toFixed(0)}%! You're on track to exceed your goals.`,
+        type: "success",
+      });
     }
 
     const behindGoals = goals.filter((g) => g.status === "behind");
     if (behindGoals.length > 0) {
-      baseSuggestions.push(
-        `You're behind on ${behindGoals.length} goal${behindGoals.length > 1 ? "s" : ""}. Consider adjusting your monthly contributions.`
-      );
+      baseSuggestions.push({
+        title: `${behindGoals.length} goal${behindGoals.length > 1 ? "s" : ""} need${behindGoals.length === 1 ? "s" : ""} attention`,
+        message: `You're behind on ${behindGoals.map(g => g.name).join(", ")}. Consider adjusting your monthly contributions.`,
+        type: "warning",
+        actionLabel: "Adjust contributions",
+      });
     }
 
     if (isIslamic) {
       const hajjGoal = goals.find((g) => g.id === "hajj");
       if (hajjGoal) {
         const hajjProgress = (hajjGoal.current / hajjGoal.target) * 100;
-        baseSuggestions.push(
-          `MasyaAllah! Your Hajj savings are at ${hajjProgress.toFixed(0)}%. May Allah make your journey easy, insyaAllah.`
-        );
+        baseSuggestions.push({
+          title: "Hajj savings progress",
+          message: `MasyaAllah! Your Hajj savings are at ${hajjProgress.toFixed(0)}%. May Allah make your journey easy, insyaAllah.`,
+          type: hajjProgress >= 50 ? "success" : "info",
+        });
       }
+      
+      // Zakat reminder
+      baseSuggestions.push({
+        title: "Zakat obligation reminder",
+        message: "Remember to calculate Zakat on your savings when they exceed nisab for one lunar year.",
+        type: "tip",
+        actionLabel: "Calculate Zakat",
+      });
     } else {
-      baseSuggestions.push(
-        "Based on your income pattern, automating contributions can boost your savings rate."
-      );
+      baseSuggestions.push({
+        title: "Automate your savings",
+        message: "Based on your income pattern, automating contributions can boost your savings rate by up to 30%.",
+        type: "tip",
+        actionLabel: "Set up automation",
+      });
     }
 
-    return baseSuggestions;
+    return baseSuggestions.slice(0, 3);
   }, [goals, goalsSummary.savingsRate, isIslamic]);
 
   // Loading state
@@ -449,29 +476,23 @@ export default function GoalsPage() {
         </div>
 
         {/* AI Suggestions */}
-        <div
-          className={`border rounded-xl p-6 ${
-            isIslamic
-              ? "bg-sentience-gold/5 border-sentience-gold/10"
-              : "bg-violet-500/5 border-violet-500/10"
-          }`}
-        >
-          <h3 className="text-sm font-light text-white/40 uppercase tracking-wider mb-4 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
             <Sparkles className={`w-4 h-4 ${accentColor}`} />
-            {isIslamic ? "Barakah Suggestions" : "AI Suggestions"}
-          </h3>
-          <div className="space-y-3">
+            <h3 className="text-sm font-light text-white/60">
+              {isIslamic ? "Barakah Coaching" : "AI Coaching"}
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {suggestions.map((suggestion, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 bg-white/2 rounded-lg">
-                <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                    isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"
-                  }`}
-                >
-                  <span className={`text-xs ${accentColor}`}>{i + 1}</span>
-                </div>
-                <p className="text-sm text-white/60">{suggestion}</p>
-              </div>
+              <ContextualInsight
+                key={i}
+                title={suggestion.title}
+                message={suggestion.message}
+                type={suggestion.type}
+                actionLabel={suggestion.actionLabel}
+                isIslamic={isIslamic}
+              />
             ))}
           </div>
         </div>

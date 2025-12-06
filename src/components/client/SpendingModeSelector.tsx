@@ -19,7 +19,7 @@ interface ModeOption {
   id: "normal" | "yolo" | "broke" | "vacation";
   name: string;
   description: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   color: string;
 }
 
@@ -162,7 +162,10 @@ export default function SpendingModeSelector() {
           disabled={isChanging}
           className="flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
         >
-          <activeMode.icon className="w-4 h-4" style={{ color: activeMode.color }} />
+          {(() => {
+            const IconComponent = activeMode.icon;
+            return <IconComponent className="w-4 h-4" style={{ color: activeMode.color }} />;
+          })()}
           <span className="text-sm text-white/70">{activeMode.name}</span>
           {isChanging ? (
             <Loader2 className="w-3 h-3 animate-spin text-white/50" />
@@ -189,7 +192,10 @@ export default function SpendingModeSelector() {
                     className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
                     style={{ backgroundColor: `${mode.color}20` }}
                   >
-                    <mode.icon className="w-4 h-4" style={{ color: mode.color }} />
+                    {(() => {
+                      const IconComponent = mode.icon;
+                      return <IconComponent className="w-4 h-4" style={{ color: mode.color }} />;
+                    })()}
                   </div>
                   <div className="flex-1 text-left">
                     <div className="flex items-center gap-2">

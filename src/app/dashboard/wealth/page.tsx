@@ -33,7 +33,7 @@ interface PortfolioItem {
   name: string;
   value: number;
   return: number;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 export default function WealthPage() {
@@ -290,21 +290,23 @@ export default function WealthPage() {
             {isIslamic ? "Halal Investments" : "Investments"}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {portfolios.map((item) => (
-              <div
-                key={item.name}
-                className="p-5 bg-white/2 border border-white/5 rounded-xl hover:border-white/10 transition-colors"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className={`w-9 h-9 rounded-lg ${
-                      isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"
-                    } flex items-center justify-center`}
-                  >
-                    <item.icon className={`w-4 h-4 ${accentColor}`} />
+            {portfolios.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={item.name}
+                  className="p-5 bg-white/2 border border-white/5 rounded-xl hover:border-white/10 transition-colors"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className={`w-9 h-9 rounded-lg ${
+                        isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10"
+                      } flex items-center justify-center`}
+                    >
+                      <IconComponent className={`w-4 h-4 ${accentColor}`} />
+                    </div>
+                    <span className="text-white/70 text-sm">{item.name}</span>
                   </div>
-                  <span className="text-white/70 text-sm">{item.name}</span>
-                </div>
                 <p className="text-xl font-light text-white mb-1">
                   {formatCurrency(item.value)}
                 </p>
@@ -312,8 +314,9 @@ export default function WealthPage() {
                   <ArrowUpRight className="w-3 h-3" />
                   {item.return}% p.a.
                 </p>
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
 

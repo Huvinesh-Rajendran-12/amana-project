@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, internalMutation } from "./_generated/server";
+import { internal } from "./_generated/api";
 import { Id } from "./_generated/dataModel";
 
 /**
@@ -526,6 +527,352 @@ export const seedAll = mutation({
     return {
       message: "User created. Run seedCategories, seedMerchants, seedBenchmarks, and seedTransactions separately.",
       userId: user._id,
+    };
+  },
+});
+
+// ==================== ISLAMIC FINANCE SEED DATA ====================
+
+/**
+ * Seed Malaysian Zakat authorities (14 states + 3 federal territories)
+ */
+export const seedMalaysianZakatAuthorities = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db.query("zakatAuthorities").first();
+    if (existing) {
+      return { message: "Zakat authorities already seeded" };
+    }
+
+    const authorities = [
+      // States
+      { state: "Johor", name: "Majlis Agama Islam Negeri Johor", shortName: "MAINJ", website: "http://www.zakatjohor.com" },
+      { state: "Kedah", name: "Lembaga Zakat Negeri Kedah", shortName: "LZNK", website: "http://www.zakatkedah.com.my" },
+      { state: "Kelantan", name: "Majlis Agama Islam dan Adat Melayu Kelantan", shortName: "MAIK", website: "http://www.e-zakat.com.my" },
+      { state: "Melaka", name: "Majlis Agama Islam Melaka", shortName: "MAIM", website: "http://www.zakatmelaka.com.my" },
+      { state: "Negeri Sembilan", name: "Majlis Agama Islam Negeri Sembilan", shortName: "MAINS", website: "http://www.mainsns.gov.my" },
+      { state: "Pahang", name: "Majlis Agama Islam dan Adat Melayu Pahang", shortName: "MUIP", website: "http://www.muippahang.gov.my" },
+      { state: "Penang", name: "Majlis Agama Islam Negeri Pulau Pinang", shortName: "MAINPP", website: "http://www.zakatpenang.com" },
+      { state: "Perak", name: "Majlis Agama Islam dan Adat Melayu Perak", shortName: "MAIPk", website: "http://www.zakatperak.com.my" },
+      { state: "Perlis", name: "Majlis Agama Islam dan Adat Istiadat Melayu Perlis", shortName: "MAIPs", website: "http://www.maips.gov.my" },
+      { state: "Sabah", name: "Majlis Ugama Islam Sabah", shortName: "MUIS", website: "http://www.muis.gov.my" },
+      { state: "Sarawak", name: "Majlis Islam Sarawak", shortName: "MIS", website: "http://www.mainsarawak.com" },
+      { state: "Selangor", name: "Lembaga Zakat Selangor", shortName: "LZS", website: "http://www.zakatselangor.com.my" },
+      { state: "Terengganu", name: "Majlis Agama Islam dan Adat Melayu Terengganu", shortName: "MAIDAM", website: "http://www.maidam.gov.my" },
+
+      // Federal Territories
+      { state: "Kuala Lumpur", name: "Pusat Pungutan Zakat", shortName: "PPZ-MAIWP", website: "http://www.zakat.com.my" },
+      { state: "Putrajaya", name: "Pusat Pungutan Zakat", shortName: "PPZ-MAIWP", website: "http://www.zakat.com.my" },
+      { state: "Labuan", name: "Pusat Pungutan Zakat", shortName: "PPZ-MAIWP", website: "http://www.zakat.com.my" },
+
+      // Additional state (Melaka variant)
+      { state: "Malacca", name: "Pusat Zakat Negeri Melaka", shortName: "PZM", website: "http://www.zakatmelaka.com.my" },
+    ];
+
+    for (const auth of authorities) {
+      await ctx.db.insert("zakatAuthorities", {
+        state: auth.state,
+        name: auth.name,
+        shortName: auth.shortName,
+        website: auth.website,
+        acceptsOnlinePayment: true,
+        createdAt: Date.now(),
+      });
+    }
+
+    return { message: "Malaysian Zakat authorities seeded", count: authorities.length };
+  },
+});
+
+/**
+ * Seed sample Islamic rulings for RAG knowledge base
+ */
+export const seedIslamicRulings = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db.query("islamicRulings").first();
+    if (existing) {
+      return { message: "Islamic rulings already seeded" };
+    }
+
+    const rulings = [
+      // Zakat rulings
+      {
+        topic: "zakat",
+        subtopic: "nisab",
+        question: "What is the nisab threshold for Zakat?",
+        ruling: "The nisab for gold is 20 mithqals (approximately 85 grams of pure gold). For silver, it is 200 dirhams (approximately 595 grams of pure silver). When calculating Zakat on cash and wealth, one should use the LOWER value between gold and silver nisab.",
+        evidence: "Hadith: The Prophet (ﷺ) said: 'There is no Sadaqah (Zakat) on less than five awsuq of dates, on less than five camel-heads and on less than five uqiyyah of silver.' (Bukhari 1405)",
+        chapter: 168,
+        tags: ["zakat", "nisab", "gold", "silver", "threshold"],
+      },
+      {
+        topic: "zakat",
+        subtopic: "rate",
+        question: "What is the Zakat rate?",
+        ruling: "The Zakat rate on cash, gold, silver, and trade goods is 2.5% (1/40th) of the total zakatable wealth that has been in one's possession for a full Islamic lunar year (haul).",
+        evidence: "Hadith: 'On silver which reaches the amount of five Uqiyah, one-fortieth is payable.' (Bukhari 1454)",
+        chapter: 169,
+        tags: ["zakat", "rate", "2.5%", "percentage"],
+      },
+      {
+        topic: "zakat",
+        subtopic: "haul",
+        question: "What is the haul requirement for Zakat?",
+        ruling: "Haul refers to the completion of one Islamic lunar year (354 days) during which wealth remains above the nisab threshold. Zakat is only obligatory when wealth has been in one's possession for a full haul.",
+        evidence: "Hadith: 'No Zakat is due on property until a year passes on it.' (Ibn Majah 1792)",
+        chapter: 171,
+        tags: ["zakat", "haul", "lunar year", "354 days"],
+      },
+      {
+        topic: "zakat",
+        subtopic: "recipients",
+        question: "Who are the recipients of Zakat?",
+        ruling: "Allah has specified eight categories of Zakat recipients (Asnaf): 1) The poor (Fuqara), 2) The needy (Masakin), 3) Zakat administrators, 4) Those whose hearts are to be reconciled, 5) Freeing slaves, 6) Those in debt (Gharimin), 7) In the cause of Allah (Fi Sabilillah), 8) The wayfarer (Ibn Sabil).",
+        evidence: "Quran: 'The alms are only for the poor and the needy, and those who collect them, and those whose hearts are to be reconciled...' (At-Tawbah 9:60)",
+        chapter: 173,
+        tags: ["zakat", "recipients", "asnaf", "8 categories"],
+      },
+
+      // Riba rulings
+      {
+        topic: "riba",
+        subtopic: "prohibition",
+        question: "Is interest (riba) prohibited in Islam?",
+        ruling: "Riba (interest/usury) is categorically and absolutely prohibited in Islam. This includes both giving and receiving interest. It is one of the major sins in Islam, and engaging in it is considered waging war against Allah and His Messenger.",
+        evidence: "Quran: 'Those who consume riba cannot stand except as one stands who is being beaten by Satan... Allah has permitted trade and has forbidden riba.' (Al-Baqarah 2:275)",
+        chapter: 183,
+        tags: ["riba", "interest", "usury", "haram", "prohibition"],
+      },
+      {
+        topic: "riba",
+        subtopic: "bank_interest",
+        question: "What should I do with bank interest I receive?",
+        ruling: "If you receive bank interest unintentionally (e.g., from a conventional savings account), you must not use it for personal benefit. Instead, you should purify your wealth by donating that interest money to charity without seeking reward, as it is impermissible wealth.",
+        evidence: "Scholarly consensus: Interest earned must be disposed of through charity without the intention of reward, as it is impure wealth.",
+        chapter: 184,
+        tags: ["riba", "bank interest", "purification", "charity"],
+      },
+
+      // Hajj rulings
+      {
+        topic: "hajj",
+        subtopic: "obligation",
+        question: "Is Hajj obligatory?",
+        ruling: "Hajj is one of the five pillars of Islam and is obligatory once in a lifetime for every adult Muslim who is financially and physically able to undertake the journey. Financial ability means having sufficient funds for the journey, Hajj expenses, and support for dependents during absence.",
+        evidence: "Quran: 'And Hajj to the House is a duty that mankind owes to Allah, for those who can afford the journey.' (Aal-Imran 3:97)",
+        chapter: 179,
+        tags: ["hajj", "pilgrimage", "obligation", "fard"],
+      },
+      {
+        topic: "hajj",
+        subtopic: "savings",
+        question: "Is Zakat due on Hajj savings?",
+        ruling: "If your Hajj savings reach the nisab threshold and remain above it for a full Islamic year (haul), then Zakat is due on that amount at 2.5%. Saving for Hajj does not exempt wealth from Zakat if it meets the nisab criteria.",
+        evidence: "Scholarly consensus: Intention to use wealth for Hajj does not exempt it from Zakat if it meets nisab and haul requirements.",
+        chapter: 180,
+        tags: ["hajj", "zakat", "savings", "nisab"],
+      },
+
+      // Halal/Haram transactions
+      {
+        topic: "transactions",
+        subtopic: "gambling",
+        question: "Is gambling prohibited in Islam?",
+        ruling: "Gambling (maysir) is categorically prohibited in Islam. This includes lotteries, betting, casinos, and any game of chance where money is wagered. It is considered a major sin and from the works of Satan.",
+        evidence: "Quran: 'O you who believe! Intoxicants, gambling, idolatry and divination by arrows are an abomination of Satan's handiwork. So avoid them in order that you may be successful.' (Al-Ma'idah 5:90)",
+        chapter: 182,
+        tags: ["haram", "gambling", "maysir", "lottery", "betting"],
+      },
+      {
+        topic: "transactions",
+        subtopic: "alcohol",
+        question: "Are transactions involving alcohol prohibited?",
+        ruling: "All transactions involving alcohol (khamr) are prohibited, including buying, selling, serving, or transporting it. This prohibition extends to working in establishments that primarily serve alcohol.",
+        evidence: "Hadith: 'Allah has cursed alcohol, the one who drinks it, the one who pours it, the one who sells it, the one who buys it...' (Abu Dawood 3674)",
+        chapter: 183,
+        tags: ["haram", "alcohol", "khamr", "transactions"],
+      },
+    ];
+
+    for (const ruling of rulings) {
+      await ctx.db.insert("islamicRulings", {
+        chapter: ruling.chapter,
+        chapterTitle: ruling.topic,
+        content: ruling.ruling,
+        topics: ruling.tags || [ruling.topic],
+        language: "en",
+        createdAt: Date.now(),
+      });
+    }
+
+    return { message: "Islamic rulings seeded", count: rulings.length };
+  },
+});
+
+/**
+ * Seed Malaysian merchant Shariah status database
+ */
+export const seedMalaysianMerchants = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db.query("merchantShariahStatus").first();
+    if (existing) {
+      return { message: "Malaysian merchants already seeded" };
+    }
+
+    const merchants = [
+      // Halal certified Malaysian merchants
+      { name: "McDonald's Malaysia", status: "halal" as const, certifiedBy: "JAKIM", certificationNumber: "JAKIM-12345" },
+      { name: "KFC Malaysia", status: "halal" as const, certifiedBy: "JAKIM", certificationNumber: "JAKIM-12346" },
+      { name: "Pizza Hut Malaysia", status: "halal" as const, certifiedBy: "JAKIM", certificationNumber: "JAKIM-12347" },
+      { name: "Nando's Malaysia", status: "halal" as const, certifiedBy: "JAKIM", certificationNumber: "JAKIM-12348" },
+      { name: "The Chicken Rice Shop", status: "halal" as const, certifiedBy: "JAKIM", certificationNumber: "JAKIM-12349" },
+      { name: "Secret Recipe", status: "halal" as const, certifiedBy: "JAKIM", certificationNumber: "JAKIM-12350" },
+      { name: "Old Town White Coffee", status: "halal" as const, certifiedBy: "JAKIM", certificationNumber: "JAKIM-12351" },
+
+      // Malaysian banks (halal unless interest detected)
+      { name: "Maybank", status: "doubtful" as const, certifiedBy: null, certificationNumber: null },
+      { name: "CIMB Bank", status: "doubtful" as const, certifiedBy: null, certificationNumber: null },
+      { name: "Bank Islam Malaysia", status: "halal" as const, certifiedBy: "Shariah Board", certificationNumber: "SC-001" },
+      { name: "Bank Muamalat", status: "halal" as const, certifiedBy: "Shariah Board", certificationNumber: "SC-002" },
+      { name: "RHB Bank", status: "doubtful" as const, certifiedBy: null, certificationNumber: null },
+
+      // Known haram establishments
+      { name: "Genting Casino", status: "haram" as const, certifiedBy: null, certificationNumber: null },
+      { name: "Carlsberg", status: "haram" as const, certifiedBy: null, certificationNumber: null },
+      { name: "Heineken", status: "haram" as const, certifiedBy: null, certificationNumber: null },
+      { name: "Sports Toto", status: "haram" as const, certifiedBy: null, certificationNumber: null },
+      { name: "Magnum 4D", status: "haram" as const, certifiedBy: null, certificationNumber: null },
+    ];
+
+    for (const merchant of merchants) {
+      await ctx.db.insert("merchantShariahStatus", {
+        merchantName: merchant.name,
+        normalizedName: merchant.name.toLowerCase().replace(/[^a-z0-9]/g, ""),
+        complianceStatus: merchant.status as "halal" | "haram" | "doubtful" | "pending_review",
+        jakimCertified: merchant.status === "halal",
+        jakimCertNumber: merchant.certificationNumber || undefined,
+        lastReviewedAt: Date.now(),
+        reviewedBy: "system" as const,
+        reviewNotes: merchant.status === "halal" ? "JAKIM certified halal" : merchant.status === "haram" ? "Known non-halal establishment" : "Conventional bank - check for riba",
+        userReportsHalal: 0,
+        userReportsHaram: 0,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      });
+    }
+
+    return { message: "Malaysian merchants seeded", count: merchants.length };
+  },
+});
+
+/**
+ * Seed Tabung Haji packages
+ */
+export const seedTabungHajiPackages = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db.query("tabungHajiPackages").first();
+    if (existing) {
+      return { message: "Tabung Haji packages already seeded" };
+    }
+
+    const currentYear = new Date().getFullYear();
+    const packages = [
+      {
+        year: currentYear,
+        packageName: "Muassasah (Budget)",
+        packageType: "muassasah" as const,
+        cost: 28000, // RM 28,000
+        deposit: 1300,
+        inclusions: ["Flight", "Basic Accommodation", "Meals", "Transportation", "Umrah"],
+        hibahRate: 0.045, // 4.5% average
+        estimatedWaitYears: 5,
+        updatedAt: Date.now(),
+      },
+      {
+        year: currentYear,
+        packageName: "Muassasah Plus (Standard)",
+        packageType: "muassasah" as const,
+        cost: 35000, // RM 35,000
+        deposit: 1300,
+        inclusions: ["Flight", "Standard Accommodation", "Good Meals", "VIP Transportation", "Umrah", "Visa assistance"],
+        hibahRate: 0.045,
+        estimatedWaitYears: 6,
+        updatedAt: Date.now(),
+      },
+      {
+        year: currentYear,
+        packageName: "Qusyaisyiyah (Premium)",
+        packageType: "swasta" as const,
+        cost: 45000, // RM 45,000
+        deposit: 3000,
+        inclusions: ["Flight", "5-star Accommodation", "Premium Meals", "VIP Transportation", "Umrah", "Visa assistance", "Travel insurance"],
+        hibahRate: 0.045,
+        estimatedWaitYears: 2,
+        updatedAt: Date.now(),
+      },
+    ];
+
+    for (const pkg of packages) {
+      await ctx.db.insert("tabungHajiPackages", pkg);
+    }
+
+    return { message: "Tabung Haji packages seeded", count: packages.length };
+  },
+});
+
+/**
+ * Seed current Nisab prices (Malaysian market)
+ */
+export const seedNisabPrices = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const existing = await ctx.db.query("nisabPrices").first();
+    if (existing) {
+      return { message: "Nisab prices already seeded" };
+    }
+
+    // Current approximate Malaysian gold/silver prices
+    // In production, these would be fetched from BNM API
+    const goldPricePerGram = 320; // RM 320 per gram (approximate)
+    const silverPricePerGram = 3.5; // RM 3.50 per gram (approximate)
+
+    const goldNisab = 85; // 85 grams
+    const silverNisab = 595; // 595 grams
+
+    await ctx.db.insert("nisabPrices", {
+      goldPricePerGram,
+      silverPricePerGram,
+      goldNisabValue: goldPricePerGram * goldNisab, // RM 27,200
+      silverNisabValue: silverPricePerGram * silverNisab, // RM 2,082.50
+      source: "BNM_Manual_Seed",
+      date: Date.now(),
+      createdAt: Date.now(),
+    });
+
+    return {
+      message: "Nisab prices seeded",
+      goldNisab: goldPricePerGram * goldNisab,
+      silverNisab: silverPricePerGram * silverNisab,
+    };
+  },
+});
+
+/**
+ * Master seed for Islamic Finance features
+ */
+export const seedIslamicFinance = mutation({
+  args: {},
+  handler: async (ctx): Promise<{
+    message: string;
+  }> => {
+    // Note: Individual seed functions are exposed separately as mutations
+    // Call them individually to seed Islamic finance data
+
+    return {
+      message: "Use seedMalaysianZakatAuthorities, seedIslamicRulings, seedMalaysianMerchants, seedTabungHajiPackages, and seedNisabPrices mutations to seed Islamic finance data",
     };
   },
 });

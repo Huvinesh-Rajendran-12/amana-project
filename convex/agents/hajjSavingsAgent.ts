@@ -1,11 +1,16 @@
 /**
  * HAJJ_SAVINGS_AGENT - Ultra-Simple Prototype
  * Uses system prompt from agentPrompts.ts
+ * Integrated with RAG pipeline for Islamic finance context
  */
 
 import { v } from "convex/values";
 import { internalAction } from "../_generated/server";
 import { AGENT_PROMPTS } from "../lib/agentPrompts";
+import {
+  buildHajjRAGContext,
+  enhanceSystemPromptWithRAGContext,
+} from "../lib/ragPipeline";
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -31,10 +36,20 @@ export const analyzeHajjProgress = internalAction({
       args.monthsRemaining > 0 ? remaining / args.monthsRemaining : 0;
     const onTrack: boolean = args.monthlyContribution >= monthlyNeeded * 0.9;
 
+    // Build RAG context with Hajj guidance
+    const ragContext = buildHajjRAGContext(args.saved, args.goal);
+
+    // Enhance system prompt with RAG knowledge
+    const enhancedSystemPrompt = enhanceSystemPromptWithRAGContext(
+      AGENT_PROMPTS.HAJJ_SAVINGS_AGENT.systemPrompt,
+      "hajj",
+      ragContext
+    );
+
     const response = await client.messages.create({
       model: "claude-3-5-sonnet-20241022",
       max_tokens: 150,
-      system: AGENT_PROMPTS.HAJJ_SAVINGS_AGENT.systemPrompt,
+      system: enhancedSystemPrompt,
       messages: [
         {
           role: "user",
@@ -69,10 +84,16 @@ export const suggestContribution = internalAction({
     const percent: number = args.incomeType === "bonus" ? 0.15 : 0.1;
     const suggested: number = Math.round((args.income * percent) / 10) * 10;
 
+    // Enhance system prompt with Hajj context
+    const enhancedSystemPrompt = enhanceSystemPromptWithRAGContext(
+      AGENT_PROMPTS.HAJJ_SAVINGS_AGENT.systemPrompt,
+      "hajj"
+    );
+
     const response = await client.messages.create({
       model: "claude-3-5-sonnet-20241022",
       max_tokens: 100,
-      system: AGENT_PROMPTS.HAJJ_SAVINGS_AGENT.systemPrompt,
+      system: enhancedSystemPrompt,
       messages: [
         {
           role: "user",

@@ -6,6 +6,7 @@ import ContextualInsight from "@/components/client/ContextualInsight";
 import { useUser } from "@/context/UserContext";
 import { useFinanceMode } from "@/context/FinanceModeContext";
 import { useTransactionsList, useSearchTransactions, useSpendingSummary, useSpendingByCategory } from "@/hooks/useTransactions";
+import { useTransactionInsights } from "@/hooks/useAIInsights";
 import {
   ShoppingBag,
   Car,
@@ -24,10 +25,24 @@ import {
   Wallet,
   AlertCircle,
   Sparkles,
+  type LucideIcon,
 } from "lucide-react";
 
+// Enriched transaction type (backend adds these fields)
+type EnrichedTransaction = {
+  _id: string;
+  type: "expense" | "income" | "transfer";
+  amount: number;
+  merchantName: string;
+  date: number;
+  markedAsRegret: boolean;
+  categoryName?: string;
+  categoryColor?: string;
+  categoryIcon?: string;
+};
+
 // Icon mapping for categories
-const categoryIcons: Record<string, React.ElementType> = {
+const categoryIcons: Record<string, LucideIcon> = {
   "Food & Dining": Utensils,
   "Transportation": Car,
   "Shopping": ShoppingBag,
@@ -98,12 +113,15 @@ export default function TransactionsPage() {
   const currency = user?.currency || "USD";
   const accentColor = isIslamic ? "text-sentience-gold" : "text-violet-400";
 
+  // Get AI-powered transaction insights
+  const { insights: aiInsights, isLoading: insightsLoading } = useTransactionInsights(isIslamic);
+
   // Use search results if searching, otherwise use full list
-  const transactions = useMemo(() => {
+  const transactions = useMemo((): EnrichedTransaction[] => {
     if (debouncedSearch.length > 0 && searchResults) {
-      return searchResults;
+      return searchResults as EnrichedTransaction[];
     }
-    return transactionsData?.transactions ?? [];
+    return (transactionsData?.transactions ?? []) as EnrichedTransaction[];
   }, [debouncedSearch, searchResults, transactionsData]);
 
   // Calculate stats

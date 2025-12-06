@@ -16,6 +16,7 @@ import type * as agents_zakatAgent from "../agents/zakatAgent.js";
 import type * as auth from "../auth.js";
 import type * as behavioralTriggers from "../behavioralTriggers.js";
 import type * as benchmarks from "../benchmarks.js";
+import type * as chat from "../chat.js";
 import type * as cronHelpers from "../cronHelpers.js";
 import type * as crons from "../crons.js";
 import type * as insights from "../insights.js";
@@ -45,6 +46,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   behavioralTriggers: typeof behavioralTriggers;
   benchmarks: typeof benchmarks;
+  chat: typeof chat;
   cronHelpers: typeof cronHelpers;
   crons: typeof crons;
   insights: typeof insights;

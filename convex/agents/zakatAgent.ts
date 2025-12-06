@@ -1,11 +1,16 @@
 /**
  * ZAKAT_AGENT - Ultra-Simple Prototype
  * Uses system prompt from agentPrompts.ts
+ * Integrated with RAG pipeline for Islamic rulings context
  */
 
 import { v } from "convex/values";
 import { internalAction } from "../_generated/server";
 import { AGENT_PROMPTS } from "../lib/agentPrompts";
+import {
+  buildZakatRAGContext,
+  enhanceSystemPromptWithRAGContext,
+} from "../lib/ragPipeline";
 import { Anthropic } from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -32,10 +37,20 @@ export const calculateZakat = internalAction({
     const isAboveNisab: boolean = totalWealth >= NISAB_THRESHOLD;
     const zakatDue: number = isAboveNisab ? totalWealth * ZAKAT_RATE : 0;
 
+    // Build RAG context with relevant Zakat rulings
+    const ragContext = buildZakatRAGContext(totalWealth, NISAB_THRESHOLD);
+
+    // Enhance system prompt with RAG knowledge
+    const enhancedSystemPrompt = enhanceSystemPromptWithRAGContext(
+      AGENT_PROMPTS.ZAKAT_AGENT.systemPrompt,
+      "zakat",
+      ragContext
+    );
+
     const response = await client.messages.create({
       model: "claude-3-5-sonnet-20241022",
       max_tokens: 150,
-      system: AGENT_PROMPTS.ZAKAT_AGENT.systemPrompt,
+      system: enhancedSystemPrompt,
       messages: [
         {
           role: "user",

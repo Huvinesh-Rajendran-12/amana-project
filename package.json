@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "convex:dev": "convex dev",
+    "convex:deploy": "convex deploy",
+    "convex:deploy:prod": "convex deploy --prod"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",

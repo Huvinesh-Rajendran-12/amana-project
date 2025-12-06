@@ -634,7 +634,13 @@ export const sendMessage = action({
         console.error("Claude API error:", response.status, errorText);
         // Fall back to smart response
         return {
-          response: generateFallbackResponse(args.message, agentName, userContext, args.isIslamic, zakatContext),
+          response: generateFallbackResponse(
+            args.message,
+            agentName,
+            userContext,
+            args.isIslamic,
+            zakatContext ?? undefined
+          ),
           agent: agentName,
         };
       }
@@ -649,7 +655,13 @@ export const sendMessage = action({
     } catch (error) {
       console.error("Chat error:", error);
       return {
-        response: generateFallbackResponse(args.message, agentName, userContext, args.isIslamic, zakatContext),
+        response: generateFallbackResponse(
+          args.message,
+          agentName,
+          userContext,
+          args.isIslamic,
+          zakatContext ?? undefined
+        ),
         agent: agentName,
       };
     }

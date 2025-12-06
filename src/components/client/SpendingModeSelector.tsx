@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useCurrentMode, useModeMutations, useBrokeModeStatus, useVacationProgress } from "@/hooks/useSpendingModes";
 import { useFinanceMode } from "@/context/FinanceModeContext";
 import {
@@ -68,6 +68,24 @@ export default function SpendingModeSelector() {
   const [dailyLimit, setDailyLimit] = useState(50);
   const [tripName, setTripName] = useState("");
   const [tripBudget, setTripBudget] = useState(5000);
+  
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   const isIslamic = financeMode === "islamic";
   const accentColor = isIslamic ? "text-sentience-gold" : "text-violet-400";
@@ -75,21 +93,21 @@ export default function SpendingModeSelector() {
   const activeMode = MODES.find((m) => m.id === activeModeId) ?? MODES[0];
 
   const handleModeChange = async (modeId: "normal" | "yolo" | "broke" | "vacation") => {
+    // Close dropdown immediately for better UX
+    setIsOpen(false);
+    
     if (modeId === activeModeId) {
-      setIsOpen(false);
       return;
     }
 
     // Handle special mode settings
     if (modeId === "broke") {
       setShowBrokeSettings(true);
-      setIsOpen(false);
       return;
     }
 
     if (modeId === "vacation") {
       setShowVacationSettings(true);
-      setIsOpen(false);
       return;
     }
 
@@ -104,7 +122,6 @@ export default function SpendingModeSelector() {
       console.error("Failed to change mode:", error);
     } finally {
       setIsChanging(false);
-      setIsOpen(false);
     }
   };
 
@@ -139,7 +156,7 @@ export default function SpendingModeSelector() {
   return (
     <>
       {/* Mode Selector Button */}
-      <div className="relative">
+      <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
           disabled={isChanging}

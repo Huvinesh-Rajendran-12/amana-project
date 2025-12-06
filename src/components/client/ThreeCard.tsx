@@ -102,7 +102,7 @@ function createIslamicCardTexture(): HTMLCanvasElement {
   ctx.font = "300 38px Outfit, sans-serif";
   ctx.fillStyle = CREAM_COLOR;
   ctx.textAlign = "left";
-  ctx.fillText("BARAKAH", 50, 65);
+  ctx.fillText("LUMINA", 50, 65);
 
   // Tagline
   ctx.font = "200 14px Outfit, sans-serif";
@@ -142,11 +142,6 @@ function createIslamicCardTexture(): HTMLCanvasElement {
   ctx.fillStyle = CREAM_COLOR;
   ctx.fillText("AHMAD IBRAHIM", 50, 560);
 
-  // Shariah compliant badge
-  ctx.font = "500 22px Outfit, sans-serif";
-  ctx.fillStyle = "rgba(212, 175, 55, 0.9)";
-  ctx.textAlign = "center";
-  ctx.fillText("✦ SHARIAH COMPLIANT", 512, 600);
 
   // Mastercard logo - original red/orange
   ctx.globalAlpha = 0.9;

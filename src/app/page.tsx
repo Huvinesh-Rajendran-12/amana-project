@@ -41,22 +41,16 @@ export default function Home() {
             
             {/* Headline */}
             <h1 className="text-5xl md:text-7xl font-thin leading-[1.1] tracking-tight text-cream">
-              Banking for{" "}
-              <span className="font-normal gradient-text">Everyone.</span>
+              Agentic Banking for{" "}
+              <span className="font-normal gradient-text">Malaysians.</span>
               <br />
-              <span className="text-3xl md:text-4xl text-cream/60 font-light">
-                Powered by AI.
-              </span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg font-light text-cream/60 leading-relaxed max-w-lg border-l border-cream/10 pl-6">
-              Whether you prefer{" "}
-              <span className="text-violet-400">conventional banking</span> or{" "}
-              <span className="text-sentience-gold">
-                Shariah-compliant finance
-              </span>
-              , Lumina adapts to you. One intelligent platform, personalized to
+              Whether you prefer conventional banking or{" "}
+              Shariah-compliant finance
+             , Lumina adapts to you. One AI-driven banking service, personalized to
               your values and goals.
             </p>
 
@@ -115,7 +109,7 @@ export default function Home() {
       {/* Mode Showcase Section - Interactive Tabs */}
       <section className="py-20 px-6 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-6">
             <h2 className="text-3xl md:text-5xl font-thin mb-6 text-cream">
               One Platform.{" "}
               <span className="font-normal text-cream">Your Way.</span>
@@ -130,7 +124,57 @@ export default function Home() {
         </div>
       </section>
 
-      {/* iRAG Technology Section */}
+
+      {/* Features Section */}
+      <section id="features" className="py-32 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-24">
+            <h2 className="text-3xl md:text-5xl font-thin mb-8 text-cream">
+              Intelligent Features.
+            </h2>
+            <p className="text-cream/50 max-w-xl text-lg font-light leading-relaxed">
+              AI-powered tools that understand your financial needs — whether
+              conventional or Shariah-compliant.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-px bg-cream/10 border border-cream/10">
+                <FeatureCard
+              icon={<Zap className="w-5 h-5 text-violet-400" />}
+              title="AI Financial Coach"
+              description="Personalized guidance that respects your preferences. Get smart recommendations aligned with your values."
+            />
+            <FeatureCard
+              icon={<Activity className="w-5 h-5 text-violet-400" />}
+              title="Real-time Analytics"
+              description="Comprehensive dashboard with spending charts, savings progress, and halal compliance tracking."
+            />
+            <FeatureCard
+              icon={<Globe2 className="w-5 h-5 text-violet-400" />}
+              title="All Malaysian Banks"
+              description="Connect with Maybank, CIMB, Bank Islam, Public Bank, and more. All major banks supported."
+            />
+            <FeatureCard
+              icon={<Calculator className="w-5 h-5 text-sentience-gold" />}
+              title="Smart Zakat Calculator"
+              description="AI calculates your Zakat based on current nisab (RM25,578). Integrated with PPZ, MAIWP, and state zakat centers."
+            />
+            <FeatureCard
+              icon={<Building2 className="w-5 h-5 text-sentience-gold" />}
+              title="Tabung Haji Integration"
+              description="Track your Hajj savings, latest hibah rates (4.1%), and waiting list position. Direct top-up support."
+            />
+            <FeatureCard
+              icon={<Shield className="w-5 h-5 text-sentience-gold" />}
+              title="Flexible Protection"
+              description="Insurance or Takaful — choose the protection that suits your needs. PIDM protected up to RM250,000."
+            />
+      
+          </div>
+        </div>
+      </section>
+
+            {/* iRAG Technology Section */}
       <section className="py-32 px-6 relative border-t border-cream/5 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-b from-violet-950/20 via-transparent to-sentience-gold/5 pointer-events-none" />
 
@@ -139,10 +183,7 @@ export default function Home() {
             {/* Content */}
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20">
-                <Brain className="w-4 h-4 text-violet-400" />
-                <span className="text-xs font-medium text-violet-400 uppercase tracking-wider">
-                  World&apos;s First
-                </span>
+                <Brain className="w-4 h-4 text-sentience-gold" />
               </div>
 
               <h2 className="text-3xl md:text-5xl font-thin text-cream">
@@ -165,7 +206,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="shrink-0 w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-violet-400" />
+                    <BookOpen className="w-5 h-5 text-sentience-gold" />
                   </div>
                   <div>
                     <h4 className="font-medium text-cream mb-1">
@@ -208,7 +249,7 @@ export default function Home() {
                     </div>
                     <div className="bg-cream/5 rounded-2xl rounded-tl-none p-4 max-w-[80%]">
                       <p className="text-sm text-cream/80">
-                        Is my fixed deposit at Maybank Islamic considered halal?
+                        Is my fixed deposit at Maybank Islamic considered Shariah-compliant?
                         What about the returns?
                       </p>
                     </div>
@@ -239,54 +280,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-32 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-24">
-            <h2 className="text-3xl md:text-5xl font-thin mb-8 text-cream">
-              Intelligent Features.
-            </h2>
-            <p className="text-cream/50 max-w-xl text-lg font-light leading-relaxed">
-              AI-powered tools that understand your financial needs — whether
-              conventional or Shariah-compliant.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-px bg-cream/10 border border-cream/10">
-            <FeatureCard
-              icon={<Calculator className="w-5 h-5 text-sentience-gold" />}
-              title="Smart Zakat Calculator"
-              description="AI calculates your Zakat based on current nisab (RM25,578). Integrated with PPZ, MAIWP, and state zakat centers."
-            />
-            <FeatureCard
-              icon={<Building2 className="w-5 h-5 text-sentience-gold" />}
-              title="Tabung Haji Integration"
-              description="Track your Hajj savings, latest hibah rates (4.1%), and waiting list position. Direct top-up support."
-            />
-            <FeatureCard
-              icon={<Shield className="w-5 h-5 text-sentience-gold" />}
-              title="Flexible Protection"
-              description="Insurance or Takaful — choose the protection that suits your needs. PIDM protected up to RM250,000."
-            />
-            <FeatureCard
-              icon={<Zap className="w-5 h-5 text-violet-400" />}
-              title="AI Financial Coach"
-              description="Personalized guidance that respects your preferences. Get smart recommendations aligned with your values."
-            />
-            <FeatureCard
-              icon={<Activity className="w-5 h-5 text-violet-400" />}
-              title="Real-time Analytics"
-              description="Comprehensive dashboard with spending charts, savings progress, and halal compliance tracking."
-            />
-            <FeatureCard
-              icon={<Globe2 className="w-5 h-5 text-violet-400" />}
-              title="All Malaysian Banks"
-              description="Connect with Maybank, CIMB, Bank Islam, Public Bank, and more. All major banks supported."
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Malaysian Institutions */}
       <section className="py-20 px-6 bg-linear-to-b from-black to-black border-t border-cream/5">
         <div className="max-w-7xl mx-auto">
@@ -295,7 +288,7 @@ export default function Home() {
               Our Potential Partners
             </h2>
             <p className="text-cream/50 max-w-xl mx-auto text-sm font-light">
-              We partner with Malaysia&apos;s leading financial institutions to
+              We're planning to partner with Malaysia&apos;s leading financial institutions to
               deliver a seamless and secure banking experience.
             </p>
           </div>

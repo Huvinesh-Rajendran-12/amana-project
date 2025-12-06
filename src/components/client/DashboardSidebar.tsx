@@ -90,7 +90,7 @@ export default function DashboardSidebar() {
           </p>
           <button
             onClick={toggleMode}
-            className="w-full flex items-center justify-between p-1 rounded-full bg-white/5 border border-white/10"
+            className="flex items-center justify-between p-1 rounded-full bg-white/5 border border-white/10"
           >
             <div
               className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 ${

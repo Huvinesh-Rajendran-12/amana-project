@@ -24,17 +24,11 @@ export default function Navigation({ scrolled = false }: NavigationProps) {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-12 text-xs font-light tracking-widest uppercase text-[#efece4]/50">
-          <a href="#features" className="hover:text-[#efece4] transition-colors duration-300">
-            Features
-          </a>
-          <a href="#comparison" className="hover:text-[#efece4] transition-colors duration-300">
-            Compare
-          </a>
+        {/* <div className="hidden md:flex items-center gap-12 text-xs font-light tracking-widest uppercase text-[#efece4]/50">
           <a href="/dashboard" className="hover:text-[#efece4] transition-colors duration-300">
             Dashboard
           </a>
-        </div>
+        </div> */}
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-6">

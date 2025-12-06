@@ -82,5 +82,12 @@ crons.monthly(
   internal.cronHelpers.cleanupOldInsights
 );
 
+// ============================================
+// ISLAMIC FINANCE AGENTS
+// ============================================
+// Note: Islamic finance agent cron jobs can be enabled once
+// the agent functions are extended with batch processing capabilities.
+// For the current prototype, agents are called on-demand via API.
+
 export default crons;
 

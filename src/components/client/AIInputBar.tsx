@@ -4,139 +4,29 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Sparkles, Send, X, Loader2, ChevronUp, ChevronDown } from "lucide-react";
 import { useFinanceMode } from "@/context/FinanceModeContext";
 import { useUser } from "@/context/UserContext";
-import { useSpendingSummary } from "@/hooks/useTransactions";
-import { useCurrentMode } from "@/hooks/useSpendingModes";
-import { useInsightsList } from "@/hooks/useInsights";
+import { useChat } from "@/hooks/useChat";
 import AIResponseCard from "./AIResponseCard";
 
 interface AIResponse {
   id: string;
   question: string;
   response: string;
+  agent?: string;
   timestamp: Date;
-}
-
-// Generate contextual AI responses based on user data
-function generateAIResponse(
-  userMessage: string,
-  isIslamic: boolean,
-  spendingSummary?: {
-    totalExpenses: number;
-    savings: number;
-    savingsRate: number;
-  },
-  currentMode?: { mode: string } | null,
-  insights?: Array<{ title: string; message: string }>
-): string {
-  const message = userMessage.toLowerCase();
-
-  // Check for Zakat related questions
-  if (message.includes("zakat")) {
-    if (spendingSummary && spendingSummary.savings > 0) {
-      // Estimate annual savings (monthly * 12) and apply 2.5% Zakat rate
-      const estimatedAnnualSavings = spendingSummary.savings * 12;
-      const estimatedZakat = estimatedAnnualSavings * 0.025;
-      return `Based on your current savings pattern, your estimated annual Zakat would be approximately RM${estimatedZakat.toFixed(2)} (2.5% of zakatable assets above nisab). Would you like me to break down the calculation or help you set up automatic Zakat reminders?`;
-    }
-    return "To calculate your Zakat accurately, I'll need to know your total zakatable assets including cash, gold, silver, and investments held for one lunar year above the nisab threshold. Would you like me to guide you through the calculation?";
-  }
-
-  // Check for Hajj related questions
-  if (message.includes("hajj") || message.includes("pilgrimage")) {
-    return "MashaaAllah! Your Hajj savings journey is important. Based on current Tabung Haji rates, the estimated cost is around RM45,000. I can help you create a savings plan. How many years would you like to save over?";
-  }
-
-  // Check for spending related questions
-  if (message.includes("spending") || message.includes("spent") || message.includes("expenses")) {
-    if (spendingSummary) {
-      const { totalExpenses, savingsRate } = spendingSummary;
-      if (savingsRate > 25) {
-        return `Great news! You've spent RM${totalExpenses.toFixed(2)} this month with a healthy ${savingsRate.toFixed(0)}% savings rate. Keep up the excellent financial discipline!`;
-      } else if (savingsRate > 0) {
-        return `This month you've spent RM${totalExpenses.toFixed(2)} with a ${savingsRate.toFixed(0)}% savings rate. To improve, consider reviewing your discretionary spending categories.`;
-      }
-      return `You've spent RM${totalExpenses.toFixed(2)} this month. Would you like me to analyze your spending patterns and suggest areas for optimization?`;
-    }
-    return "I can help you analyze your spending! Add some transactions first, and I'll provide personalized insights.";
-  }
-
-  // Check for savings related questions
-  if (message.includes("save") || message.includes("saving")) {
-    if (spendingSummary && spendingSummary.savingsRate > 0) {
-      return `Your current savings rate is ${spendingSummary.savingsRate.toFixed(0)}%. ${
-        spendingSummary.savingsRate >= 20
-          ? "Excellent work! You're on track for your financial goals."
-          : "Consider aiming for at least 20% savings rate for long-term financial health."
-      }`;
-    }
-    return "Building savings is crucial for financial security. I recommend starting with an emergency fund covering 3-6 months of expenses. Would you like me to help create a savings plan?";
-  }
-
-  // Check for mode related questions
-  if (message.includes("mode") || message.includes("yolo") || message.includes("broke")) {
-    if (currentMode) {
-      return `You're currently in ${currentMode.mode.toUpperCase()} mode. ${
-        currentMode.mode === "yolo"
-          ? "Enjoy responsibly! I'll celebrate your purchases with you."
-          : currentMode.mode === "broke"
-            ? "I'm here to help you stay on budget. Every ringgit counts!"
-            : currentMode.mode === "vacation"
-              ? "Have a great trip! I'll track your vacation spending."
-              : "I'm providing balanced financial coaching."
-      } Would you like to switch modes?`;
-    }
-    return "You can switch between Normal, YOLO, Broke, and Vacation modes to adjust how I coach you. Which mode interests you?";
-  }
-
-  // Check for halal/shariah related questions
-  if (isIslamic && (message.includes("halal") || message.includes("shariah") || message.includes("riba"))) {
-    return "I help ensure your finances align with Islamic principles. I can check transactions for Shariah compliance, track riba (interest) for purification, and guide you on halal investments. What would you like to know more about?";
-  }
-
-  // Check for investment questions
-  if (message.includes("invest") || message.includes("portfolio")) {
-    if (isIslamic) {
-      return "For Shariah-compliant investing, consider Sukuk (Islamic bonds), ASNB Islamic funds, or Shariah-compliant ETFs. I can help you evaluate options based on your risk tolerance. What's your investment goal?";
-    }
-    return "Based on your savings pattern, you might consider diversifying into fixed deposits, unit trusts, or stocks. What's your risk tolerance and investment timeline?";
-  }
-
-  // Default contextual responses
-  if (insights && insights.length > 0) {
-    const latestInsight = insights[0];
-    return `Based on my analysis: ${latestInsight.message} Is there anything specific about your finances you'd like to discuss?`;
-  }
-
-  // Generic helpful responses
-  const genericResponses = isIslamic
-    ? [
-        "Bismillah! I'm here to help with your Shariah-compliant financial journey. You can ask about Zakat, Hajj savings, halal investments, or general budgeting.",
-        "Alhamdulillah for reaching out! I can assist with Zakat calculations, spending analysis, or Islamic financial planning. How may I help?",
-      ]
-    : [
-        "I'm here to help with your financial goals! You can ask about spending patterns, savings strategies, or investment ideas.",
-        "I can help you understand your spending, optimize your budget, or plan for the future. What would you like to explore?",
-      ];
-
-  return genericResponses[Math.floor(Math.random() * genericResponses.length)];
 }
 
 export default function AIInputBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [responses, setResponses] = useState<AIResponse[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { mode } = useFinanceMode();
   const { userId } = useUser();
-  const spendingSummary = useSpendingSummary(1);
-  const currentMode = useCurrentMode();
-  const insights = useInsightsList({ limit: 3 });
+  const { sendMessage, isLoading } = useChat();
 
   const isIslamic = mode === "islamic";
   const accentColor = isIslamic ? "text-sentience-gold" : "text-violet-400";
-  const accentBg = isIslamic ? "bg-sentience-gold" : "bg-violet-500";
   const accentBgLight = isIslamic ? "bg-sentience-gold/10" : "bg-violet-500/10";
   const accentBorder = isIslamic ? "border-sentience-gold/20" : "border-violet-500/20";
 
@@ -165,38 +55,36 @@ export default function AIInputBar() {
 
     const question = input.trim();
     setInput("");
-    setIsLoading(true);
 
-    // Simulate AI response delay
-    await new Promise((resolve) => setTimeout(resolve, 600 + Math.random() * 400));
+    // Call the backend
+    const result = await sendMessage(question, isIslamic);
 
-    const response = generateAIResponse(
-      question,
-      isIslamic,
-      spendingSummary
-        ? {
-            totalExpenses: spendingSummary.totalExpenses,
-            savings: spendingSummary.savings,
-            savingsRate: spendingSummary.savingsRate,
-          }
-        : undefined,
-      currentMode,
-      insights?.map((i) => ({ title: i.title, message: i.message }))
-    );
+    if (result) {
+      setResponses((prev) => [
+        {
+          id: Date.now().toString(),
+          question,
+          response: result.response,
+          agent: result.agent,
+          timestamp: new Date(),
+        },
+        ...prev.slice(0, 4), // Keep last 5 responses
+      ]);
+    } else {
+      // Fallback if something went wrong
+      setResponses((prev) => [
+        {
+          id: Date.now().toString(),
+          question,
+          response: "I'm having trouble connecting right now. Please try again in a moment.",
+          timestamp: new Date(),
+        },
+        ...prev.slice(0, 4),
+      ]);
+    }
 
-    setResponses((prev) => [
-      {
-        id: Date.now().toString(),
-        question,
-        response,
-        timestamp: new Date(),
-      },
-      ...prev.slice(0, 4), // Keep last 5 responses
-    ]);
-
-    setIsLoading(false);
     setIsExpanded(true);
-  }, [input, isLoading, isIslamic, spendingSummary, currentMode, insights]);
+  }, [input, isLoading, isIslamic, sendMessage]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -257,6 +145,7 @@ export default function AIInputBar() {
                 : "Ask Lumina about spending, savings, investments..."
             }
             className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 focus:outline-none"
+            disabled={isLoading}
           />
 
           {/* Keyboard shortcut hint */}
@@ -345,13 +234,15 @@ export default function AIInputBar() {
             {(isIslamic
               ? [
                   "How much Zakat do I owe?",
-                  "Track my Hajj savings",
-                  "Is my spending halal?",
+                  "Help me plan for Hajj",
+                  "Is my spending Shariah-compliant?",
+                  "What are halal investment options?",
                 ]
               : [
                   "How's my spending this month?",
-                  "Tips to save more",
-                  "Analyze my expenses",
+                  "Tips to save more money",
+                  "Analyze my expense patterns",
+                  "What should I invest in?",
                 ]
             ).map((suggestion) => (
               <button
@@ -371,4 +262,3 @@ export default function AIInputBar() {
     </div>
   );
 }
-
